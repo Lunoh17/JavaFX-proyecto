@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="est.ucab.jacafxproyecto.MenuController">
+   <children>
+      <Button layoutX="222.0" layoutY="145.0" mnemonicParsing="false" onAction="#switchToSeleccionJugadores" prefHeight="54.0" prefWidth="155.0" text="NuevaPartida" />
+      <Button layoutX="247.0" layoutY="216.0" mnemonicParsing="false" onAction="#switchTojuego" prefHeight="54.0" prefWidth="106.0" text="CargarPartida" />
+      <Button layoutX="247.0" layoutY="283.0" mnemonicParsing="false" onAction="#switchToEstadisticasJuegadores" prefHeight="47.0" prefWidth="106.0" text="Estadisticas" />
+      <Button layoutX="252.0" layoutY="360.0" mnemonicParsing="false" onAction="#onClickSalir" prefHeight="18.0" prefWidth="96.0" text="Salir" />
+      <Label layoutX="204.0" layoutY="42.0" prefHeight="70.0" prefWidth="192.0" text="Trivia UCAB">
+         <font>
+            <Font size="37.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

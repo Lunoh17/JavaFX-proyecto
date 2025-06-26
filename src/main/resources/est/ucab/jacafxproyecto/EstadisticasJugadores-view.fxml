@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="est.ucab.jacafxproyecto.EstadisticasJugadoresController">
+   <children>
+      <Button layoutX="457.0" layoutY="360.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="53.0" text="Salir" onAction="#onClickSalir"/>
+      <Button layoutX="282.0" layoutY="360.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="85.0" text="Regresar" onAction="#switchToMenu"/>
+   </children>
+</AnchorPane>
