@@ -7,4 +7,5 @@ module est.ucab.jacafxproyecto {
 
     opens est.ucab.jacafxproyecto to javafx.fxml;
     exports est.ucab.jacafxproyecto;
+
 }
