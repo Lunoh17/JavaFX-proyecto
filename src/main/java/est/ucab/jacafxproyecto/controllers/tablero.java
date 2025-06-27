@@ -1,9 +1,9 @@
-package est.ucab.jacafxproyecto;
+package est.ucab.jacafxproyecto.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class tablero {
     @FXML
     private Label welcomeText;
 
