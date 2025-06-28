@@ -41,7 +41,8 @@ public class Bienvenida {
                     -fx-border-width: 12;\s
                     -fx-border-radius: 15;\s
                     -fx-border-style: solid;
-                    -fx-background-color: #ebdcff;""");
+                    -fx-background-color: #ebdcff;
+                    -fx-background-radius: 20;""");
     }
 
 }
