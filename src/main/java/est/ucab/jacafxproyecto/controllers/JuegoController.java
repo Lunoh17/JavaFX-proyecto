@@ -5,9 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 
-public class tablero {
 
-
+public class JuegoController {
 
     @FXML
     private Label welcomeText;
@@ -21,5 +20,4 @@ public class tablero {
     public void onClickSalir() {
         Platform.exit();  // Cerrar la aplicación
     }
-    
 }
