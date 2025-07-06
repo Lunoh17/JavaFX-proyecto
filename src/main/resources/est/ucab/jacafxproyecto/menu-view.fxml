@@ -5,12 +5,15 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="paneWilcommen" prefHeight="428.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="est.ucab.jacafxproyecto.controllers.MenuController">
+<AnchorPane fx:id="paneWilcommen" prefHeight="768" prefWidth="1300" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="est.ucab.jacafxproyecto.controllers.MenuController">
    <children>
-      <AnchorPane fx:id="container1" layoutX="36.0" layoutY="34.0" prefHeight="359.0" prefWidth="540.0">
+      <AnchorPane fx:id="container1" layoutX="36.0" layoutY="34.0" prefHeight="688.0" prefWidth="1219.0">
          <children>
-            <Button layoutX="430.0" layoutY="281.0" mnemonicParsing="false" onAction="#onClickSalir" prefHeight="54.0" prefWidth="96.0" text="Salir" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="46.0" layoutY="51.0" prefHeight="121.0" prefWidth="336.0" text="Trivia " textAlignment="CENTER">
+            <Button layoutX="868.0" layoutY="581.0" mnemonicParsing="false" onAction="#onClickSalir" prefHeight="54.0" prefWidth="96.0" scaleX="1.4" scaleY="1.4" text="Salir">
+               <font>
+                  <Font name="Comic Sans MS Italic" size="15.0" />
+               </font></Button>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="327.0" layoutY="166.0" prefHeight="121.0" prefWidth="336.0" scaleX="1.4" scaleY="1.4" text="Trivia " textAlignment="CENTER">
                <font>
                   <Font name="Comic Sans MS Bold" size="95.0" />
                </font>
@@ -51,10 +54,19 @@
                   </LinearGradient>
                </textFill>
             </Label>
-            <Button layoutX="303.0" layoutY="281.0" mnemonicParsing="false" onAction="#switchToEstadisticasJuegadores" prefHeight="54.0" prefWidth="106.0" text="Estadisticas" />
-            <Button layoutX="173.0" layoutY="281.0" mnemonicParsing="false" onAction="#switchTojuego" prefHeight="54.0" prefWidth="106.0" text="CargarPartida" />
-            <Button layoutX="19.0" layoutY="281.0" mnemonicParsing="false" onAction="#switchToSeleccionJugadores" prefHeight="54.0" prefWidth="129.0" text="NuevaPartida" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="139.0" prefHeight="121.0" prefWidth="336.0" text="UCAB" textAlignment="CENTER">
+            <Button layoutX="656.0" layoutY="581.0" mnemonicParsing="false" onAction="#switchToEstadisticasJuegadores" prefHeight="54.0" prefWidth="106.0" scaleX="1.4" scaleY="1.4" text="Estadisticas">
+               <font>
+                  <Font name="Comic Sans MS Italic" size="15.0" />
+               </font></Button>
+            <Button layoutX="442.0" layoutY="581.0" mnemonicParsing="false" onAction="#switchTojuego" prefHeight="54.0" prefWidth="106.0" scaleX="1.4" scaleY="1.4" text="CargarPartida">
+               <font>
+                  <Font name="Comic Sans MS Italic" size="13.0" />
+               </font></Button>
+            <Button layoutX="195.0" layoutY="581.0" mnemonicParsing="false" onAction="#switchToSeleccionJugadores" prefHeight="54.0" prefWidth="129.0" scaleX="1.4" scaleY="1.4" text="NuevaPartida">
+               <font>
+                  <Font name="Comic Sans MS Italic" size="15.0" />
+               </font></Button>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="525.0" layoutY="290.0" prefHeight="121.0" prefWidth="336.0" scaleX="1.4" scaleY="1.4" text="UCAB" textAlignment="CENTER">
                <font>
                   <Font name="Comic Sans MS Bold" size="95.0" />
                </font>

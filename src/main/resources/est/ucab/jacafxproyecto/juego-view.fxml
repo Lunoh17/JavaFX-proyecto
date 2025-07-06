@@ -1,103 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
-   <left>
-      <Group BorderPane.alignment="CENTER">
-         <children>
-            <Polygon fx:id="hex00" fill="DODGERBLUE" layoutX="253.6385726928711" layoutY="233.02882385253906" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex01" fill="DODGERBLUE" layoutX="293.32445526123047" layoutY="234.2908477783203" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex02" fill="DODGERBLUE" layoutX="333.01033782958984" layoutY="235.55287170410156" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex03" fill="DODGERBLUE" layoutX="371.6137008666992" layoutY="236.1898956298828" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex04" fill="DODGERBLUE" layoutX="410.2170639038086" layoutY="236.82691955566406" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex49" fill="DODGERBLUE" layoutX="232.70269012451172" layoutY="199.2908477783203" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex50" fill="DODGERBLUE" layoutX="212.84932708740234" layoutY="166.17787170410156" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex51" fill="DODGERBLUE" layoutX="191.91341400146484" layoutY="132.4398956298828" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex52" fill="DODGERBLUE" layoutX="170.9775619506836" layoutY="98.701904296875" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex61" fill="DODGERBLUE" layoutX="272.3885726928711" layoutY="200.55287170410156" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex62" fill="DODGERBLUE" layoutX="291.1385726928711" layoutY="168.07691955566406" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex63" fill="DODGERBLUE" layoutX="309.8885726928711" layoutY="135.60096740722656" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex64" fill="DODGERBLUE" layoutX="328.6385726928711" layoutY="103.125" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex65" fill="DODGERBLUE" layoutX="347.3885726928711" layoutY="70.6490478515625" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex66" fill="DODGERBLUE" layoutX="366.1385726928711" layoutY="38.173095703125" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex53" fill="DODGERBLUE" layoutX="151.12418365478516" layoutY="65.58892822265625" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex54" fill="DODGERBLUE" layoutX="131.27082061767578" layoutY="32.4759521484375" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex05" fill="DODGERBLUE" layoutX="447.73787689208984" layoutY="236.8389434814453" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex06" fill="DODGERBLUE" layoutX="487.42378997802734" layoutY="238.10096740722656" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex13" fill="DODGERBLUE" layoutX="274.57445526123047" layoutY="266.7667999267578" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex14" fill="DODGERBLUE" layoutX="295.51033782958984" layoutY="300.50477600097656" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex15" fill="DODGERBLUE" layoutX="315.3637008666992" layoutY="333.6177520751953" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex16" fill="DODGERBLUE" layoutX="335.2170639038086" layoutY="366.73072814941406" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex17" fill="DODGERBLUE" layoutX="353.98787689208984" layoutY="399.2187042236328" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex18" fill="DODGERBLUE" layoutX="374.9237594604492" layoutY="432.95668029785156" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex25" fill="DODGERBLUE" layoutX="234.8885726928711" layoutY="265.50477600097656" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex26" fill="DODGERBLUE" layoutX="216.1385726928711" layoutY="297.98072814941406" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex27" fill="DODGERBLUE" layoutX="197.3885726928711" layoutY="330.45668029785156" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex28" fill="DODGERBLUE" layoutX="178.6385726928711" layoutY="362.93263244628906" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex29" fill="DODGERBLUE" layoutX="159.8885726928711" layoutY="395.40858459472656" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex30" fill="DODGERBLUE" layoutX="141.1385726928711" layoutY="427.88453674316406" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex37" fill="DODGERBLUE" layoutX="213.95269012451172" layoutY="231.7667999267578" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex38" fill="DODGERBLUE" layoutX="175.34932708740234" layoutY="231.12977600097656" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex39" fill="DODGERBLUE" layoutX="135.6634292602539" layoutY="229.8677520751953" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex40" fill="DODGERBLUE" layoutX="95.97754669189453" layoutY="228.60572814941406" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex41" fill="DODGERBLUE" layoutX="57.374183654785156" layoutY="227.9687042236328" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex42" fill="DODGERBLUE" layoutX="18.770828247070312" layoutY="227.33168029785156" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex55" fill="DODGERBLUE" layoutX="150.02082061767578" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex56" fill="DODGERBLUE" layoutX="188.6241683959961" layoutY="0.63702392578125" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex57" fill="DODGERBLUE" layoutX="227.22753143310547" layoutY="1.2740478515625" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex58" fill="DODGERBLUE" layoutX="266.91344451904297" layoutY="2.53607177734375" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex59" fill="DODGERBLUE" layoutX="306.59932708740234" layoutY="3.798095703125" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex60" fill="DODGERBLUE" layoutX="345.2026901245117" layoutY="4.43511962890625" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex67" fill="DODGERBLUE" layoutX="405.82445526123047" layoutY="39.43511962890625" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex68" fill="DODGERBLUE" layoutX="426.76033782958984" layoutY="73.173095703125" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex69" fill="DODGERBLUE" layoutX="446.6136703491211" layoutY="106.28607177734375" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex70" fill="DODGERBLUE" layoutX="466.4670639038086" layoutY="139.39906311035156" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex71" fill="DODGERBLUE" layoutX="485.23787689208984" layoutY="171.8870391845703" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex72" fill="DODGERBLUE" layoutX="506.17378997802734" layoutY="205.62501525878906" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex07" fill="DODGERBLUE" layoutX="505.1120834350586" layoutY="269.9639434814453" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex08" fill="DODGERBLUE" layoutX="486.3620834350586" layoutY="302.4398956298828" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex09" fill="DODGERBLUE" layoutX="467.6120834350586" layoutY="334.9158477783203" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex10" fill="DODGERBLUE" layoutX="448.8620834350586" layoutY="367.3917999267578" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex11" fill="DODGERBLUE" layoutX="430.1120834350586" layoutY="399.8677520751953" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex12" fill="DODGERBLUE" layoutX="411.3620834350586" layoutY="432.3437042236328" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex19" fill="DODGERBLUE" layoutX="356.1737594604492" layoutY="465.43263244628906" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex20" fill="DODGERBLUE" layoutX="316.48787689208984" layoutY="464.1706085205078" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex21" fill="DODGERBLUE" layoutX="278.9670639038086" layoutY="464.15858459472656" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex22" fill="DODGERBLUE" layoutX="240.36370086669922" layoutY="463.5215606689453" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex23" fill="DODGERBLUE" layoutX="201.76033782958984" layoutY="462.88453674316406" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex24" fill="DODGERBLUE" layoutX="162.07445526123047" layoutY="461.6225128173828" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex48" fill="DODGERBLUE" layoutX="93.75000762939453" layoutY="32.46392822265625" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex47" fill="DODGERBLUE" layoutX="75.00000762939453" layoutY="64.93988037109375" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex46" fill="DODGERBLUE" layoutX="56.24999237060547" layoutY="97.41583251953125" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex45" fill="DODGERBLUE" layoutX="37.49999237060547" layoutY="129.8917999267578" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex44" fill="DODGERBLUE" layoutX="18.75" layoutY="162.3677520751953" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex43" fill="DODGERBLUE" layoutY="194.8437042236328" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex36" fill="DODGERBLUE" layoutX="0.02082061767578125" layoutY="259.80763244628906" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex35" fill="DODGERBLUE" layoutX="19.874183654785156" layoutY="292.9206085205078" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex34" fill="DODGERBLUE" layoutX="39.72753143310547" layoutY="326.03358459472656" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex33" fill="DODGERBLUE" layoutX="60.663429260253906" layoutY="359.7715606689453" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex32" fill="DODGERBLUE" layoutX="81.59931182861328" layoutY="393.50953674316406" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fx:id="hex31" fill="DODGERBLUE" layoutX="102.70267486572266" layoutY="424.45741271972656" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-         </children>
-      </Group>
-   </left>
-   <right>
-      <VBox BorderPane.alignment="CENTER">
-         <children>
-            <HBox>
+<AnchorPane fx:id="paneWilcommen" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="est.ucab.jacafxproyecto.controllers.JuegoController">
+   <children>
+      <BorderPane fx:id="container1" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
+         <left>
+            <Group BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label alignment="CENTER" contentDisplay="CENTER" text="Nombre" textAlignment="CENTER" translateY="25.0" />
+                  <Polygon fx:id="hex00" fill="DODGERBLUE" layoutX="253.0" layoutY="233.0" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex01" fill="DODGERBLUE" layoutX="293.32445526123047" layoutY="234.2908477783203" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex02" fill="DODGERBLUE" layoutX="333.01033782958984" layoutY="235.55287170410156" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex03" fill="DODGERBLUE" layoutX="371.6137008666992" layoutY="236.1898956298828" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex04" fill="DODGERBLUE" layoutX="410.2170639038086" layoutY="236.82691955566406" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex49" fill="DODGERBLUE" layoutX="232.70269012451172" layoutY="199.2908477783203" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex50" fill="DODGERBLUE" layoutX="212.84932708740234" layoutY="166.17787170410156" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex51" fill="DODGERBLUE" layoutX="191.91341400146484" layoutY="132.4398956298828" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex52" fill="DODGERBLUE" layoutX="170.9775619506836" layoutY="98.701904296875" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex61" fill="DODGERBLUE" layoutX="272.3885726928711" layoutY="200.55287170410156" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex62" fill="DODGERBLUE" layoutX="291.1385726928711" layoutY="168.07691955566406" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex63" fill="DODGERBLUE" layoutX="309.8885726928711" layoutY="135.60096740722656" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex64" fill="DODGERBLUE" layoutX="328.6385726928711" layoutY="103.125" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex65" fill="DODGERBLUE" layoutX="347.3885726928711" layoutY="70.6490478515625" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex66" fill="DODGERBLUE" layoutX="366.1385726928711" layoutY="38.173095703125" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex53" fill="DODGERBLUE" layoutX="151.12418365478516" layoutY="65.58892822265625" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex54" fill="DODGERBLUE" layoutX="131.27082061767578" layoutY="32.4759521484375" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex05" fill="DODGERBLUE" layoutX="447.73787689208984" layoutY="236.8389434814453" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex06" fill="DODGERBLUE" layoutX="487.42378997802734" layoutY="238.10096740722656" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex13" fill="DODGERBLUE" layoutX="274.57445526123047" layoutY="266.7667999267578" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex14" fill="DODGERBLUE" layoutX="295.51033782958984" layoutY="300.50477600097656" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex15" fill="DODGERBLUE" layoutX="315.3637008666992" layoutY="333.6177520751953" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex16" fill="DODGERBLUE" layoutX="335.2170639038086" layoutY="366.73072814941406" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex17" fill="DODGERBLUE" layoutX="353.98787689208984" layoutY="399.2187042236328" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex18" fill="DODGERBLUE" layoutX="374.9237594604492" layoutY="432.95668029785156" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex25" fill="DODGERBLUE" layoutX="234.8885726928711" layoutY="265.50477600097656" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex26" fill="DODGERBLUE" layoutX="216.1385726928711" layoutY="297.98072814941406" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex27" fill="DODGERBLUE" layoutX="197.3885726928711" layoutY="330.45668029785156" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex28" fill="DODGERBLUE" layoutX="178.6385726928711" layoutY="362.93263244628906" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex29" fill="DODGERBLUE" layoutX="159.8885726928711" layoutY="395.40858459472656" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex30" fill="DODGERBLUE" layoutX="141.1385726928711" layoutY="427.88453674316406" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex37" fill="DODGERBLUE" layoutX="213.95269012451172" layoutY="231.7667999267578" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex38" fill="DODGERBLUE" layoutX="175.34932708740234" layoutY="231.12977600097656" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex39" fill="DODGERBLUE" layoutX="135.6634292602539" layoutY="229.8677520751953" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex40" fill="DODGERBLUE" layoutX="95.97754669189453" layoutY="228.60572814941406" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex41" fill="DODGERBLUE" layoutX="57.374183654785156" layoutY="227.9687042236328" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex42" fill="DODGERBLUE" layoutX="18.770828247070312" layoutY="227.33168029785156" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex55" fill="DODGERBLUE" layoutX="150.02082061767578" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex56" fill="DODGERBLUE" layoutX="188.6241683959961" layoutY="0.63702392578125" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex57" fill="DODGERBLUE" layoutX="227.22753143310547" layoutY="1.2740478515625" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex58" fill="DODGERBLUE" layoutX="266.91344451904297" layoutY="2.53607177734375" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex59" fill="DODGERBLUE" layoutX="306.59932708740234" layoutY="3.798095703125" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex60" fill="DODGERBLUE" layoutX="345.2026901245117" layoutY="4.43511962890625" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex67" fill="DODGERBLUE" layoutX="405.82445526123047" layoutY="39.43511962890625" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex68" fill="DODGERBLUE" layoutX="426.76033782958984" layoutY="73.173095703125" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex69" fill="DODGERBLUE" layoutX="446.6136703491211" layoutY="106.28607177734375" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex70" fill="DODGERBLUE" layoutX="466.4670639038086" layoutY="139.39906311035156" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex71" fill="DODGERBLUE" layoutX="485.23787689208984" layoutY="171.8870391845703" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex72" fill="DODGERBLUE" layoutX="506.17378997802734" layoutY="205.62501525878906" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex07" fill="DODGERBLUE" layoutX="505.1120834350586" layoutY="269.9639434814453" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex08" fill="DODGERBLUE" layoutX="486.3620834350586" layoutY="302.4398956298828" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex09" fill="DODGERBLUE" layoutX="467.6120834350586" layoutY="334.9158477783203" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex10" fill="DODGERBLUE" layoutX="448.8620834350586" layoutY="367.3917999267578" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex11" fill="DODGERBLUE" layoutX="430.1120834350586" layoutY="399.8677520751953" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex12" fill="DODGERBLUE" layoutX="411.3620834350586" layoutY="432.3437042236328" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex19" fill="DODGERBLUE" layoutX="356.1737594604492" layoutY="465.43263244628906" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex20" fill="DODGERBLUE" layoutX="316.48787689208984" layoutY="464.1706085205078" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex21" fill="DODGERBLUE" layoutX="278.9670639038086" layoutY="464.15858459472656" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex22" fill="DODGERBLUE" layoutX="240.36370086669922" layoutY="463.5215606689453" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex23" fill="DODGERBLUE" layoutX="201.76033782958984" layoutY="462.88453674316406" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex24" fill="DODGERBLUE" layoutX="162.07445526123047" layoutY="461.6225128173828" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex48" fill="DODGERBLUE" layoutX="93.75000762939453" layoutY="32.46392822265625" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex47" fill="DODGERBLUE" layoutX="75.00000762939453" layoutY="64.93988037109375" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex46" fill="DODGERBLUE" layoutX="56.24999237060547" layoutY="97.41583251953125" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex45" fill="DODGERBLUE" layoutX="37.49999237060547" layoutY="129.8917999267578" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex44" fill="DODGERBLUE" layoutX="18.75" layoutY="162.3677520751953" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex43" fill="DODGERBLUE" layoutY="194.8437042236328" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex36" fill="DODGERBLUE" layoutX="0.02082061767578125" layoutY="259.80763244628906" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex35" fill="DODGERBLUE" layoutX="19.874183654785156" layoutY="292.9206085205078" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex34" fill="DODGERBLUE" layoutX="39.72753143310547" layoutY="326.03358459472656" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex33" fill="DODGERBLUE" layoutX="60.663429260253906" layoutY="359.7715606689453" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex32" fill="DODGERBLUE" layoutX="81.59931182861328" layoutY="393.50953674316406" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Polygon fx:id="hex31" fill="DODGERBLUE" layoutX="102.70267486572266" layoutY="424.45741271972656" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                </children>
-            </HBox>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" />
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" />
-         </children>
-      </VBox>
-   </right>
-</BorderPane>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </BorderPane.margin>
+            </Group>
+         </left>
+         <right>
+            <VBox BorderPane.alignment="CENTER">
+               <children>
+                  <HBox>
+                     <children>
+                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Nombre" textAlignment="CENTER" translateY="25.0" />
+                     </children>
+                  </HBox>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+               </children>
+            </VBox>
+         </right>
+      </BorderPane>
+   </children>
+</AnchorPane>

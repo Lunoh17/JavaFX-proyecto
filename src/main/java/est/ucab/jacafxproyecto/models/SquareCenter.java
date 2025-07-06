@@ -14,7 +14,7 @@ public class SquareCenter extends Square implements brazo, CategoryQuestion {
     /**
      * Arreglo que contiene los 6 brazos del tablero, cada uno compuesto por varias casillas de categoría.
      */
-    protected SquareCategory rayos[] = new SquareCategory[6];
+    public SquareCategory[] rayos = new SquareCategory[6];
 
     /**
      * Dibuja la casilla central en la consola.

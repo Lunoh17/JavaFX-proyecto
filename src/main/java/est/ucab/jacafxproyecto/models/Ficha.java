@@ -24,13 +24,13 @@ public class Ficha {
     /**
      * Array que representa los triángulos (categorías ganadas).
      */
-    int[] triangulos = new int[Category.values().length];
+    public int[] triangulos = new int[Category.values().length];
 
 
     /**
      * Casilla actual en la que se encuentra esta ficha.
      */
-    Square posicion;
+    public Square posicion;
 
     /**
      * Indica si el jugador ya salió del centro.
@@ -50,7 +50,7 @@ public class Ficha {
     /**
      * Posición numérica de la ficha en el tablero.
      */
-    int positionTable;
+    public int positionTable;
 
     /**
      * Constructor de la ficha.
@@ -64,6 +64,10 @@ public class Ficha {
         this.usuario = usuario;
         this.posicion = posicion;
         this.salido = false;
+    }
+
+    public String getNickName() {
+        return nickName;
     }
 
     /**

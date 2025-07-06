@@ -42,4 +42,15 @@ abstract public class Square {
      * @return la nueva casilla a la que se moverá la ficha (puede ser la misma).
      */
     abstract public Square reaction(Scanner scanner, Ficha jugador);
+
+    public int getCantidadFichas() {
+        return cantidadFichas;
+    }
+    public void sumarCantidadFichas() {
+        this.cantidadFichas++;
+    }
+
+    public int getPosition() {
+        return position;
+    }
 }
