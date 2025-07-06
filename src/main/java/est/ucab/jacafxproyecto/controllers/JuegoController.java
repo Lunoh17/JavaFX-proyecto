@@ -9,6 +9,7 @@ import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -24,7 +25,18 @@ public class JuegoController {
     private AnchorPane paneWilcommen;
 
     @FXML
-    private BorderPane container1;
+    private AnchorPane container1;
+
+    @FXML
+    private StackPane g00;
+    @FXML
+    private StackPane g01;
+    @FXML
+    private StackPane g02;
+    @FXML
+    private StackPane g03;
+    @FXML
+    private StackPane g04;
 
     @FXML
     public void initialize (){
