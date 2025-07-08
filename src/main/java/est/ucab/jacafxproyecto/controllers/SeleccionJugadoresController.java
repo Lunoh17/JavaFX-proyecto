@@ -26,8 +26,6 @@ public class SeleccionJugadoresController {
     private AnchorPane container1;
     @FXML
     private AnchorPane avatars;
-    @FXML
-    private TextField nickname;
 
     public void switchToMenu(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/est/ucab/jacafxproyecto/menu-view.fxml"));
@@ -67,17 +65,5 @@ public class SeleccionJugadoresController {
                     -fx-border-style: solid;
                     -fx-background-color: #fbefff;
                     -fx-background-radius: 20;""");
-        nickname.setStyle(""" 
-                    -fx-background-color: #ebdcff;""");
-    }
-
-    public void agregarJugador(ActionEvent actionEvent) {
-        String nombreJugador = nickname.getText();
-        if (nombreJugador.isEmpty()) {
-            // Aquí podrías mostrar un mensaje de error si el campo está vacío
-        } else {
-            // Aquí puedes manejar el nombre del jugador, por ejemplo, guardarlo en una lista o base de datos
-            nickname.clear();  // Limpiar el campo de texto después de agregar el jugador
-        }
     }
 }
