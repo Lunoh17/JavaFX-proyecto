@@ -7,7 +7,7 @@
 
 <AnchorPane fx:id="paneWilcommen" prefHeight="768" prefWidth="1300" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="est.ucab.jacafxproyecto.controllers.MenuController">
    <children>
-      <AnchorPane fx:id="container1" layoutX="36.0" layoutY="34.0" prefHeight="688.0" prefWidth="1219.0">
+      <AnchorPane fx:id="container1" layoutX="41.0" layoutY="40.0" prefHeight="688.0" prefWidth="1219.0">
          <children>
             <Button layoutX="868.0" layoutY="581.0" mnemonicParsing="false" onAction="#onClickSalir" prefHeight="54.0" prefWidth="96.0" scaleX="1.4" scaleY="1.4" text="Salir">
                <font>
