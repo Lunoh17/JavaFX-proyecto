@@ -1,0 +1,25 @@
+/* For paneWilcommen, use an id selector */
+#paneWilcommen {
+    -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #5270ff, #fe66c4);
+}
+
+/* For container1, use an id selector */
+#container1 {
+    -fx-border-color: black;
+    -fx-border-width: 12;
+    -fx-border-radius: 15;
+    -fx-border-style: solid;
+    -fx-background-color: #ebdcff;
+    -fx-background-radius: 20;
+}
+
+/* For avatars, use an id selector */
+#avatars {
+    -fx-border-color: #7a87ff;
+    -fx-border-width: 5;
+    -fx-border-radius: 15;
+    -fx-border-style: solid;
+    -fx-background-color: #fbefff;
+    -fx-background-radius: 20;
+}
+

@@ -90,4 +90,12 @@ public class FichaController {
         int sector = 1 + random.nextInt(6);
         resaltarSector(sector);
     }
+
+    public void setJugador(Ficha jugador) {
+        this.jugador = jugador;
+    }
+
+    public Ficha getJugador() {
+        return jugador;
+    }
 }

@@ -5,22 +5,30 @@ import com.google.gson.reflect.TypeToken;
 import est.ucab.jacafxproyecto.models.*;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.Set;
 
 
 public class JuegoController {
 
     public Group board;
+    @FXML
+    public GridPane grid00;
     @FXML
     private AnchorPane paneWilcommen;
 
@@ -38,23 +46,6 @@ public class JuegoController {
     @FXML
     private StackPane g04;
 
-    @FXML
-    public void initialize (){
-        paneWilcommen.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #5270ff, #fe66c4);");
-        container1.setStyle("""
-                -fx-border-color: black;\s
-                    -fx-border-width: 12;\s
-                    -fx-border-radius: 15;\s
-                    -fx-border-style: solid;
-                    -fx-background-color: #ebdcff;
-                    -fx-background-radius: 20;""");
-//        var listaJugadores = Validator.loadUsuariosJson();
-//        if (listaJugadores.isEmpty()) {
-//            System.out.println("No hay jugadores disponibles.");
-//        } else {
-//
-//        }
-    }
     /**
      * Lista de jugadores que participan en el juego.
      */
@@ -81,6 +72,48 @@ public class JuegoController {
     String homeFolder = System.getProperty("user.home");
 
     /**
+     * Llena la lista de jugadores a partir de un conjunto de usuarios.
+     *
+     * @param usuarios Conjunto de usuarios a convertir en fichas.
+     */
+    public void setJugadoresFromUsuarios(Set<Usuario> usuarios) {
+        jugadores.clear();
+        if (grid00 != null) {
+            grid00.getChildren().clear();
+        }
+        int idx = 0;
+        for (Usuario usuario : usuarios) {
+            Ficha ficha = new Ficha(usuario.userName, usuario, null);
+            jugadores.add(ficha);
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/est/ucab/jacafxproyecto/ficha.fxml"));
+                Node fichaNode = loader.load();
+                // Puedes pasar la ficha al controller si lo necesitas:
+                 FichaController fichaController = loader.getController();
+                 fichaController.setJugador(ficha);
+                if (grid00 != null)
+                    grid00.add(fichaNode, idx % 2, idx / 2);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            idx++;
+        }
+    }
+
+    @FXML
+    public void initialize() {
+        paneWilcommen.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #5270ff, #fe66c4);");
+        container1.setStyle("""
+                -fx-border-color: black;\s
+                    -fx-border-width: 12;\s
+                    -fx-border-radius: 15;\s
+                    -fx-border-style: solid;
+                    -fx-background-color: #ebdcff;
+                    -fx-background-radius: 20;""");
+
+    }
+
+    /**
      * Guarda el estado actual de las fichas de los jugadores en un archivo JSON.
      *
      * @throws IOException Si ocurre un error de entrada/salida.
@@ -95,17 +128,17 @@ public class JuegoController {
         }
         Gson gson = new Gson();
 
-        Square listaSquare[]= new Square[MAX_PLAYERS];
+        Square listaSquare[] = new Square[MAX_PLAYERS];
         int contador = 0;
-        for (Ficha fa:jugadores){
-            listaSquare[contador++]=fa.posicion;
-            fa.posicion=null;
+        for (Ficha fa : jugadores) {
+            listaSquare[contador++] = fa.posicion;
+            fa.posicion = null;
         }
         String json = gson.toJson(this.jugadores);
         File data = new File(destinyFolder + File.separator + "fichas.json");
-        contador=0;
-        for (Ficha fa:jugadores){
-            fa.posicion=listaSquare[contador++];
+        contador = 0;
+        for (Ficha fa : jugadores) {
+            fa.posicion = listaSquare[contador++];
         }
         try (FileWriter writer = new FileWriter(data)) {
             writer.write(json);
@@ -147,36 +180,35 @@ public class JuegoController {
 
     }
 
-    public void cargarPositions(){
+    public void cargarPositions() {
         loadFichaJson();
-        for(int i=0; i<jugadores.size(); i++){
-            for(Square squareActual: centro.rayos){
-                for (int j = 0; j <13 ; j++) {
-                    if (squareActual instanceof  SquareRayo sr){
-                        if (jugadores.get(i).getPosition()== sr.getPosition()) {
+        for (int i = 0; i < jugadores.size(); i++) {
+            for (Square squareActual : centro.rayos) {
+                for (int j = 0; j < 13; j++) {
+                    if (squareActual instanceof SquareRayo sr) {
+                        if (jugadores.get(i).getPosition() == sr.getPosition()) {
                             jugadores.get(i).posicion = sr;
                             jugadores.get(i).positionTable = sr.getPosition();
                             jugadores.get(i).posicion.sumarCantidadFichas();
                             break;
                         }
-                        squareActual=(Square) sr.getNext();
-                    }else if (squareActual instanceof SquareCategory sC)
-                    {
-                        if (jugadores.get(i).getPosition()== sC.getPosition()) {
+                        squareActual = (Square) sr.getNext();
+                    } else if (squareActual instanceof SquareCategory sC) {
+                        if (jugadores.get(i).getPosition() == sC.getPosition()) {
                             jugadores.get(i).posicion = sC;
                             jugadores.get(i).positionTable = sC.getPosition();
                             jugadores.get(i).posicion.sumarCantidadFichas();
                             break;
                         }
-                        squareActual=((Square) sC.getNext());
+                        squareActual = ((Square) sC.getNext());
                     } else if (squareActual instanceof SquareSpecial sS) {
-                        if (jugadores.get(i).getPosition()== sS.getPosition()) {
+                        if (jugadores.get(i).getPosition() == sS.getPosition()) {
                             jugadores.get(i).posicion = sS;
                             jugadores.get(i).positionTable = sS.getPosition();
                             jugadores.get(i).posicion.sumarCantidadFichas();
                             break;
                         }
-                        squareActual=((Square) sS.getNext());
+                        squareActual = ((Square) sS.getNext());
                     }
 
                 }
@@ -187,12 +219,12 @@ public class JuegoController {
     /**
      * Inicia el juego, realizando los turnos de los jugadores hasta que uno gane.
      *
-     * @param scanner Objeto Scanner para capturar entradas del usuario.
+     * @param scanner   Objeto Scanner para capturar entradas del usuario.
      * @param questions Preguntas que se usarán durante el juego.
      */
     public void startGame(Scanner scanner, Questions questions) {
         int jugadorActual = 0;
-        int enums=0;
+        int enums = 0;
         var categories = Category.values();
         while (!ganador) {
             System.out.print("\033[H\033[2J");
@@ -200,24 +232,25 @@ public class JuegoController {
             this.printBoard();
             System.out.println("Turno del jugador: " + jugadores.get(jugadorActual).getNickName());
             System.out.println("estadisticas: ");
-            System.out.println("victorias: "+ jugadores.get(jugadorActual).getUsuario().getVictory());
-            for(int j=0; j<6; j++) {
+            System.out.println("victorias: " + jugadores.get(jugadorActual).getUsuario().getVictory());
+            for (int j = 0; j < 6; j++) {
                 for (int i = 0; i < jugadores.get(jugadorActual).triangulos.length; i++) {
-                    if(j==jugadores.get(jugadorActual).triangulos[i]) {
+                    if (j == jugadores.get(jugadorActual).triangulos[i]) {
                         enums++;
                     }
                 }
-                System.out.println("categoria: "+categories[j]+" hay un total de respondidas: "+enums);
-                enums=0;
+                System.out.println("categoria: " + categories[j] + " hay un total de respondidas: " + enums);
+                enums = 0;
             }
-            ganador=jugadores.get(jugadorActual).avanzar(scanner, questions);
+            ganador = jugadores.get(jugadorActual).avanzar(scanner, questions);
             if (ganador) {
-                jugadores.get(jugadorActual).getUsuario().setVictory(jugadores.get(jugadorActual).getUsuario().getVictory()+1);
-            }jugadorActual++;
+                jugadores.get(jugadorActual).getUsuario().setVictory(jugadores.get(jugadorActual).getUsuario().getVictory() + 1);
+            }
+            jugadorActual++;
             try {
                 saveFichaJson();
             } catch (IOException e) {
-                System.err.println(e+ "no se pudo guardar el turno");
+                System.err.println(e + "no se pudo guardar el turno");
             }
             if (jugadorActual == jugadores.size()) jugadorActual = 0;
             System.out.println("Posición actual:\n" + jugadores.get(jugadorActual).posicion.paint());
@@ -242,6 +275,6 @@ public class JuegoController {
      * El tablero se centra en la terminal y los rayos se dibujan alrededor del centro.
      */
     public void printBoard() {
-        
+
     }
 }
