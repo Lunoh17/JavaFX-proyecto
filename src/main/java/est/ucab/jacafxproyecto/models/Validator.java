@@ -52,6 +52,36 @@ public class Validator {
     }
 
     /**
+     * Carga las preguntas desde el archivo JSON. Si no existe, se crea uno nuevo.
+     *
+     * @return Questions Un objeto Questions que contiene las preguntas cargadas desde el archivo JSON.
+     */
+    static public Questions loadJson() {
+        Gson gson = new Gson();
+        String destinyFolderFile = Validator.class.getResource("/est/ucab/jacafxproyecto/").getPath();
+        Questions questions;
+        var a = new File(destinyFolderFile + File.separator + "data.json");
+        if (!(a.exists())) {
+            try {
+                boolean created = a.createNewFile();
+                if (!created)
+                    throw new IOException();
+                questions = new Questions();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            try (FileReader reader = new FileReader(destinyFolderFile + File.separator + "data.json")) {
+                BufferedReader bufferedReader = new BufferedReader(reader);
+                questions = gson.fromJson(bufferedReader, Questions.class);
+            } catch (IOException e) {
+                throw new RuntimeException("Error al leer el archivo JSON", e);
+            }
+        }
+        return questions;
+    }
+
+    /**
      * Carga los usuarios desde el archivo JSON. Si no existe, se crea uno nuevo.
      */
     static public ArrayList<Usuario> loadUsuariosJson() {

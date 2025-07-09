@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import est.ucab.jacafxproyecto.models.*;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -26,7 +27,8 @@ import java.util.Set;
 
 public class JuegoController {
 
-    public Group board;
+    @FXML
+    private Group board;
     @FXML
     public GridPane grid00;
     @FXML
@@ -51,6 +53,8 @@ public class JuegoController {
      */
     public ArrayList<Ficha> jugadores = new ArrayList<Ficha>();
 
+    private FichaController[] fichaControllers;
+    private ArrayList<Node> fichaNodes = new ArrayList<>(); // Store ficha nodes
     /**
      * El centro del tablero.
      */
@@ -77,20 +81,28 @@ public class JuegoController {
      * @param usuarios Conjunto de usuarios a convertir en fichas.
      */
     public void setJugadoresFromUsuarios(Set<Usuario> usuarios) {
+        if (usuarios.size() > MAX_PLAYERS) {
+            throw new IllegalArgumentException("El número de jugadores no puede ser mayor a " + MAX_PLAYERS);
+        }
+        this.centro = new SquareCenter(usuarios.size());
+        fichaControllers = new FichaController[usuarios.size()];
         jugadores.clear();
+        fichaNodes.clear(); // Clear previous nodes
         if (grid00 != null) {
             grid00.getChildren().clear();
         }
         int idx = 0;
         for (Usuario usuario : usuarios) {
-            Ficha ficha = new Ficha(usuario.userName, usuario, null);
+            Ficha ficha = new Ficha(usuario.userName, usuario, centro);
             jugadores.add(ficha);
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/est/ucab/jacafxproyecto/ficha.fxml"));
                 Node fichaNode = loader.load();
                 // Puedes pasar la ficha al controller si lo necesitas:
-                 FichaController fichaController = loader.getController();
-                 fichaController.setJugador(ficha);
+                FichaController fichaController = loader.getController();
+                fichaController.setJugador(ficha);
+                fichaControllers[idx] = fichaController;
+                fichaNodes.add(fichaNode); // Store the node
                 if (grid00 != null)
                     grid00.add(fichaNode, idx % 2, idx / 2);
             } catch (IOException e) {
@@ -223,6 +235,7 @@ public class JuegoController {
      * @param questions Preguntas que se usarán durante el juego.
      */
     public void startGame(Scanner scanner, Questions questions) {
+        System.out.println(jugadores);
         int jugadorActual = 0;
         int enums = 0;
         var categories = Category.values();
@@ -270,11 +283,43 @@ public class JuegoController {
     private static final int GRID_COLS = 11;
     private static final int GRID_ROWS = 8;
 
-    /**
-     * Imprime el tablero en la terminal.
-     * El tablero se centra en la terminal y los rayos se dibujan alrededor del centro.
-     */
     public void printBoard() {
+        Platform.runLater(() -> {
+            // clear existing tokens
+            for (Node n : board.getChildren()) {
+                if (n instanceof StackPane sp) {
+                    for (Node c : sp.getChildren()) {
+                        if (c instanceof GridPane gp) {
+                            gp.getChildren().clear();
+                        }
+                    }
+                }
+            }
+            // place tokens for each player
+            for (int i = 0; i < fichaControllers.length; i++) {
+                FichaController f = fichaControllers[i];
+                int pos = f.getJugador().getPosition();
+                String hexId = "#hex" + String.format("%02d", pos);
+                Node h = board.lookup(hexId);
+                if (h instanceof StackPane sp) {
+                    GridPane gp = sp.getChildren().stream()
+                        .filter(c -> c instanceof GridPane)
+                        .map(c -> (GridPane)c)
+                        .findFirst().orElse(null);
+                    if (gp != null) {
+                        int cols = gp.getColumnConstraints().size();
+                        int col = i % cols;
+                        int row = i / cols;
+                        Node fichaNode = fichaNodes.get(i); // Get the correct node
+                        gp.add(fichaNode, col, row); // Add the node, not the controller array
+                    }
+                }
+            }
+        });
+    }
 
+    public void startGame(ActionEvent actionEvent) {
+
+            this.startGame(new Scanner(System.in), Validator.loadJson());
     }
 }

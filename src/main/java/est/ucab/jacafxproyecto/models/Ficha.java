@@ -64,6 +64,7 @@ public class Ficha {
         this.usuario = usuario;
         this.posicion = posicion;
         this.salido = false;
+        this.positionTable = 0;
     }
 
     public String getNickName() {
