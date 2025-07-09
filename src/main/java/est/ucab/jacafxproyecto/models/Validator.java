@@ -17,11 +17,14 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TextInputDialog;
 
 
 public class Validator {
@@ -29,25 +32,32 @@ public class Validator {
      * Solicita al usuario que introduzca un número entero y valida que la entrada sea correcta.
      *
      * @param pregunta pregunta El texto que se muestra al usuario solicitando la entrada.
-     * @param entrada entrada El objeto Scanner utilizado para leer la entrada del usuario
      * @return El número entero validado introducido por el usuario.
      */
 
-    static public int validarInt(String pregunta, Scanner entrada) {
-        boolean entradaValida;
+    static public int validarInt(String pregunta) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Entrada requerida");
+        dialog.setHeaderText(pregunta);
+        dialog.setContentText("Ingrese un número entero:");
         int opcion = -1;
+        boolean valid = false;
+        Optional<String> result;
         do {
-            System.out.println(pregunta);
-            if (entrada.hasNextInt()) {
-                opcion = entrada.nextInt();
-                entrada.nextLine(); // Limpiar buffer
-                entradaValida = true;
-            } else {
-                System.out.println("Entrada no válida. Por favor, introduce un número entero.");
-                entrada.nextLine(); // Descartar la entrada incorrecta
-                entradaValida = false;
+            result = dialog.showAndWait();
+            if (result.isPresent()) {
+                try {
+                    opcion = Integer.parseInt(result.get());
+                    valid = true;
+                } catch (NumberFormatException e) {
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Error de entrada");
+                    alert.setHeaderText("Entrada no válida");
+                    alert.setContentText("Por favor, introduce un número entero válido.");
+                    alert.showAndWait();
+                }
             }
-        } while (!entradaValida);
+        } while (!valid);
         return opcion;
     }
 
@@ -177,4 +187,3 @@ public class Validator {
 
 
 }
-

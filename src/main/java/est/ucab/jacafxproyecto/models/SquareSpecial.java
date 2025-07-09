@@ -112,7 +112,7 @@ public class SquareSpecial extends Square implements movimientoBidireccional {
         do {
             a = Validator.validarInt(
                     "Tienes 2 posibles rutas, ¿a dónde te quieres mover?\n" +
-                            "0. Atrás\n1. Adelante", scanner);
+                            "0. Atrás\n1. Adelante");
             if (a < 0 || a > 1) {
                 System.out.println("ERROR: Vuelve a intentarlo.");
             }

@@ -3,7 +3,7 @@
 <?import javafx.scene.layout.*?>
 
 
-<Pane fx:id="paneWilcommen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="est.ucab.jacafxproyecto.controllers.Bienvenida">
+<Pane fx:id="paneWilcommen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="est.ucab.jacafxproyecto.controllers.Bienvenida">
    <children>
       <Pane fx:id="container1" layoutX="25.0" layoutY="32.0" prefHeight="649.0" prefWidth="1143.0" />
    </children>

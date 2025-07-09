@@ -66,9 +66,7 @@ public class SquareCategory extends Square implements brazo, movimientoBidirecci
     public int action(Scanner scanner, Ficha jugador) {
         int a;
         do {
-            a = Validator.validarInt(
-                    "Tienes 2 posibles rutas, ¿a dónde te quieres mover?\n0, 1):",
-                    scanner);
+            a = Validator.validarInt("Tienes 2 posibles rutas, ¿a dónde te quieres mover?\n0, 1):");
             if (a < 0 || a > 1) {
                 System.out.println("ERROR, vuelva a intentarlo.");
             }

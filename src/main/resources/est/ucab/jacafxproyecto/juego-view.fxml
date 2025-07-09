@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<AnchorPane fx:id="paneWilcommen" prefHeight="768.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="est.ucab.jacafxproyecto.controllers.JuegoController">
+<AnchorPane fx:id="paneWilcommen" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="est.ucab.jacafxproyecto.controllers.JuegoController">
     <children>
       <AnchorPane fx:id="container1" layoutX="41.0" layoutY="40.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>

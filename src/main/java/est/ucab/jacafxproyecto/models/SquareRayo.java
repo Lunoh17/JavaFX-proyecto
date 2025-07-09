@@ -62,7 +62,7 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
             return 2;
         } else {
             System.out.println("¿Quieres ir hacia adelante o hacia atrás?");
-            int exit = Validator.validarInt("1. Adelante\n0. Atrás", scanner);
+            int exit = Validator.validarInt("1. Adelante\n0. Atrás");
             if (exit == 1) {
                 return 1;
             } else if (exit == 0) {

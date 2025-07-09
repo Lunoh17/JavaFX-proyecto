@@ -10,6 +10,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -21,6 +24,8 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -69,6 +74,8 @@ public class JuegoController {
      * Indicador de si el juego ha terminado o no.
      */
     boolean ganador = false;
+    /** Índice del jugador actual en turno. */
+    private int jugadorActual = 0;
 
     /**
      * Carpeta de inicio del sistema donde se guardarán los datos de los jugadores.
@@ -236,9 +243,9 @@ public class JuegoController {
      */
     public void startGame(Scanner scanner, Questions questions) {
         System.out.println(jugadores);
-        int jugadorActual = 0;
         int enums = 0;
         var categories = Category.values();
+        Random rng = new Random();
         while (!ganador) {
             System.out.print("\033[H\033[2J");
             System.out.flush();
@@ -255,7 +262,37 @@ public class JuegoController {
                 System.out.println("categoria: " + categories[j] + " hay un total de respondidas: " + enums);
                 enums = 0;
             }
+            // Ask trivia question before moving; only advance on correct answer
+            boolean correctAnswer = false;
+            var approvedList = questions.getApproved();
+            if (!approvedList.isEmpty()) {
+                var randomQ = approvedList.get(rng.nextInt(approvedList.size()));
+                TextInputDialog dialog = new TextInputDialog();
+                dialog.setTitle(jugadores.get(jugadorActual).getNickName() + " - Pregunta Trivia");
+                dialog.setHeaderText(randomQ.getQuestion());
+                dialog.setContentText("Respuesta:");
+                Optional<String> respuesta = dialog.showAndWait();
+                if (respuesta.isPresent() && respuesta.get().equalsIgnoreCase(randomQ.getAnswer())) {
+                    Alert ok = new Alert(AlertType.INFORMATION);
+                    ok.setTitle("Respuesta Correcta"); ok.setHeaderText(null);
+                    ok.setContentText("¡Correcto! Ahora avanzas."); ok.showAndWait();
+                    correctAnswer = true;
+                } else {
+                    Alert err = new Alert(AlertType.ERROR);
+                    err.setTitle("Respuesta Incorrecta"); err.setHeaderText(null);
+                    err.setContentText("Respuesta incorrecta. Pierdes tu turno."); err.showAndWait();
+                }
+            } else {
+                correctAnswer = true;
+            }
+            if (!correctAnswer) {
+                // skip movement and pass turn
+                jugadorActual = (jugadorActual + 1) % jugadores.size();
+                continue;
+            }
+            // advance player normally and refresh board
             ganador = jugadores.get(jugadorActual).avanzar(scanner, questions);
+            this.printBoard();
             if (ganador) {
                 jugadores.get(jugadorActual).getUsuario().setVictory(jugadores.get(jugadorActual).getUsuario().getVictory() + 1);
             }
@@ -268,7 +305,7 @@ public class JuegoController {
             if (jugadorActual == jugadores.size()) jugadorActual = 0;
             System.out.println("Posición actual:\n" + jugadores.get(jugadorActual).posicion.paint());
         }
-        System.out.println("Jugador actual ganó la partida: " + jugadores.get(jugadorActual).getNickName());
+        System.out.println("Jugador actual gan�� la partida: " + jugadores.get(jugadorActual).getNickName());
     }
 
     /**

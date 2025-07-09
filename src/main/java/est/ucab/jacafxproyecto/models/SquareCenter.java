@@ -51,8 +51,7 @@ public class SquareCenter extends Square implements brazo, CategoryQuestion {
                             "2. Abajo a la Izquierda\n" +
                             "3. Izquierda\n" +
                             "4. Arriba a la Izquierda\n" +
-                            "5. Arriba a la Derecha",
-                    scanner);
+                            "5. Arriba a la Derecha");
             if (a < 0 || a > 5) {
                 System.out.println("ERROR, vuelva a intentarlo.");
             }
@@ -171,7 +170,7 @@ public class SquareCenter extends Square implements brazo, CategoryQuestion {
             for (int i = 0; i < categorias.length; i++) {
                 System.out.println(i + ": " + categorias[i]);
             }
-            seleccion = Validator.validarInt("", scanner);
+            seleccion = Validator.validarInt("");
         } while (seleccion < 0 || seleccion > categorias.length - 1);
 
         Category categoria = categorias[seleccion];
