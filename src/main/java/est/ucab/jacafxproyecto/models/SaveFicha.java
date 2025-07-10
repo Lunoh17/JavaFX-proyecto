@@ -16,7 +16,7 @@ public class SaveFicha {
      * @throws IOException Si ocurre un error de entrada/salida.
      */
     public void saveFichaJson(ArrayList<Ficha> jugadores) throws IOException {
-        String destinyFolder = homeFolder + File.separator + ".config";
+        String destinyFolder = "User.dir" + File.separator + ".config";
         File destinyFolderFile = new File(destinyFolder);
         if (!destinyFolderFile.exists()) {
             boolean created = destinyFolderFile.mkdir();

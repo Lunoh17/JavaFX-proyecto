@@ -22,7 +22,14 @@ public class Usuario {
 
     private int victory=0;
 
-    private ArrayList<Integer> answered = new ArrayList<>();
+    private int answeredGeografia=0;
+    private int answeredHistoria=0;
+    private int answeredDeporte=0;
+    private int answeredCiencia=0;
+    private int answeredArte=0;
+    private int answeredEntretenimiento=0;
+
+
     /**
      * Constructor de la clase Usuario.
      *
@@ -90,12 +97,27 @@ public class Usuario {
         this.totalTimeQuestions = this.totalTimeQuestions+ totalTimeQuestions;
     }
 
-    public ArrayList<Integer> getAnswered() {
-        return answered;
+    public int getAnsweredDeporte() {
+        return answeredDeporte;
     }
 
-    public void setCategories(Category categoria){
-
+    public void setCategoriesDeporte(){
+       answeredDeporte++;
+    }
+    public void setCategoriesGeografia(){
+        answeredGeografia++;
+    }
+    public void setCategoriesHistoria(){
+        answeredHistoria++;
+    }
+    public void setCategoriesCiencia(){
+        answeredCiencia++;
+    }
+    public void setCategoriesArte(){
+        answeredArte++;
+    }
+    public void setCategoriesEntretenimiento(){
+        answeredEntretenimiento++;
     }
 }
 

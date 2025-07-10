@@ -17,6 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class EstadisticasJugadoresController {
@@ -26,12 +27,11 @@ public class EstadisticasJugadoresController {
     private Scene scene;
     private Parent root;
 
+    TableView<Usuario> toptiers = new TableView<>();
 
-    @FXML
-    public void Ranking(){
+    public EstadisticasJugadoresController(){
         LoadUsuario tops = new LoadUsuario();
         ArrayList<Usuario> estadisticsUsers= tops.topTier();
-        TableView<Usuario> toptiers= new TableView<>();
         TableColumn<Usuario, String> colNombre = new TableColumn<>("nombre");
         TableColumn<Usuario, Integer> colPartidas = new TableColumn<>("partidas");
         TableColumn<Usuario, Integer> colVictorias = new TableColumn<>("victorias");
@@ -50,13 +50,19 @@ public class EstadisticasJugadoresController {
         colVictorias.setCellValueFactory(new PropertyValueFactory<>("victory"));
         colDerrotas.setCellValueFactory(new PropertyValueFactory<>("loses"));
         colTiempo.setCellValueFactory(new PropertyValueFactory<>("totalTimeQuestions"));
-
+        colCategoryDeporte.setCellValueFactory(new PropertyValueFactory<>("answeredDeporte"));
+        colCategoryGeografia.setCellValueFactory(new PropertyValueFactory<>("answeredGeografia"));
+        colCategoryHistoria.setCellValueFactory(new PropertyValueFactory<>("answeredHistoria"));
+        colCategoryCiencias.setCellValueFactory(new PropertyValueFactory<>("answeredCiencia"));
+        colCategoryArte.setCellValueFactory(new PropertyValueFactory<>("answeredArte"));
+        colCategoryEntretenimiento.setCellValueFactory(new PropertyValueFactory<>("answeredEntretenimiento"));
 
         ObservableList<Usuario> estadisticsObservable = FXCollections.observableArrayList(estadisticsUsers);
         for(int i=0;i<estadisticsUsers.size(); i++){
-
+            estadisticsObservable.add(estadisticsUsers.get(i));
         }
 
+        toptiers.setItems(estadisticsObservable);
 
     }
 
@@ -76,6 +82,8 @@ public class EstadisticasJugadoresController {
 
     @FXML
     public void initialize (){
+        EstadisticasJugadoresController table= new EstadisticasJugadoresController();
+        VBox root = new VBox(table.toptiers);
         paneWilcommen.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #5270ff, #fe66c4);");
         container1.setStyle("""
                 -fx-border-color: black;\s

@@ -15,7 +15,7 @@ public class LoadFicha {
 
     public void loadFichaJson() {
         Gson gson = new Gson();
-        String destinyFolder = homeFolder + File.separator + ".config";
+        String destinyFolder = "User.dir" + File.separator + ".config";
         File destinyFolderFile = new File(destinyFolder);
         if (!destinyFolderFile.exists()) {
             boolean created = destinyFolderFile.mkdir();
