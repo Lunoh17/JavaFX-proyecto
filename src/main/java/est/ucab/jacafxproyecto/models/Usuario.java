@@ -1,4 +1,7 @@
 package est.ucab.jacafxproyecto.models;
+
+import java.util.ArrayList;
+
 /**
  * Clase que representa un usuario del sistema de trivia.
  * Contiene el nombre de usuario y la contraseña (almacenada como hash SHA-256).
@@ -9,40 +12,25 @@ public class Usuario {
      */
     public String userName;
 
-    /**
-     * Contraseña del usuario, almacenada como hash SHA-256.
-     */
-    private String password;
+    private String nickName;
 
-    private int victory;
+    private int partidas=0;
 
-    public int getVictory() {
-        return this.victory;
-    }
-    public void setVictory(int victory) {
-        this.victory= victory;
-    }
+    private int loses=0;
 
+    private int totalTimeQuestions=0;
+
+    private int victory=0;
+
+    private ArrayList<Integer> answered = new ArrayList<>();
     /**
      * Constructor de la clase Usuario.
      *
      * @param userName userName El nombre de usuario.
-     * @param password password La contraseña en texto plano, que será convertida a SHA-256.
      */
-    public Usuario(String userName, String password) {
+    public Usuario(String userName, String nickName) {
         this.userName = userName;
-        this.password = Validator.calcularSha256(password);
-    }
-
-    private int victories;
-
-    /**
-     * Obtiene la contraseña del usuario (almacenada como hash SHA-256).
-     *
-     * @return La contraseña hasheada.
-     */
-    public String getPassword() {
-        return password;
+        this.nickName = nickName;
     }
 
     /**
@@ -63,14 +51,51 @@ public class Usuario {
         this.userName = userName;
     }
 
-    /**
-     * Establece una nueva contraseña. La contraseña se guarda como hash SHA-256.
-     *
-     * @param password La nueva contraseña en texto plano.
-     */
-    public void setPassword(String password) {
-        this.password = Validator.calcularSha256(password);
+    public int getVictory() {
+        return this.victory;
+    }
+    public void setVictory() {
+        this.victory++;
     }
 
+    public int getPartidas() {
+        return partidas;
+    }
+
+    public void setPartidas() {
+        this.partidas++;
+    }
+
+    public int getLoses() {
+        return loses;
+    }
+
+    public void setLoses() {
+        this.loses++;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public int getTotalTimeQuestions() {
+        return totalTimeQuestions;
+    }
+
+    public void setTotalTimeQuestions(int totalTimeQuestions) {
+        this.totalTimeQuestions = this.totalTimeQuestions+ totalTimeQuestions;
+    }
+
+    public ArrayList<Integer> getAnswered() {
+        return answered;
+    }
+
+    public void setCategories(Category categoria){
+
+    }
 }
 

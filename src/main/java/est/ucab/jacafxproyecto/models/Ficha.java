@@ -12,11 +12,6 @@ import java.util.Scanner;
 public class Ficha {
 
     /**
-     * Apodo del jugador asociado a esta ficha.
-     */
-    String nickName;
-
-    /**
      * Usuario al que pertenece esta ficha.
      */
     Usuario usuario;
@@ -55,12 +50,10 @@ public class Ficha {
     /**
      * Constructor de la ficha.
      *
-     * @param nickName Apodo del jugador.
      * @param usuario  Usuario propietario.
      * @param posicion Posición inicial de la ficha.
      */
-    public Ficha(String nickName, Usuario usuario, Square posicion) {
-        this.nickName = nickName;
+    public Ficha(Usuario usuario, Square posicion) {
         this.usuario = usuario;
         this.posicion = posicion;
         this.salido = false;

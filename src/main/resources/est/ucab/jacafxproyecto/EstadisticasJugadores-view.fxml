@@ -7,9 +7,19 @@
    <children>
       <AnchorPane fx:id="container1" layoutX="32.0" layoutY="35.0" prefHeight="336.0" prefWidth="534.0">
          <children>
-            <Button layoutX="89.0" layoutY="268.0" mnemonicParsing="false" onAction="#switchToMenu" prefHeight="51.0" prefWidth="112.0" text="Regresar" />
-            <Button layoutX="336.0" layoutY="268.0" mnemonicParsing="false" onAction="#onClickSalir" prefHeight="51.0" prefWidth="112.0" text="Salir" />
+            <Button layoutX="89.0" layoutY="291.0" mnemonicParsing="false" onAction="#switchToMenu" prefHeight="28.0" prefWidth="87.0" text="Regresar" />
+            <Button layoutX="361.0" layoutY="291.0" mnemonicParsing="false" onAction="#onClickSalir" prefHeight="28.0" prefWidth="87.0" text="Salir" />
          </children>
       </AnchorPane>
+      <TableView prefHeight="327.0" prefWidth="600.0">
+        <columns>
+          <TableColumn prefWidth="128.40000307559967" text="nombre" />
+          <TableColumn prefWidth="56.400001525878906" text="partidas" />
+           <TableColumn prefWidth="66.39999389648438" text="victorias" />
+           <TableColumn prefWidth="52.20001220703125" text="derrotas" />
+           <TableColumn prefWidth="126.19998168945312" text="tiempoRespondidas" />
+           <TableColumn prefWidth="173.00006103515625" text="categorias" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
