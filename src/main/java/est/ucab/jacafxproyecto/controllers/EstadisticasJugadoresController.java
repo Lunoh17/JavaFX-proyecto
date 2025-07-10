@@ -82,8 +82,6 @@ public class EstadisticasJugadoresController {
 
     @FXML
     public void initialize (){
-        EstadisticasJugadoresController table= new EstadisticasJugadoresController();
-        VBox root = new VBox(table.toptiers);
         paneWilcommen.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #5270ff, #fe66c4);");
         container1.setStyle("""
                 -fx-border-color: black;\s
