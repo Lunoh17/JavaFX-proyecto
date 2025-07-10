@@ -30,7 +30,7 @@
                         </StackPane>
                   <StackPane fx:id="hex01" layoutX="338.802978515625" layoutY="187.5504608154297">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="RED" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="7.0" prefWidth="11.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -46,7 +46,7 @@
                   </StackPane>
                   <StackPane fx:id="hex02" layoutX="378.4888610839844" layoutY="188.81248474121094">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="ORANGE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="8.0" prefWidth="5.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -62,7 +62,7 @@
                   </StackPane>
                   <StackPane fx:id="hex03" layoutX="417.09222412109375" layoutY="189.4495086669922">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="YELLOW" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="8.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -78,7 +78,7 @@
                   </StackPane>
                   <StackPane fx:id="hex04" layoutX="455.6955871582031" layoutY="190.08653259277344">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="GREEN" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="12.0" prefWidth="2.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -94,7 +94,7 @@
                   </StackPane>
                   <StackPane fx:id="hex49" layoutX="278.18121337890625" layoutY="152.5504608154297">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="BLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="10.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -110,7 +110,7 @@
                   </StackPane>
                   <StackPane fx:id="hex50" layoutX="258.3278503417969" layoutY="119.43749237060547">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="PURPLE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="13.0" prefWidth="2.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -126,7 +126,7 @@
                   </StackPane>
                   <StackPane fx:id="hex51" layoutX="237.39193725585938" layoutY="85.69951629638672">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="RED" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="18.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -142,7 +142,7 @@
                   </StackPane>
                   <StackPane fx:id="hex52" layoutX="216.45608520507812" layoutY="51.961524963378906">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="ORANGE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="15.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -158,7 +158,7 @@
                   </StackPane>
                   <StackPane fx:id="hex61" layoutX="317.8670959472656" layoutY="153.81248474121094">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="PURPLE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="15.0" prefWidth="1.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -174,7 +174,7 @@
                   </StackPane>
                   <StackPane fx:id="hex62" layoutX="336.6170959472656" layoutY="121.33654022216797">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="RED" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="12.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -190,7 +190,7 @@
                   </StackPane>
                   <StackPane fx:id="hex63" layoutX="355.3670959472656" layoutY="88.86058807373047">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="ORANGE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="12.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -206,7 +206,7 @@
                   </StackPane>
                   <StackPane fx:id="hex64" layoutX="374.1170959472656" layoutY="56.384620666503906">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="YELLOW" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="12.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -222,7 +222,7 @@
                   </StackPane>
                   <StackPane fx:id="hex65" layoutX="392.8670959472656" layoutY="23.908666610717773">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="GREEN" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="21.0" prefWidth="10.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -238,7 +238,7 @@
                   </StackPane>
                   <StackPane fx:id="hex66" layoutX="411.6170959472656" layoutY="-8.567285537719727">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="BLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="21.0" prefWidth="3.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -254,7 +254,7 @@
                   </StackPane>
                   <StackPane fx:id="hex53" layoutX="196.6027069091797" layoutY="18.848546981811523">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="YELLOW" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="14.0" prefWidth="9.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -270,7 +270,7 @@
                   </StackPane>
                   <StackPane fx:id="hex54" layoutX="176.7493438720703" layoutY="-14.264429092407227">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="GREEN" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="21.0" prefWidth="15.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -286,7 +286,7 @@
                   </StackPane>
                   <StackPane fx:id="hex05" layoutX="493.2164001464844" layoutY="190.0985565185547">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="BLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="7.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -302,7 +302,7 @@
                   </StackPane>
                   <StackPane fx:id="hex06" layoutX="532.90234375" layoutY="191.36058044433594">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="PURPLE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="10.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -318,7 +318,7 @@
                   </StackPane>
                   <StackPane fx:id="hex13" layoutX="320.052978515625" layoutY="220.0264129638672">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="ORANGE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="15.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -334,7 +334,7 @@
                   </StackPane>
                   <StackPane fx:id="hex14" layoutX="340.9888610839844" layoutY="253.76438903808594">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="YELLOW" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="0.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -350,7 +350,7 @@
                   </StackPane>
                   <StackPane fx:id="hex15" layoutX="360.84222412109375" layoutY="286.87738037109375">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="GREEN" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="11.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -366,7 +366,7 @@
                   </StackPane>
                   <StackPane fx:id="hex16" layoutX="380.6955871582031" layoutY="319.9903564453125">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="BLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="18.0" prefWidth="3.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -382,7 +382,7 @@
                   </StackPane>
                   <StackPane fx:id="hex17" layoutX="399.4664001464844" layoutY="352.47833251953125">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="PURPLE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="11.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -398,7 +398,7 @@
                   </StackPane>
                   <StackPane fx:id="hex18" layoutX="420.40228271484375" layoutY="386.21630859375">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="RED" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="18.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -414,7 +414,7 @@
                   </StackPane>
                   <StackPane fx:id="hex25" layoutX="280.3670959472656" layoutY="218.76438903808594">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="YELLOW" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="17.0" prefWidth="12.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -430,7 +430,7 @@
                   </StackPane>
                   <StackPane fx:id="hex26" layoutX="261.6170959472656" layoutY="251.24034118652344">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="GREEN" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="15.0" prefWidth="15.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -446,7 +446,7 @@
                   </StackPane>
                   <StackPane fx:id="hex27" layoutX="242.86709594726562" layoutY="283.71630859375">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="BLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="0.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -462,7 +462,7 @@
                   </StackPane>
                   <StackPane fx:id="hex28" layoutX="224.11709594726562" layoutY="316.1922607421875">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="PURPLE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="16.0" prefWidth="9.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -478,7 +478,7 @@
                   </StackPane>
                   <StackPane fx:id="hex29" layoutX="205.36709594726562" layoutY="348.668212890625">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="RED" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="14.0" prefWidth="9.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -494,7 +494,7 @@
                   </StackPane>
                   <StackPane fx:id="hex30" layoutX="186.61709594726562" layoutY="381.1441650390625">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="ORANGE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="12.0" prefWidth="11.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -510,7 +510,7 @@
                   </StackPane>
                   <StackPane fx:id="hex37" layoutX="259.43121337890625" layoutY="185.0264129638672">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="GREEN" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="12.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -526,7 +526,7 @@
                   </StackPane>
                   <StackPane fx:id="hex38" layoutX="220.82785034179688" layoutY="184.38938903808594">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="BLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="15.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -542,7 +542,7 @@
                   </StackPane>
                   <StackPane fx:id="hex39" layoutX="181.14195251464844" layoutY="183.1273651123047">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="PURPLE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="13.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -558,7 +558,7 @@
                   </StackPane>
                   <StackPane fx:id="hex40" layoutX="141.45606994628906" layoutY="181.86534118652344">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="RED" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="25.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -574,7 +574,7 @@
                   </StackPane>
                   <StackPane fx:id="hex41" layoutX="102.85271453857422" layoutY="181.2283172607422">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="ORANGE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="23.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -590,7 +590,7 @@
                   </StackPane>
                   <StackPane fx:id="hex42" layoutX="64.24935913085938" layoutY="180.59129333496094">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="YELLOW" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="16.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -606,7 +606,7 @@
                   </StackPane>
                   <StackPane fx:id="hex55" layoutX="195.4993438720703" layoutY="-46.740379333496094">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="BLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="21.0" prefWidth="9.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -622,7 +622,7 @@
                   </StackPane>
                   <StackPane fx:id="hex56" layoutX="234.10269165039062" layoutY="-46.103355407714844">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="PURPLE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="15.0" prefWidth="5.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -638,7 +638,7 @@
                   </StackPane>
                   <StackPane fx:id="hex57" layoutX="272.7060546875" layoutY="-45.466331481933594">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="RED" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="15.0" prefWidth="3.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -654,7 +654,7 @@
                   </StackPane>
                   <StackPane fx:id="hex58" layoutX="312.3919677734375" layoutY="-44.204307556152344">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="ORANGE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="19.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -670,7 +670,7 @@
                   </StackPane>
                   <StackPane fx:id="hex59" layoutX="352.0778503417969" layoutY="-42.942283630371094">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="YELLOW" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="22.0" prefWidth="6.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -686,7 +686,7 @@
                   </StackPane>
                   <StackPane fx:id="hex60" layoutX="390.68121337890625" layoutY="-42.305259704589844">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="GREEN" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="16.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -702,7 +702,7 @@
                   </StackPane>
                   <StackPane fx:id="hex67" layoutX="451.302978515625" layoutY="-7.305261611938477">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="PURPLE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="21.0" prefWidth="4.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -718,7 +718,7 @@
                   </StackPane>
                   <StackPane fx:id="hex68" layoutX="472.2388610839844" layoutY="26.432714462280273">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="RED" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="16.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -734,7 +734,7 @@
                   </StackPane>
                   <StackPane fx:id="hex69" layoutX="492.0921936035156" layoutY="59.545692443847656">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="ORANGE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="21.0" prefWidth="27.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -750,7 +750,7 @@
                   </StackPane>
                   <StackPane fx:id="hex70" layoutX="511.9455871582031" layoutY="92.65868377685547">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="YELLOW" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="15.0" prefWidth="25.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -766,7 +766,7 @@
                   </StackPane>
                   <StackPane fx:id="hex71" layoutX="530.7164306640625" layoutY="125.14665985107422">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="GREEN" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="15.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -782,7 +782,7 @@
                   </StackPane>
                   <StackPane fx:id="hex72" layoutX="551.65234375" layoutY="158.88462829589844">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="BLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="14.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -798,7 +798,7 @@
                   </StackPane>
                   <StackPane fx:id="hex07" layoutX="550.5906372070312" layoutY="223.2235565185547">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="RED" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="10.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -814,7 +814,7 @@
                   </StackPane>
                   <StackPane fx:id="hex08" layoutX="531.8406372070312" layoutY="255.6995086669922">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="ORANGE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="15.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -830,7 +830,7 @@
                   </StackPane>
                   <StackPane fx:id="hex09" layoutX="513.0906372070312" layoutY="288.17547607421875">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="YELLOW" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="18.0" prefWidth="13.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -846,7 +846,7 @@
                   </StackPane>
                   <StackPane fx:id="hex10" layoutX="494.3406066894531" layoutY="320.65142822265625">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="GREEN" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="17.0" prefWidth="12.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -862,7 +862,7 @@
                   </StackPane>
                   <StackPane fx:id="hex11" layoutX="475.5906066894531" layoutY="353.12738037109375">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="BLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="15.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -878,7 +878,7 @@
                   </StackPane>
                   <StackPane fx:id="hex12" layoutX="456.8406066894531" layoutY="385.60333251953125">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="PURPLE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="0.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -894,7 +894,7 @@
                   </StackPane>
                   <StackPane fx:id="hex19" layoutX="401.65228271484375" layoutY="418.6922607421875">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="ORANGE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="8.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -910,7 +910,7 @@
                   </StackPane>
                   <StackPane fx:id="hex20" layoutX="361.9664001464844" layoutY="417.43023681640625">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="YELLOW" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="12.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -926,7 +926,7 @@
                   </StackPane>
                   <StackPane fx:id="hex21" layoutX="324.4455871582031" layoutY="417.418212890625">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="GREEN" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="5.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -942,7 +942,7 @@
                   </StackPane>
                   <StackPane fx:id="hex22" layoutX="285.84222412109375" layoutY="416.78118896484375">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="BLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="23.0" prefWidth="9.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -958,7 +958,7 @@
                   </StackPane>
                   <StackPane fx:id="hex23" layoutX="247.23886108398438" layoutY="416.1441650390625">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="PURPLE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="13.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -974,7 +974,7 @@
                   </StackPane>
                   <StackPane fx:id="hex24" layoutX="207.552978515625" layoutY="414.88214111328125">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="RED" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="16.0" prefWidth="7.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -990,7 +990,7 @@
                   </StackPane>
                   <StackPane fx:id="hex48" layoutX="139.22853088378906" layoutY="-14.276453018188477">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="YELLOW" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="11.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -1006,7 +1006,7 @@
                   </StackPane>
                   <StackPane fx:id="hex47" layoutX="120.4785385131836" layoutY="18.199499130249023">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="ORANGE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="20.0" prefWidth="16.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -1022,7 +1022,7 @@
                   </StackPane>
                   <StackPane fx:id="hex46" layoutX="101.72852325439453" layoutY="50.675453186035156">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="RED" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="10.0" prefWidth="3.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -1038,7 +1038,7 @@
                   </StackPane>
                   <StackPane fx:id="hex45" layoutX="82.97852325439453" layoutY="83.15142059326172">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="PURPLE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="14.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -1054,7 +1054,7 @@
                   </StackPane>
                   <StackPane fx:id="hex44" layoutX="64.22853088378906" layoutY="115.62737274169922">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="BLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="7.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -1070,7 +1070,7 @@
                   </StackPane>
                   <StackPane fx:id="hex43" layoutX="45.47853088378906" layoutY="148.1033172607422">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="GREEN" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="12.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -1086,7 +1086,7 @@
                   </StackPane>
                   <StackPane fx:id="hex36" layoutX="45.499351501464844" layoutY="213.06724548339844">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="ORANGE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="11.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -1102,7 +1102,7 @@
                   </StackPane>
                   <StackPane fx:id="hex35" layoutX="65.35271453857422" layoutY="246.1802215576172">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="RED" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="10.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -1118,7 +1118,7 @@
                   </StackPane>
                   <StackPane fx:id="hex34" layoutX="85.20606231689453" layoutY="279.293212890625">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="PURPLE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="5.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -1134,7 +1134,7 @@
                   </StackPane>
                   <StackPane fx:id="hex33" layoutX="106.14196014404297" layoutY="313.03118896484375">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="BLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="21.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -1150,7 +1150,7 @@
                   </StackPane>
                   <StackPane fx:id="hex32" layoutX="127.07784271240234" layoutY="346.7691650390625">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="GREEN" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="15.0" prefWidth="5.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -1166,7 +1166,7 @@
                   </StackPane>
                   <StackPane fx:id="hex31" layoutX="148.1811981201172" layoutY="377.717041015625">
                      <children>
-                              <Polygon fill="DODGERBLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Polygon fill="YELLOW" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
                         <GridPane prefHeight="18.0" prefWidth="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

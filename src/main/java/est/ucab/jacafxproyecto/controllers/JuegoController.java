@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert;
@@ -24,10 +25,12 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 
 public class JuegoController {
@@ -262,31 +265,41 @@ public class JuegoController {
                 System.out.println("categoria: " + categories[j] + " hay un total de respondidas: " + enums);
                 enums = 0;
             }
-            // Ask trivia question before moving; only advance on correct answer
+            // Ask category-based trivia before moving; only advance on correct answer
             boolean correctAnswer = false;
-            var approvedList = questions.getApproved();
-            if (!approvedList.isEmpty()) {
-                var randomQ = approvedList.get(rng.nextInt(approvedList.size()));
+            // Determine category based on current square
+            Square curr = jugadores.get(jugadorActual).posicion;
+            Category cat = null;
+            if (curr instanceof SquareCategory sc) {
+                cat = sc.getCategoria();
+            } else if (curr instanceof SquareRayo sr) {
+                cat = sr.getCategoria();
+            } else if (curr instanceof SquareCenter) {
+                ChoiceDialog<Category> choice = new ChoiceDialog<>(Category.values()[0], Category.values());
+                choice.setTitle(jugadores.get(jugadorActual).getNickName() + " - Seleccione Categoría");
+                choice.setHeaderText("Elija una categoría para la pregunta");
+                Optional<Category> sel = choice.showAndWait();
+                cat = sel.orElse(null);
+            }
+            // Fetch question for category
+            Question randomQ = (cat != null) ? questions.getRandomQuestion(cat) : null;
+            if (randomQ == null) {
+                // no question for this category
+                correctAnswer = true;
+            } else {
                 TextInputDialog dialog = new TextInputDialog();
-                dialog.setTitle(jugadores.get(jugadorActual).getNickName() + " - Pregunta Trivia");
+                dialog.setTitle(jugadores.get(jugadorActual).getNickName() + " - " + cat + " Trivia");
                 dialog.setHeaderText(randomQ.getQuestion());
                 dialog.setContentText("Respuesta:");
                 Optional<String> respuesta = dialog.showAndWait();
                 if (respuesta.isPresent() && respuesta.get().equalsIgnoreCase(randomQ.getAnswer())) {
-                    Alert ok = new Alert(AlertType.INFORMATION);
-                    ok.setTitle("Respuesta Correcta"); ok.setHeaderText(null);
-                    ok.setContentText("¡Correcto! Ahora avanzas."); ok.showAndWait();
+                    new Alert(AlertType.INFORMATION, "¡Correcto! Ahora avanzas.").showAndWait();
                     correctAnswer = true;
                 } else {
-                    Alert err = new Alert(AlertType.ERROR);
-                    err.setTitle("Respuesta Incorrecta"); err.setHeaderText(null);
-                    err.setContentText("Respuesta incorrecta. Pierdes tu turno."); err.showAndWait();
+                    new Alert(AlertType.ERROR, "Respuesta incorrecta. Pierdes tu turno.").showAndWait();
                 }
-            } else {
-                correctAnswer = true;
             }
             if (!correctAnswer) {
-                // skip movement and pass turn
                 jugadorActual = (jugadorActual + 1) % jugadores.size();
                 continue;
             }
