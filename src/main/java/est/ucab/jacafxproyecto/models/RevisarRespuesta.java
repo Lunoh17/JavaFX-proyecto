@@ -1,13 +1,13 @@
 package est.ucab.jacafxproyecto.models;
 
-import est.ucab.jacafxproyecto.newModels.Question;
+import est.ucab.jacafxproyecto.models.Question;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.concurrent.*;
 
 public class RevisarRespuesta implements Callable<Boolean> {
-    est.ucab.jacafxproyecto.newModels.Question question;
+    Question question;
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     @Override
     public Boolean call() throws Exception {
@@ -18,11 +18,11 @@ public class RevisarRespuesta implements Callable<Boolean> {
                 respuesta.toLowerCase().contains(question.getAnswer().toLowerCase());
     }
 
-    public RevisarRespuesta(est.ucab.jacafxproyecto.newModels.Question question) {
+    public RevisarRespuesta(Question question) {
         this.question = question;
     }
 
-    public est.ucab.jacafxproyecto.newModels.Question getQuestion() {
+    public Question getQuestion() {
         return question;
     }
 

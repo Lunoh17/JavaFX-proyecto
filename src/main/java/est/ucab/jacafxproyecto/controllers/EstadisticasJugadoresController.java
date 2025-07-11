@@ -1,14 +1,23 @@
 package est.ucab.jacafxproyecto.controllers;
 import java.io.IOException;
+import java.util.ArrayList;
 
+import est.ucab.jacafxproyecto.models.LoadUsuario;
+import est.ucab.jacafxproyecto.models.Usuario;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class EstadisticasJugadoresController {
@@ -17,6 +26,45 @@ public class EstadisticasJugadoresController {
     private Stage stage;
     private Scene scene;
     private Parent root;
+
+    TableView<Usuario> toptiers = new TableView<>();
+
+    public EstadisticasJugadoresController(){
+        LoadUsuario tops = new LoadUsuario();
+        ArrayList<Usuario> estadisticsUsers= tops.topTier();
+        TableColumn<Usuario, String> colNombre = new TableColumn<>("nombre");
+        TableColumn<Usuario, Integer> colPartidas = new TableColumn<>("partidas");
+        TableColumn<Usuario, Integer> colVictorias = new TableColumn<>("victorias");
+        TableColumn<Usuario, Integer> colDerrotas = new TableColumn<>("derrotas");
+        TableColumn<Usuario, Integer> colTiempo = new TableColumn<>("tiempo respuestas");
+        TableColumn<Usuario, Integer> colCategoryDeporte = new TableColumn<>("deporte ");
+        TableColumn<Usuario, Integer> colCategoryGeografia = new TableColumn<>("Geografia ");
+        TableColumn<Usuario, Integer> colCategoryHistoria = new TableColumn<>("Historia ");
+        TableColumn<Usuario, Integer> colCategoryCiencias = new TableColumn<>("ciencias Naturaleza ");
+        TableColumn<Usuario, Integer> colCategoryArte = new TableColumn<>("Arte ");
+        TableColumn<Usuario, Integer> colCategoryEntretenimiento = new TableColumn<>("Entretenimiento ");
+        toptiers.getColumns().addAll(colNombre, colPartidas, colVictorias, colDerrotas, colTiempo, colCategoryDeporte, colCategoryArte, colCategoryEntretenimiento, colCategoryCiencias, colCategoryGeografia,colCategoryHistoria);
+
+        colNombre.setCellValueFactory(new PropertyValueFactory<>("nickName"));
+        colPartidas.setCellValueFactory(new PropertyValueFactory<>("partidas"));
+        colVictorias.setCellValueFactory(new PropertyValueFactory<>("victory"));
+        colDerrotas.setCellValueFactory(new PropertyValueFactory<>("loses"));
+        colTiempo.setCellValueFactory(new PropertyValueFactory<>("totalTimeQuestions"));
+        colCategoryDeporte.setCellValueFactory(new PropertyValueFactory<>("answeredDeporte"));
+        colCategoryGeografia.setCellValueFactory(new PropertyValueFactory<>("answeredGeografia"));
+        colCategoryHistoria.setCellValueFactory(new PropertyValueFactory<>("answeredHistoria"));
+        colCategoryCiencias.setCellValueFactory(new PropertyValueFactory<>("answeredCiencia"));
+        colCategoryArte.setCellValueFactory(new PropertyValueFactory<>("answeredArte"));
+        colCategoryEntretenimiento.setCellValueFactory(new PropertyValueFactory<>("answeredEntretenimiento"));
+
+        ObservableList<Usuario> estadisticsObservable = FXCollections.observableArrayList(estadisticsUsers);
+        for(int i=0;i<estadisticsUsers.size(); i++){
+            estadisticsObservable.add(estadisticsUsers.get(i));
+        }
+
+        toptiers.setItems(estadisticsObservable);
+
+    }
 
 
     public void switchToMenu(ActionEvent event) throws IOException {
