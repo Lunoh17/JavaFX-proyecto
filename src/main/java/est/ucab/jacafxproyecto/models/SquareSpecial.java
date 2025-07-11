@@ -1,5 +1,11 @@
 package est.ucab.jacafxproyecto.models;
 
+import javafx.scene.control.ChoiceDialog;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 /**
  * Representa una casilla especial del tablero que permite movimiento bidireccional.
  * Puede redirigir al jugador hacia adelante o atrás dependiendo de su decisión.
@@ -105,14 +111,21 @@ public class SquareSpecial extends Square implements movimientoBidireccional {
      */
     @Override
     public int action(Ficha jugador) {
-        int a;
-        do {
-            a = Validator.validarInt("Tienes 2 posibles rutas, ¿a dónde te quieres mover?\n0. Atrás\n1. Adelante");
-            if (a < 0 || a > 1) {
-                System.out.println("ERROR: Vuelve a intentarlo.");
-            }
-        } while (a < 0 || a > 1);
-        return a;
+        List<String> choices = new ArrayList<>();
+        choices.add("0. Atrás");
+        choices.add("1. Adelante");
+
+        ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(1), choices);
+        dialog.setTitle("Selección de Ruta");
+        dialog.setHeaderText("Tienes 2 posibles rutas, ¿a dónde te quieres mover?");
+        dialog.setContentText("Elige tu ruta:");
+
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()) {
+            String selected = result.get();
+            return Integer.parseInt(selected.substring(0, 1));
+        }
+        return 1; // Default or cancel option
     }
 
     /**

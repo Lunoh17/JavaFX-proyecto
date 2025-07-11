@@ -1,7 +1,10 @@
 package est.ucab.jacafxproyecto.models;
 
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.TextInputDialog;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -65,14 +68,21 @@ public class SquareCategory extends Square implements brazo, movimientoBidirecci
      */
     @Override
     public int action(Ficha jugador) {
-        int a;
-        do {
-            a = Validator.validarInt("Tienes 2 posibles rutas, ¿a dónde te quieres mover?\n0, 1):");
-            if (a < 0 || a > 1) {
-                System.out.println("ERROR, vuelva a intentarlo.");
-            }
-        } while (a < 0 || a > 1);
-        return a;
+        List<String> choices = new ArrayList<>();
+        choices.add("0. Atrás");
+        choices.add("1. Adelante");
+
+        ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(1), choices);
+        dialog.setTitle("Selección de Ruta");
+        dialog.setHeaderText("Tienes 2 posibles rutas, ¿a dónde te quieres mover?");
+        dialog.setContentText("Elige tu ruta:");
+
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()) {
+            String selected = result.get();
+            return Integer.parseInt(selected.substring(0, 1));
+        }
+        return 1; // Default or cancel option
     }
 
     /**
@@ -131,24 +141,30 @@ public class SquareCategory extends Square implements brazo, movimientoBidirecci
      * @return casilla siguiente si la respuesta fue correcta, o la misma si fue incorrecta.
      */
     @Override
-    public Square reaction(Ficha jugador, Questions questions) {
+    public boolean reaction(Ficha jugador, Questions questions) {
         Question question = questions.getRandomQuestion(categoria);
 
         if (question == null) {
-            System.out.println("No hay preguntas disponibles para esta categoría.");
-            return this;
+            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "No hay preguntas disponibles para esta categoría.");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+            return false;
         }
 
-        System.out.println("Pregunta: " + question.getQuestion());
         boolean respuestaCorrecta = revisarRespuesta(question);
 
+        javafx.scene.control.Alert alert;
         if (respuestaCorrecta) {
-            System.out.println("¡Respuesta correcta!");
+            alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "¡Respuesta correcta!");
+            alert.setHeaderText(null);
+            alert.showAndWait();
             jugador.incrementarPuntos(categoria);
-            return getNext();
+            return true;
         } else {
-            System.out.println("Respuesta incorrecta.");
-            return this;
+            alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR, "Respuesta incorrecta.");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+            return false;
         }
     }
 
@@ -173,7 +189,8 @@ public class SquareCategory extends Square implements brazo, movimientoBidirecci
     public boolean revisarRespuesta(Question question) {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Respuesta");
-        dialog.setHeaderText("Ingrese su respuesta:");
+        dialog.setHeaderText(question.getQuestion());
+        dialog.setContentText("Ingrese su respuesta:");
         Optional<String> result = dialog.showAndWait();
         String respuesta = result.orElse("");
         return respuesta.equalsIgnoreCase(question.getAnswer()) ||

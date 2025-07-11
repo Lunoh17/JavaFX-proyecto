@@ -15,7 +15,7 @@ public interface CategoryQuestion {
      * @param questions El conjunto de preguntas disponibles para la categoría.
      * @return La {@link Square} a la que el jugador se moverá después de responder.
      */
-    public Square reaction(Ficha jugador, Questions questions);
+    public boolean reaction(Ficha jugador, Questions questions);
 
     /**
      * Verifica si la respuesta del jugador a una pregunta es correcta.

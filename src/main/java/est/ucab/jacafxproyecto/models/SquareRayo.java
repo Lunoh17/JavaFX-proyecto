@@ -1,7 +1,11 @@
 package est.ucab.jacafxproyecto.models;
 
-import java.util.Optional;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.TextInputDialog;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * Clase que representa una casilla especial del tablero llamada "SquareRayo".
@@ -61,17 +65,22 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
             jugador.entrado = true;
             return 2;
         } else {
-            System.out.println("¿Quieres ir hacia adelante o hacia atrás?");
-            int exit = Validator.validarInt("1. Adelante\n0. Atrás");
-            if (exit == 1) {
-                return 1;
-            } else if (exit == 0) {
-                return 0;
-            } else {
-                System.out.println("Ingrese una opción válida");
+            List<String> choices = new ArrayList<>();
+            choices.add("0. Atrás");
+            choices.add("1. Adelante");
+
+            ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(1), choices);
+            dialog.setTitle("Selección de Ruta");
+            dialog.setHeaderText("¿Quieres ir hacia adelante o hacia atrás?");
+            dialog.setContentText("Elige tu ruta:");
+
+            Optional<String> result = dialog.showAndWait();
+            if (result.isPresent()) {
+                String selected = result.get();
+                return Integer.parseInt(selected.substring(0, 1));
             }
+            return 1; // Default or cancel option
         }
-        return 0;
     }
 
     /**
@@ -189,15 +198,17 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
      * @param questions Banco de preguntas.
      * @return Casilla resultante luego de responder la pregunta.
      */
-    public Square reaction(Ficha jugador, Questions questions) {
+    @Override
+    public boolean reaction(Ficha jugador, Questions questions) {
         Question question = questions.getRandomQuestion(categoria);
 
         if (question == null) {
-            System.out.println("No hay preguntas disponibles para esta categoría.");
-            return this;
+            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "No hay preguntas disponibles para esta categoría.");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+            return false;
         }
 
-        System.out.println("Pregunta: " + question.getQuestion());
         boolean respuestaCorrecta = revisarRespuesta(question);
 
         javafx.scene.control.Alert alert;
@@ -206,12 +217,12 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
             alert.setHeaderText(null);
             alert.showAndWait();
             jugador.incrementarPuntos(categoria);
-            return getNext();
+            return true;
         } else {
             alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR, "Respuesta incorrecta.");
             alert.setHeaderText(null);
             alert.showAndWait();
-            return this;
+            return false;
         }
     }
 }
