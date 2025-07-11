@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="paneWilcommen" prefHeight="800" prefWidth="1300" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="est.ucab.jacafxproyecto.controllers.MenuController">
+   <children>
+      <AnchorPane fx:id="container1" layoutX="41.0" layoutY="40.0" prefHeight="688.0" prefWidth="1219.0">
+         <children>
+            <Button layoutX="868.0" layoutY="581.0" mnemonicParsing="false" onAction="#onClickSalir" prefHeight="54.0" prefWidth="96.0" scaleX="1.4" scaleY="1.4" text="Salir">
+               <font>
+                  <Font name="Comic Sans MS Italic" size="15.0" />
+               </font></Button>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="327.0" layoutY="166.0" prefHeight="121.0" prefWidth="336.0" scaleX="1.4" scaleY="1.4" text="Trivia " textAlignment="CENTER">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="95.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="0.7535545023696683" endY="1.0" startX="0.04739336492890994" startY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="1.0" green="0.47843137383461" blue="0.4941176474094391" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.1915708812260533">
+                           <color>
+                              <Color red="1.0" green="0.47843137383461" blue="0.7764706015586853" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.3972824584271436">
+                           <color>
+                              <Color red="0.9882352948188782" green="0.47843137383461" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.6019670577082592">
+                           <color>
+                              <Color red="0.7529411911964417" green="0.47843137383461" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.8106410712169685">
+                           <color>
+                              <Color red="0.47843137383461" green="0.529411792755127" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.47843137383461" green="0.7647058963775635" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+            <Button layoutX="656.0" layoutY="581.0" mnemonicParsing="false" onAction="#switchToEstadisticasJuegadores" prefHeight="54.0" prefWidth="106.0" scaleX="1.4" scaleY="1.4" text="Estadisticas">
+               <font>
+                  <Font name="Comic Sans MS Italic" size="15.0" />
+               </font></Button>
+            <Button layoutX="442.0" layoutY="581.0" mnemonicParsing="false" onAction="#cargarPartida" prefHeight="54.0" prefWidth="106.0" scaleX="1.4" scaleY="1.4" text="CargarPartida">
+               <font>
+                  <Font name="Comic Sans MS Italic" size="13.0" />
+               </font></Button>
+            <Button layoutX="195.0" layoutY="581.0" mnemonicParsing="false" onAction="#switchToSeleccionJugadores" prefHeight="54.0" prefWidth="129.0" scaleX="1.4" scaleY="1.4" text="NuevaPartida">
+               <font>
+                  <Font name="Comic Sans MS Italic" size="15.0" />
+               </font></Button>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="525.0" layoutY="290.0" prefHeight="121.0" prefWidth="336.0" scaleX="1.4" scaleY="1.4" text="UCAB" textAlignment="CENTER">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="95.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="0.8293838862559242" endY="1.0" startX="0.23222748815165875" startY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.9882352948188782" green="0.47843137383461" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.007662835249042145">
+                           <color>
+                              <Color red="0.9882352948188782" green="0.47843137383461" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.10005134889599844">
+                           <color>
+                              <Color red="0.7529411911964417" green="0.47843137383461" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.7838211478453208">
+                           <color>
+                              <Color red="0.47843137383461" green="0.529411792755127" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.47843137383461" green="0.7647058963775635" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
