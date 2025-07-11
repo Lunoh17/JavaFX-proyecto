@@ -67,6 +67,11 @@ public class SquareCenter extends Square implements brazo, CategoryQuestion {
         return 0; // Default or cancel option
     }
 
+    @Override
+    public Square reaction(Ficha jugador) {
+        return this;
+    }
+
     /**
      * Lógica para salir del centro hacia un brazo específico del tablero.
      *
@@ -165,10 +170,11 @@ public class SquareCenter extends Square implements brazo, CategoryQuestion {
      *
      * @param jugador  Ficha del jugador.
      * @param questions Banco de preguntas.
-     * @return Casilla resultante después de la interacción (esta misma).
+     * @param fichaController Controlador de la ficha actual.
+     * @return true si la respuesta fue correcta, false en caso contrario.
      */
     @Override
-    public boolean reaction(Ficha jugador, Questions questions) {
+    public boolean reaction(Ficha jugador, Questions questions, est.ucab.jacafxproyecto.controllers.FichaController fichaController) {
         Category[] categorias = Category.values();
         List<String> choices = new ArrayList<>();
         for (Category c : categorias) {
@@ -192,7 +198,7 @@ public class SquareCenter extends Square implements brazo, CategoryQuestion {
                 return false;
             }
 
-            boolean respuestaCorrecta = revisarRespuesta(question);
+            boolean respuestaCorrecta = revisarRespuesta(question, fichaController);
 
             javafx.scene.control.Alert alert;
             if (respuestaCorrecta) {
@@ -200,6 +206,10 @@ public class SquareCenter extends Square implements brazo, CategoryQuestion {
                 alert.setHeaderText(null);
                 alert.showAndWait();
                 jugador.gano = true;
+                // Resaltar el sector correspondiente a la categoría
+                if (fichaController != null && categoria != null) {
+                    fichaController.resaltarSector(categoria.ordinal() + 1);
+                }
                 return true;
             } else {
                 alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR, "Respuesta incorrecta.");
@@ -212,24 +222,14 @@ public class SquareCenter extends Square implements brazo, CategoryQuestion {
     }
 
     /**
-     * Reacción alternativa sin preguntas (por compatibilidad con la interfaz).
-     *
-     * @param jugador Ficha del jugador.
-     * @return Esta misma casilla.
-     */
-    @Override
-    public Square reaction(Ficha jugador) {
-        return this;
-    }
-
-    /**
      * Revisa si la respuesta ingresada por el jugador es correcta.
      *
      * @param question Pregunta a evaluar.
+     * @param fichaController Controlador de la ficha actual.
      * @return true si la respuesta es válida; false si es incorrecta.
      */
     @Override
-    public boolean revisarRespuesta(Question question) {
+    public boolean revisarRespuesta(Question question, est.ucab.jacafxproyecto.controllers.FichaController fichaController) {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Respuesta");
         dialog.setHeaderText(question.getQuestion()); // Show the actual question

@@ -44,7 +44,7 @@ public class Ficha {
     /**
      * Indica si el jugador ha ganado.
      */
-    boolean gano = false;
+    public boolean gano = false;
 
     /**
      * Posición numérica de la ficha en el tablero.
@@ -96,7 +96,7 @@ public class Ficha {
      * @param questions Banco de preguntas del juego.
      * @return {@code true} si el jugador ha ganado, {@code false} en otro caso.
      */
-    public boolean avanzar(Questions questions) {
+    public boolean avanzar(Questions questions, est.ucab.jacafxproyecto.controllers.FichaController fichaController) {
         boolean continuar = false;
         do {
             int dado = tirarDado();
@@ -108,7 +108,7 @@ public class Ficha {
                 posicion.cantidadFichas++;
                 this.positionTable = posicion.position;
                 if (posicion instanceof CategoryQuestion cQ) {
-                    cQ.reaction(this, questions);
+                    cQ.reaction(this, questions, fichaController);
                 }
             } else if (entrado) {
                 if (posicion instanceof brazo saliendo) {
@@ -116,7 +116,7 @@ public class Ficha {
                     posicion.cantidadFichas++;
                     this.positionTable = posicion.position;
                     if (posicion instanceof SquareCenter sC) {
-                        sC.reaction(this, questions);
+                        sC.reaction(this, questions, fichaController);
                         if (this.gano) return true;
                     }
                 }
@@ -129,7 +129,7 @@ public class Ficha {
                         continuar = true;
                     }
                     if (posicion instanceof CategoryQuestion cQ) {
-                        cQ.reaction(this, questions);
+                        cQ.reaction(this, questions, fichaController);
                     }
                 }
             }

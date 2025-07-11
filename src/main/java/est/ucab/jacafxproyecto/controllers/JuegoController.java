@@ -238,7 +238,7 @@ public class JuegoController {
             }
 
             for(Square squareActual: centro.rayos){
-                for (int j = 0; j <13 ; j++) {
+                for (int j = 0; j<13 ; j++) {
                     if (squareActual instanceof  SquareRayo sr){
                         if (ficha.getPosition()== sr.getPosition()) {
                             ficha.posicion = sr;
@@ -290,7 +290,7 @@ public class JuegoController {
             System.out.println("categoria: "+categories[j]+" hay un total de respondidas: "+ jugadores.get(jugadorActual).triangulos[j]);
         }
         boolean correctAnswer = false;
-        ganador = jugadores.get(jugadorActual).avanzar(questionsGame);
+        ganador = jugadores.get(jugadorActual).avanzar(questionsGame, fichaControllers[jugadorActual]);
         this.printBoard();
         if (ganador) {
             jugadores.get(jugadorActual).getUsuario().setVictory(jugadores.get(jugadorActual).getUsuario().getVictory() + 1);

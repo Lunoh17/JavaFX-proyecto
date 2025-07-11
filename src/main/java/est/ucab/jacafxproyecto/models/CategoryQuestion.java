@@ -13,15 +13,17 @@ public interface CategoryQuestion {
      *
      * @param jugador   La ficha del jugador actual.
      * @param questions El conjunto de preguntas disponibles para la categoría.
-     * @return La {@link Square} a la que el jugador se moverá después de responder.
+     * @param fichaController El controlador de la ficha actual.
+     * @return true si la respuesta es correcta, false en caso contrario.
      */
-    public boolean reaction(Ficha jugador, Questions questions);
+    public boolean reaction(Ficha jugador, Questions questions, est.ucab.jacafxproyecto.controllers.FichaController fichaController);
 
     /**
      * Verifica si la respuesta del jugador a una pregunta es correcta.
      *
      * @param question La pregunta que se le presenta al jugador.
+     * @param fichaController El controlador de la ficha actual.
      * @return {@code true} si la respuesta es correcta, de lo contrario {@code false}.
      */
-    public boolean revisarRespuesta(Question question);
+    public boolean revisarRespuesta(Question question, est.ucab.jacafxproyecto.controllers.FichaController fichaController);
 }
