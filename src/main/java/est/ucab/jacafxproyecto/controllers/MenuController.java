@@ -80,7 +80,7 @@ public class MenuController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/est/ucab/jacafxproyecto/juego-view.fxml"));
         Parent root = loader.load();
         JuegoController juegoController = loader.getController();
-        juegoController.cargarEstadoGuardado(); // Llama correctamente al método para cargar la partida
+        juegoController.cargarPositions(); // Llama correctamente al método para cargar la partida
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);

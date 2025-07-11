@@ -9,7 +9,7 @@ abstract public class Square {
     /**
      * Cantidad de fichas que actualmente se encuentran en esta casilla.
      */
-    protected int cantidadFichas;
+    public int cantidadFichas;
 
     /**
      * Posición de la casilla en el tablero.

@@ -156,17 +156,17 @@ public class JuegoController {
         }
         Gson gson = new Gson();
 
-        Square listaSquare[] = new Square[MAX_PLAYERS];
+        Square listaSquare[]= new Square[MAX_PLAYERS];
         int contador = 0;
-        for (Ficha fa : jugadores) {
-            listaSquare[contador++] = fa.posicion;
-            fa.posicion = null;
+        for (Ficha fa:jugadores){
+            listaSquare[contador++]=fa.posicion;
+            fa.posicion=null;
         }
         String json = gson.toJson(this.jugadores);
         File data = new File(destinyFolder + File.separator + "fichas.json");
-        contador = 0;
-        for (Ficha fa : jugadores) {
-            fa.posicion = listaSquare[contador++];
+        contador=0;
+        for (Ficha fa:jugadores){
+            fa.posicion=listaSquare[contador++];
         }
         try (FileWriter writer = new FileWriter(data)) {
             writer.write(json);
@@ -177,66 +177,93 @@ public class JuegoController {
 
     public void loadFichaJson() {
         Gson gson = new Gson();
-        Type listType = new TypeToken<ArrayList<Ficha>>() {}.getType();
-        File configDir = new File(homeFolder, ".config");
-        if (!configDir.exists() && !configDir.mkdir()) {
-            throw new RuntimeException("Cannot create config directory");
-        }
-        File configFile = new File(configDir, "fichas.json");
-        if (!configFile.exists()) {
-            // Load default from resources
-            try (InputStream is = getClass().getResourceAsStream("/est/ucab/jacafxproyecto/fichas.json");
-                 Reader reader = is != null ? new InputStreamReader(is) : null) {
-                jugadores = reader != null ? gson.fromJson(reader, listType) : new ArrayList<>();
-            } catch (IOException e) {
-                throw new RuntimeException("Error loading default fichas.json", e);
+        String destinyFolder = homeFolder + File.separator + ".config";
+        File destinyFolderFile = new File(destinyFolder);
+        if (!destinyFolderFile.exists()) {
+            boolean created = destinyFolderFile.mkdir();
+            if (!created) {
+                throw new RuntimeException();
             }
-            // Save initial to config
-            try (Writer writer = new FileWriter(configFile)) {
-                writer.write(gson.toJson(jugadores));
+        }
+        var a = new File(destinyFolderFile + File.separator + "fichas.json");
+        if (!(a.exists())) {
+            try {
+                boolean created = a.createNewFile();
+                if (!created)
+                    throw new IOException();
+                this.jugadores = new ArrayList<Ficha>();
             } catch (IOException e) {
-                throw new RuntimeException("Error saving initial fichas.json", e);
+                throw new RuntimeException(e);
             }
         } else {
-            // Load saved state
-            try (Reader reader = new FileReader(configFile)) {
-                jugadores = gson.fromJson(reader, listType);
+            try (FileReader r = new FileReader(destinyFolderFile + File.separator + "fichas.json")) {
+                BufferedReader bufferedReader = new BufferedReader(r);
+                Type listType = new TypeToken<ArrayList<Ficha>>() {
+                }.getType();
+                jugadores = gson.fromJson(bufferedReader, listType);
             } catch (IOException e) {
-                throw new RuntimeException("Error reading fichas.json from config", e);
+                throw new RuntimeException("Error al leer el archivo JSON", e);
             }
         }
 
     }
 
-    public void cargarPositions() {
+    public void cargarPositions(){
         loadFichaJson();
-        for (int i = 0; i < jugadores.size(); i++) {
-            for (Square squareActual : centro.rayos) {
-                for (int j = 0; j < 13; j++) {
-                    if (squareActual instanceof SquareRayo sr) {
-                        if (jugadores.get(i).getPosition() == sr.getPosition()) {
-                            jugadores.get(i).posicion = sr;
-                            jugadores.get(i).positionTable = sr.getPosition();
-                            jugadores.get(i).posicion.sumarCantidadFichas();
+        if (jugadores == null) {
+            jugadores = new ArrayList<>();
+            return; // No hay jugadores que cargar
+        }
+        this.centro = new SquareCenter(this.jugadores.size());
+        fichaControllers = new FichaController[jugadores.size()];
+        fichaNodes.clear();
+        if (grid00 != null) {
+            grid00.getChildren().clear();
+        }
+
+        for(int i=0; i<jugadores.size(); i++){
+            Ficha ficha = jugadores.get(i);
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/est/ucab/jacafxproyecto/ficha.fxml"));
+                Node fichaNode = loader.load();
+                FichaController fichaController = loader.getController();
+                fichaController.setJugador(ficha);
+                fichaControllers[i] = fichaController;
+                fichaNodes.add(fichaNode);
+                if (grid00 != null) {
+                    grid00.add(fichaNode, i % 2, i / 2);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            for(Square squareActual: centro.rayos){
+                for (int j = 0; j <13 ; j++) {
+                    if (squareActual instanceof  SquareRayo sr){
+                        if (ficha.getPosition()== sr.getPosition()) {
+                            ficha.posicion = sr;
+                            ficha.positionTable = sr.getPosition();
+                            ficha.posicion.cantidadFichas++;
                             break;
                         }
-                        squareActual = (Square) sr.getNext();
-                    } else if (squareActual instanceof SquareCategory sC) {
-                        if (jugadores.get(i).getPosition() == sC.getPosition()) {
-                            jugadores.get(i).posicion = sC;
-                            jugadores.get(i).positionTable = sC.getPosition();
-                            jugadores.get(i).posicion.sumarCantidadFichas();
+                        squareActual=(Square) sr.getNext();
+                    }else if (squareActual instanceof SquareCategory sC)
+                    {
+                        if (ficha.getPosition()== sC.getPosition()) {
+                            ficha.posicion = sC;
+                            ficha.positionTable = sC.getPosition();
+                            ficha.posicion.cantidadFichas++;
                             break;
                         }
-                        squareActual = ((Square) sC.getNext());
+                        squareActual=((Square) sC.getNext());
                     } else if (squareActual instanceof SquareSpecial sS) {
-                        if (jugadores.get(i).getPosition() == sS.getPosition()) {
-                            jugadores.get(i).posicion = sS;
-                            jugadores.get(i).positionTable = sS.getPosition();
-                            jugadores.get(i).posicion.sumarCantidadFichas();
+                        if (ficha.getPosition()== sS.getPosition()) {
+                            ficha.posicion = sS;
+                            ficha.positionTable = sS.getPosition();
+                            ficha.posicion.cantidadFichas++;
                             break;
                         }
-                        squareActual = ((Square) sS.getNext());
+                        squareActual=((Square) sS.getNext());
                     }
 
                 }
@@ -306,7 +333,6 @@ public class JuegoController {
 //        }
         // advance and save state
         ganador = jugadores.get(jugadorActual).avanzar(questionsGame);
-        this.guardarEstadoPartida();
         this.printBoard();
         if (ganador) {
             jugadores.get(jugadorActual).getUsuario().setVictory(jugadores.get(jugadorActual).getUsuario().getVictory() + 1);
@@ -318,7 +344,13 @@ public class JuegoController {
         } catch (IOException e) {
             System.err.println(e + " no se pudo guardar el turno");
         }
-        System.out.println("Posición actual:\n" + jugadores.get(jugadorActual).posicion.paint());
+        // Fix: Check for null before calling paint()
+        Square posActual = jugadores.get(jugadorActual).posicion;
+        if (posActual != null) {
+            System.out.println("Posición actual:\n" + posActual.paint());
+        } else {
+            System.out.println("Posición actual: (sin posición asignada)");
+        }
     }
 
     /**
