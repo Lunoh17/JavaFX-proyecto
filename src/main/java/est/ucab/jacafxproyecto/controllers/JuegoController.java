@@ -284,54 +284,12 @@ public class JuegoController {
         System.out.flush();
         this.printBoard();
         System.out.println("Turno del jugador: " + jugadores.get(jugadorActual).getNickName());
-        // compute stats
-        int enumsCount = 0;
         System.out.println("estadisticas: ");
-        System.out.println("victorias: " + jugadores.get(jugadorActual).getUsuario().getVictory());
-        for (int j = 0; j < categories.length; j++) {
-            for (int tri : jugadores.get(jugadorActual).triangulos) {
-                if (j == tri) enumsCount++;
-            }
-            System.out.println("categoria: " + categories[j] + " hay un total de respondidas: " + enumsCount);
-            enumsCount = 0;
+        System.out.println("victorias: "+ jugadores.get(jugadorActual).getUsuario().getVictory());
+        for(int j=0; j<categories.length; j++) {
+            System.out.println("categoria: "+categories[j]+" hay un total de respondidas: "+ jugadores.get(jugadorActual).triangulos[j]);
         }
-        // question prompt
         boolean correctAnswer = false;
-//        Square curr = jugadores.get(jugadorActual).posicion;
-//        Category cat = null;
-//        if (curr instanceof SquareCategory sc) {
-//            cat = sc.getCategoria();
-//        } else if (curr instanceof SquareRayo sr) {
-//            cat = sr.getCategoria();
-//        } else if (curr instanceof SquareCenter) {
-//            ChoiceDialog<Category> choice = new ChoiceDialog<>(categories[0], categories);
-//            choice.setTitle(jugadores.get(jugadorActual).getNickName() + " - Seleccione Categoría");
-//            choice.setHeaderText("Elija una categoría para la pregunta");
-//            Optional<Category> sel = choice.showAndWait();
-//            cat = sel.orElse(null);
-//        }
-//        Question randomQ = (cat != null && questionsGame != null) ? questionsGame.getRandomQuestion(cat) : null;
-//        if (randomQ == null) {
-//            correctAnswer = true;
-//        } else {
-//            TextInputDialog dialog = new TextInputDialog();
-//            dialog.setTitle(jugadores.get(jugadorActual).getNickName() + " - " + cat + " Trivia");
-//            dialog.setHeaderText(randomQ.getQuestion());
-//            dialog.setContentText("Respuesta:");
-//            Optional<String> respuesta = dialog.showAndWait();
-//            if (respuesta.isPresent() && respuesta.get().equalsIgnoreCase(randomQ.getAnswer())) {
-//                new Alert(Alert.AlertType.INFORMATION, "¡Correcto! Ahora avanzas.").showAndWait();
-//                correctAnswer = true;
-//            } else {
-//                new Alert(Alert.AlertType.ERROR, "Respuesta incorrecta. Pierdes tu turno.").showAndWait();
-//            }
-//
-//        }
-//        if (!correctAnswer) {
-//            jugadorActual = (jugadorActual + 1) % jugadores.size();
-//            return;
-//        }
-        // advance and save state
         ganador = jugadores.get(jugadorActual).avanzar(questionsGame);
         this.printBoard();
         if (ganador) {
