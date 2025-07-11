@@ -1,7 +1,6 @@
 package est.ucab.jacafxproyecto.models;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 
 /**
@@ -94,43 +93,42 @@ public class Ficha {
     /**
      * Lógica para avanzar en el tablero dependiendo del estado de la ficha.
      *
-     * @param scanner   Entrada del usuario.
      * @param questions Banco de preguntas del juego.
      * @return {@code true} si el jugador ha ganado, {@code false} en otro caso.
      */
-    public boolean avanzar(Scanner scanner, Questions questions) {
+    public boolean avanzar(Questions questions) {
         if (!salido && posicion instanceof brazo saliendo) {
             if (posicion instanceof SquareCenter)
-                posicion = saliendo.salir(tirarDado(), this.posicion.action(scanner, this), this, null);
+                posicion = saliendo.salir(tirarDado(), this.posicion.action(this), this);
             else
-                posicion = saliendo.salir(tirarDado(), 1, this, scanner);
+                posicion = saliendo.salir(tirarDado(), 1, this);
             posicion.cantidadFichas++;
             this.positionTable = posicion.position;
             if (posicion instanceof CategoryQuestion cQ) {
-                cQ.reaction(scanner, this, questions);
+                cQ.reaction(this, questions);
             }
         } else if (entrado) {
             if (posicion instanceof brazo saliendo) {
-                posicion = saliendo.entrar(tirarDado(), 1, this, scanner);
+                posicion = saliendo.entrar(tirarDado(), 1, this);
                 posicion.cantidadFichas++;
                 this.positionTable = posicion.position;
                 if (posicion instanceof SquareCenter sC) {
-                    sC.reaction(scanner, this, questions);
+                    sC.reaction( this, questions);
                     if (this.gano) return true;
                 }
             }
         } else {
             if (posicion instanceof movimientoBidireccional casilla) {
-                posicion = casilla.movimiento(tirarDado(), this.posicion.action(scanner, this), this);
+                posicion = casilla.movimiento(tirarDado(), this.posicion.action( this), this);
                 posicion.cantidadFichas++;
                 this.positionTable = posicion.position;
                 if (posicion instanceof SquareSpecial sS) {
-                    posicion = sS.reaction(scanner, this);
+                    posicion = sS.reaction( this);
                     posicion.cantidadFichas++;
                     this.positionTable = posicion.position;
                 }
                 if (posicion instanceof CategoryQuestion cQ) {
-                    cQ.reaction(scanner, this, questions);
+                    cQ.reaction(this, questions);
                 }
             }
         }

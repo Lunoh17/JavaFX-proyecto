@@ -1,7 +1,5 @@
 package est.ucab.jacafxproyecto.models;
 
-import java.util.Scanner;
-
 /**
  * Representa una casilla especial del tablero que permite movimiento bidireccional.
  * Puede redirigir al jugador hacia adelante o atrás dependiendo de su decisión.
@@ -102,17 +100,14 @@ public class SquareSpecial extends Square implements movimientoBidireccional {
     /**
      * Solicita al jugador que seleccione una dirección de movimiento.
      *
-     * @param scanner Scanner para entrada del jugador.
      * @param jugador Ficha del jugador.
      * @return Dirección elegida (0: atrás, 1: adelante).
      */
     @Override
-    public int action(Scanner scanner, Ficha jugador) {
+    public int action(Ficha jugador) {
         int a;
         do {
-            a = Validator.validarInt(
-                    "Tienes 2 posibles rutas, ¿a dónde te quieres mover?\n" +
-                            "0. Atrás\n1. Adelante");
+            a = Validator.validarInt("Tienes 2 posibles rutas, ¿a dónde te quieres mover?\n0. Atrás\n1. Adelante");
             if (a < 0 || a > 1) {
                 System.out.println("ERROR: Vuelve a intentarlo.");
             }
@@ -124,15 +119,14 @@ public class SquareSpecial extends Square implements movimientoBidireccional {
      * Reacción del jugador al caer en esta casilla:
      * lanza un dado y se mueve según la dirección seleccionada.
      *
-     * @param scanner Scanner para entrada del jugador.
      * @param jugador Ficha del jugador.
      * @return Nueva casilla luego del movimiento.
      */
     @Override
-    public Square reaction(Scanner scanner, Ficha jugador) {
+    public Square reaction(Ficha jugador) {
         int dado = (int) (Math.random() * 6) + 1; // Número aleatorio entre 1 y 6
         System.out.println("Tirando el dado... " + dado);
-        int direction = action(scanner, jugador);
+        int direction = action(jugador);
         return movimiento(dado, direction, jugador);
     }
 }

@@ -1,15 +1,22 @@
 package est.ucab.jacafxproyecto.controllers;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import est.ucab.jacafxproyecto.models.Ficha;
+import est.ucab.jacafxproyecto.controllers.JuegoController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 
-import java.io.IOException;
+import java.io.*;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -18,6 +25,12 @@ public class MenuController {
     public AnchorPane container1;
     @FXML
     private AnchorPane paneWilcommen;
+
+    @FXML
+    private javafx.scene.layout.GridPane grid00;
+    private ArrayList<Ficha> jugadores;
+    private ArrayList<Node> fichaNodes;
+    private FichaController[] fichaControllers;
 
     private Stage stage;
     private Scene scene;
@@ -63,6 +76,19 @@ public class MenuController {
                     -fx-background-color: #ebdcff;
                     -fx-background-radius: 20;""");
     }
+    public void cargarPartida(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/est/ucab/jacafxproyecto/juego-view.fxml"));
+        Parent root = loader.load();
+        JuegoController juegoController = loader.getController();
+        juegoController.cargarEstadoGuardado(); // Llama correctamente al método para cargar la partida
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
+    private void printBoard() {
+
+    }
 
 }

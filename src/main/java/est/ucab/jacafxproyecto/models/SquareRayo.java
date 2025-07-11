@@ -1,6 +1,7 @@
 package est.ucab.jacafxproyecto.models;
 
-import java.util.Scanner;
+import java.util.Optional;
+import javafx.scene.control.TextInputDialog;
 
 /**
  * Clase que representa una casilla especial del tablero llamada "SquareRayo".
@@ -51,12 +52,11 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
     /**
      * Define la acción del jugador al llegar a esta casilla.
      *
-     * @param scanner Scanner para entrada de usuario.
      * @param jugador Ficha del jugador.
      * @return Entero que indica la dirección del movimiento: 1 (adelante), 0 (atrás), 2 (al centro).
      */
     @Override
-    public int action(Scanner scanner, Ficha jugador) {
+    public int action(Ficha jugador) {
         if (jugador.triangulo()) {
             jugador.entrado = true;
             return 2;
@@ -156,25 +156,27 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
     /**
      * Reacción al caer en esta casilla (sin preguntas). Retorna null por compatibilidad.
      *
-     * @param scanner Scanner para entrada del usuario.
      * @param jugador Ficha del jugador.
      * @return null (sin acción).
      */
     @Override
-    public Square reaction(Scanner scanner, Ficha jugador) {
+    public Square reaction(Ficha jugador) {
         return null;
     }
 
     /**
      * Evalúa si la respuesta del jugador a la pregunta es correcta.
      *
-     * @param scanner Scanner para entrada del usuario.
      * @param question Pregunta a responder.
      * @return true si la respuesta es correcta; false en caso contrario.
      */
-    public boolean revisarRespuesta(Scanner scanner, Question question) {
-        System.out.print("Ingrese su respuesta: ");
-        String respuesta = scanner.nextLine();
+    public boolean revisarRespuesta(Question question) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Respuesta");
+        dialog.setHeaderText(question.getQuestion()); // Show the actual question
+        dialog.setContentText("Ingrese su respuesta:");
+        Optional<String> result = dialog.showAndWait();
+        String respuesta = result.orElse("");
         return respuesta.equalsIgnoreCase(question.getAnswer())
                 || question.getAnswer().toLowerCase().contains(respuesta.toLowerCase())
                 || respuesta.toLowerCase().contains(question.getAnswer().toLowerCase());
@@ -183,12 +185,11 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
     /**
      * Lógica de reacción cuando el jugador cae en esta casilla: se presenta una pregunta.
      *
-     * @param scanner Scanner para entrada del usuario.
      * @param jugador Ficha del jugador.
      * @param questions Banco de preguntas.
      * @return Casilla resultante luego de responder la pregunta.
      */
-    public Square reaction(Scanner scanner, Ficha jugador, Questions questions) {
+    public Square reaction(Ficha jugador, Questions questions) {
         Question question = questions.getRandomQuestion(categoria);
 
         if (question == null) {
@@ -197,14 +198,19 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
         }
 
         System.out.println("Pregunta: " + question.getQuestion());
-        boolean respuestaCorrecta = revisarRespuesta(scanner, question);
+        boolean respuestaCorrecta = revisarRespuesta(question);
 
+        javafx.scene.control.Alert alert;
         if (respuestaCorrecta) {
-            System.out.println("¡Respuesta correcta!");
+            alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "¡Respuesta correcta!");
+            alert.setHeaderText(null);
+            alert.showAndWait();
             jugador.incrementarPuntos(categoria);
             return getNext();
         } else {
-            System.out.println("Respuesta incorrecta.");
+            alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR, "Respuesta incorrecta.");
+            alert.setHeaderText(null);
+            alert.showAndWait();
             return this;
         }
     }

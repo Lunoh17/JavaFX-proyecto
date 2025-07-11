@@ -1,6 +1,8 @@
 package est.ucab.jacafxproyecto.models;
 
-import java.util.Scanner;
+import javafx.scene.control.TextInputDialog;
+
+import java.util.Optional;
 
 /**
  * Clase que representa una casilla de categoría en el tablero.
@@ -58,12 +60,11 @@ public class SquareCategory extends Square implements brazo, movimientoBidirecci
     /**
      * Permite al jugador escoger entre dos rutas posibles.
      *
-     * @param scanner objeto {@link Scanner} para entrada del usuario.
      * @param jugador ficha del jugador.
      * @return la dirección seleccionada (0 o 1).
      */
     @Override
-    public int action(Scanner scanner, Ficha jugador) {
+    public int action(Ficha jugador) {
         int a;
         do {
             a = Validator.validarInt("Tienes 2 posibles rutas, ¿a dónde te quieres mover?\n0, 1):");
@@ -80,16 +81,15 @@ public class SquareCategory extends Square implements brazo, movimientoBidirecci
      * @param move     cantidad de movimientos.
      * @param exit     dirección de salida.
      * @param jugador  ficha del jugador.
-     * @param scanner  entrada del usuario.
      * @return casilla destino luego del movimiento.
      */
     @Override
-    public Square salir(int move, int exit, Ficha jugador, Scanner scanner) {
+    public Square salir(int move, int exit, Ficha jugador) {
         Square iter = this;
         this.cantidadFichas--;
         for (int i = 0; i < move; i++) {
             if (iter instanceof SquareRayo ray) {
-                int salir = ray.action(scanner, jugador);
+                int salir = ray.action(jugador);
                 jugador.salido = true;
                 iter = ray.salir(move - i, salir, jugador);
                 i = move;
@@ -126,13 +126,12 @@ public class SquareCategory extends Square implements brazo, movimientoBidirecci
     /**
      * Reacción de la casilla al caer una ficha y plantear una pregunta al jugador.
      *
-     * @param scanner   entrada del usuario.
      * @param jugador   ficha del jugador.
      * @param questions banco de preguntas.
      * @return casilla siguiente si la respuesta fue correcta, o la misma si fue incorrecta.
      */
     @Override
-    public Square reaction(Scanner scanner, Ficha jugador, Questions questions) {
+    public Square reaction(Ficha jugador, Questions questions) {
         Question question = questions.getRandomQuestion(categoria);
 
         if (question == null) {
@@ -141,7 +140,7 @@ public class SquareCategory extends Square implements brazo, movimientoBidirecci
         }
 
         System.out.println("Pregunta: " + question.getQuestion());
-        boolean respuestaCorrecta = revisarRespuesta(scanner, question);
+        boolean respuestaCorrecta = revisarRespuesta(question);
 
         if (respuestaCorrecta) {
             System.out.println("¡Respuesta correcta!");
@@ -156,26 +155,27 @@ public class SquareCategory extends Square implements brazo, movimientoBidirecci
     /**
      * Reacción neutra al llegar a la casilla (sin pregunta).
      *
-     * @param scanner entrada del usuario.
      * @param jugador ficha del jugador.
      * @return esta misma casilla.
      */
     @Override
-    public Square reaction(Scanner scanner, Ficha jugador) {
+    public Square reaction(Ficha jugador) {
         return this;
     }
 
     /**
      * Revisa la respuesta ingresada por el jugador contra la respuesta correcta.
      *
-     * @param scanner  entrada del usuario.
      * @param question pregunta a responder.
      * @return true si la respuesta es correcta, false en caso contrario.
      */
     @Override
-    public boolean revisarRespuesta(Scanner scanner, Question question) {
-        System.out.print("Ingrese su respuesta: ");
-        String respuesta = scanner.nextLine();
+    public boolean revisarRespuesta(Question question) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Respuesta");
+        dialog.setHeaderText("Ingrese su respuesta:");
+        Optional<String> result = dialog.showAndWait();
+        String respuesta = result.orElse("");
         return respuesta.equalsIgnoreCase(question.getAnswer()) ||
                 question.getAnswer().toLowerCase().contains(respuesta.toLowerCase()) ||
                 respuesta.toLowerCase().contains(question.getAnswer().toLowerCase());
@@ -187,11 +187,10 @@ public class SquareCategory extends Square implements brazo, movimientoBidirecci
      * @param move     número de pasos.
      * @param exit     dirección (no utilizada aquí).
      * @param jugador  ficha del jugador.
-     * @param scanner  entrada del usuario.
      * @return casilla destino (centro) si llega, si no esta misma.
      */
     @Override
-    public Square entrar(int move, int exit, Ficha jugador, Scanner scanner) {
+    public Square entrar(int move, int exit, Ficha jugador) {
         SquareCategory iter = this;
         this.cantidadFichas--;
         for (int i = 1; i <= move; i++) {

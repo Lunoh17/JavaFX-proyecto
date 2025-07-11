@@ -54,7 +54,7 @@ public class Turno implements Callable<Void> {
         }
 
         // El jugador avanza en su turno
-        jugadores.get(jugadorActual).avanzar(scanner, questions);
+        jugadores.get(jugadorActual).avanzar(questions);
 
         // Mostrar la posición actual del jugador
         System.out.println("Posición actual:\n" + jugadores.get(jugadorActual).posicion.paint());
