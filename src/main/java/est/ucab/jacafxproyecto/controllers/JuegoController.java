@@ -55,7 +55,7 @@ public class JuegoController {
     /**
      * Carpeta de inicio del sistema donde se guardarán los datos de los jugadores.
      */
-    String homeFolder = System.getProperty("user.home");
+    String homeFolder = System.getProperty("user.dir");
     @FXML
     private Group board;
     @FXML
@@ -256,6 +256,7 @@ public class JuegoController {
         }
         // update accordion after loading positions
         updatePlayerAccordion();
+        printBoard();
     }
 
     /**

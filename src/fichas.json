@@ -1,11 +1,30 @@
 [
   {
-    "nickName": "d@gmail.com",
+    "nickName": "paris",
     "usuario": {
-      "userName": "d@gmail.com",
-      "password": "049ec1af7c1332193d602986f2fdad5b4d1c2ff90e5cdc65388c794c1f10226b",
+      "userName": "paris",
       "victory": 0,
       "victories": 0
+    },
+    "triangulos": [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "salido": true,
+    "entrado": false,
+    "gano": false,
+    "positionTable": 7
+  },
+  {
+    "nickName": "Lunoh",
+    "usuario": {
+      "userName": "Lunoh",
+      "victory": 0,
+      "victories": 10
     },
     "triangulos": [
       0,
@@ -18,15 +37,14 @@
     "salido": true,
     "entrado": false,
     "gano": false,
-    "positionTable": 45
+    "positionTable": 54
   },
   {
-    "nickName": "p@gmail.com",
+    "nickName": "warco",
     "usuario": {
-      "userName": "p@gmail.com",
-      "password": "4f6d4e404f6ce6844faf656b7a74ec7fd58c4d44be311f467261c192d617a67e",
+      "userName": "warco",
       "victory": 0,
-      "victories": 0
+      "victories": 2
     },
     "triangulos": [
       0,
@@ -36,9 +54,9 @@
       0,
       0
     ],
-    "salido": false,
+    "salido": true,
     "entrado": false,
     "gano": false,
-    "positionTable": 14
+    "positionTable": 30
   }
 ]
