@@ -108,7 +108,7 @@ public class Ficha {
                 posicion.cantidadFichas++;
                 this.positionTable = posicion.position;
                 if (posicion instanceof CategoryQuestion cQ) {
-                    cQ.reaction(this, questions);
+                    continuar = cQ.reaction(this, questions);
                 }
             } else if (entrado) {
                 if (posicion instanceof brazo saliendo) {
@@ -116,7 +116,7 @@ public class Ficha {
                     posicion.cantidadFichas++;
                     this.positionTable = posicion.position;
                     if (posicion instanceof SquareCenter sC) {
-                        sC.reaction(this, questions);
+                        continuar = sC.reaction(this, questions);
                         if (this.gano) return true;
                     }
                 }
@@ -129,7 +129,7 @@ public class Ficha {
                         continuar = true;
                     }
                     if (posicion instanceof CategoryQuestion cQ) {
-                        cQ.reaction(this, questions);
+                        continuar = cQ.reaction(this, questions);
                     }
                 }
             }

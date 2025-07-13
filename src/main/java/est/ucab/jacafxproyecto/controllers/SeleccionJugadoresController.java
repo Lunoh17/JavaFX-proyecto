@@ -66,7 +66,11 @@ public class SeleccionJugadoresController {
 
     @FXML
     public void initialize() {
-        listaUsuarios = Validator.loadUsuariosJson();
+        listaUsuarios.clear();
+        listaUsuarios.addAll(Validator.loadUsuariosJson());
+        jugadores.clear();
+        // Optionally, update the UI here to show the loaded users
+
         System.out.println(listaUsuarios);
         // Cambia los id de los primeros 12 botones existentes en avatars
         int max = Math.min(12, Math.min(listaUsuarios.size(), avatars.getChildren().size()));

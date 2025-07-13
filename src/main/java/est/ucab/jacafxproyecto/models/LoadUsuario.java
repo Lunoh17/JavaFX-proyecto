@@ -11,12 +11,11 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class LoadUsuario {
-    private final String path = "src/main/resources/est/ucab/jacafxproyecto/users.json";
     private ArrayList<Usuario> usuarios;
     private final Gson gson = new Gson();
 
     public void loadUsuarioJson() {
-        String destinyFolder = System.getProperty("user.dir") + File.separator + ".config";
+        String destinyFolder = System.getProperty("user.dir") + File.separator + "src";
         File destinyFolderFile = new File(destinyFolder);
         if (!destinyFolderFile.exists()) {
             boolean created = destinyFolderFile.mkdir();

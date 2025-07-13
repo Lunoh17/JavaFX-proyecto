@@ -68,7 +68,7 @@ public class Validator {
      */
     static public Questions loadJson() {
         Gson gson = new Gson();
-        String destinyFolderFile = Validator.class.getResource("/est/ucab/jacafxproyecto/").getPath();
+        String destinyFolderFile = System.getProperty("user.dir") + File.separator + "src";
         Questions questions;
         var a = new File(destinyFolderFile + File.separator + "data.json");
         if (!(a.exists())) {
@@ -97,7 +97,7 @@ public class Validator {
     static public ArrayList<Usuario> loadUsuariosJson() {
         ArrayList <Usuario> listaUsuarios;
         Gson gson = new Gson();
-        String destinyFolderFile = Validator.class.getResource("/est/ucab/jacafxproyecto/").getPath();
+        String destinyFolderFile = System.getProperty("user.dir") + File.separator + "src";
         System.out.println("Ruta del archivo: " + destinyFolderFile);
         var a = new File(destinyFolderFile + File.separator + "users.json");
         if (!(a.exists())) {

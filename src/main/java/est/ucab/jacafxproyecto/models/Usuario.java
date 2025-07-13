@@ -72,5 +72,8 @@ public class Usuario {
         this.password = Validator.calcularSha256(password);
     }
 
+    public String getImagePath() {
+        return  "src/main/resources/images/chistosin.png";
+    }
 }
 

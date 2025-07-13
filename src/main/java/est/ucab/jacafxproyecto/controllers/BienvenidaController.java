@@ -1,22 +1,10 @@
 package est.ucab.jacafxproyecto.controllers;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.LinearGradient;
-import javafx.scene.paint.Stop;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 
-
-public class Bienvenida {
+public class BienvenidaController {
     @FXML
     private Pane container1;
     @FXML
