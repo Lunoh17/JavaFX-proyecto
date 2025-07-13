@@ -278,50 +278,20 @@ public class JuegoController {
             int count = jugadores.get(jugadorActual).triangulos[j];
             System.out.println("categoria: " + categories[j] + " hay un total de respondidas: " + count);
         }
-        // question prompt
-        boolean correctAnswer = false;
-//        Square curr = jugadores.get(jugadorActual).posicion;
-//        Category cat = null;
-//        if (curr instanceof SquareCategory sc) {
-//            cat = sc.getCategoria();
-//        } else if (curr instanceof SquareRayo sr) {
-//            cat = sr.getCategoria();
-//        } else if (curr instanceof SquareCenter) {
-//            ChoiceDialog<Category> choice = new ChoiceDialog<>(categories[0], categories);
-//            choice.setTitle(jugadores.get(jugadorActual).getNickName() + " - Seleccione Categoría");
-//            choice.setHeaderText("Elija una categoría para la pregunta");
-//            Optional<Category> sel = choice.showAndWait();
-//            cat = sel.orElse(null);
-//        }
-//        Question randomQ = (cat != null && questionsGame != null) ? questionsGame.getRandomQuestion(cat) : null;
-//        if (randomQ == null) {
-//            correctAnswer = true;
-//        } else {
-//            TextInputDialog dialog = new TextInputDialog();
-//            dialog.setTitle(jugadores.get(jugadorActual).getNickName() + " - " + cat + " Trivia");
-//            dialog.setHeaderText(randomQ.getQuestion());
-//            dialog.setContentText("Respuesta:");
-//            Optional<String> respuesta = dialog.showAndWait();
-//            if (respuesta.isPresent() && respuesta.get().equalsIgnoreCase(randomQ.getAnswer())) {
-//                new Alert(Alert.AlertType.INFORMATION, "¡Correcto! Ahora avanzas.").showAndWait();
-//                correctAnswer = true;
-//            } else {
-//                new Alert(Alert.AlertType.ERROR, "Respuesta incorrecta. Pierdes tu turno.").showAndWait();
-//            }
-//
-//        }
-//        if (!correctAnswer) {
-//            jugadorActual = (jugadorActual + 1) % jugadores.size();
-//            return;
-//        }
-        // advance and save state
-        ganador = jugadores.get(jugadorActual).avanzar(questionsGame);
+        // advance and determine next player or win
+        int avance = jugadores.get(jugadorActual).avanzar(questionsGame, fichaControllers[jugadorActual]);
         this.printBoard();
-        if (ganador) {
+        if (avance == 2) {
+            ganador = true;
+            // record victory and show alert
             jugadores.get(jugadorActual).getUsuario().setVictory(jugadores.get(jugadorActual).getUsuario().getVictory() + 1);
+            new Alert(Alert.AlertType.INFORMATION, "Game over. Winner: " + jugadores.get(jugadorActual).getNickName()).showAndWait();
+            return;
         }
-        this.printBoard();
-        jugadorActual = (jugadorActual + 1) % jugadores.size();
+        // update current player index: 0-> next, 1-> same
+        if (avance == 0) {
+            jugadorActual = (jugadorActual + 1) % jugadores.size();
+        }
         try {
             saveFichaJson();
         } catch (IOException e) {

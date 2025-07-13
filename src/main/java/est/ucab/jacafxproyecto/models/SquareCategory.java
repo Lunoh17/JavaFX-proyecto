@@ -195,7 +195,7 @@ public class SquareCategory extends Square implements brazo, movimientoBidirecci
         String respuesta = result.orElse("");
         return respuesta.equalsIgnoreCase(question.getAnswer()) ||
                 question.getAnswer().toLowerCase().contains(respuesta.toLowerCase()) ||
-                respuesta.toLowerCase().contains(question.getAnswer().toLowerCase());
+                respuesta.toLowerCase().contains(question.getAnswer().toLowerCase()) && !respuesta.isEmpty();
     }
 
     /**

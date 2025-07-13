@@ -1,6 +1,5 @@
 package est.ucab.jacafxproyecto.controllers;
 
-import est.ucab.jacafxproyecto.models.Jugadores;
 import est.ucab.jacafxproyecto.models.Usuario;
 import est.ucab.jacafxproyecto.models.Validator;
 import javafx.application.Platform;
@@ -12,7 +11,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -31,14 +29,10 @@ public class SeleccionJugadoresController {
     private Parent root;
 
     @FXML
-    private AnchorPane paneWilcommen;
-    @FXML
-    private AnchorPane container1;
-    @FXML
     private AnchorPane avatars;
 
-    private Set<Usuario> jugadores = new LinkedHashSet<Usuario>();
-    private List<Usuario> listaUsuarios = new ArrayList<Usuario>();
+    private final Set<Usuario> jugadores = new LinkedHashSet<Usuario>();
+    private final List<Usuario> listaUsuarios = new ArrayList<Usuario>();
 
     public void switchToMenu(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/est/ucab/jacafxproyecto/menu-view.fxml"));
@@ -75,8 +69,7 @@ public class SeleccionJugadoresController {
         // Cambia los id de los primeros 12 botones existentes en avatars
         int max = Math.min(12, Math.min(listaUsuarios.size(), avatars.getChildren().size()));
         for (int i = 0; i < max; i++) {
-            if (avatars.getChildren().get(i) instanceof Button) {
-                Button btn = (Button) avatars.getChildren().get(i);
+            if (avatars.getChildren().get(i) instanceof Button btn) {
                 btn.setId(listaUsuarios.get(i).userName);
                 btn.setText(listaUsuarios.get(i).userName); // opcional: muestra el nombre
                 btn.setOnAction(this::añadirJugador);

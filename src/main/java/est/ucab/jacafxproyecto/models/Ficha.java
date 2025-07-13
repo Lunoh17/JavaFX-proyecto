@@ -1,6 +1,9 @@
 package est.ucab.jacafxproyecto.models;
 
 import java.util.ArrayList;
+import est.ucab.jacafxproyecto.controllers.FichaController;
+import est.ucab.jacafxproyecto.models.SquareCategory;
+import est.ucab.jacafxproyecto.models.SquareRayo;
 
 
 /**
@@ -94,47 +97,47 @@ public class Ficha {
      * Lógica para avanzar en el tablero dependiendo del estado de la ficha.
      *
      * @param questions Banco de preguntas del juego.
-     * @return {@code true} si el jugador ha ganado, {@code false} en otro caso.
+     * @param controller
+     * @return 0 si no se pudo avanzar, 1 si se avanzó y no se ganó, 2 si se ganó.
+     */
+    public int avanzar(Questions questions, FichaController controller) {
+        // Roll and move one time
+        int dado = tirarDado();
+        if (!salido && posicion instanceof brazo saliendo) {
+            posicion = (posicion instanceof SquareCenter)
+                ? saliendo.salir(dado, this.posicion.action(this), this)
+                : saliendo.salir(dado, 1, this);
+        } else if (entrado && posicion instanceof brazo saliendo) {
+            posicion = saliendo.entrar(dado, 1, this);
+        } else if (posicion instanceof movimientoBidireccional casilla) {
+            posicion = casilla.movimiento(dado, this.posicion.action(this), this);
+        }
+        // Update count and position table
+        posicion.cantidadFichas++;
+        this.positionTable = posicion.position;
+        // Handle question reaction if applicable
+        if (posicion instanceof CategoryQuestion cQ) {
+            boolean correct = cQ.reaction(this, questions);
+            if (correct) {
+                int sector = -1;
+                if (posicion instanceof SquareCategory sc) sector = sc.categoria.ordinal() + 1;
+                else if (posicion instanceof SquareRayo sr) sector = sr.getCategoria().ordinal() + 1;
+                if (controller != null) controller.resaltarSector(sector);
+                return this.gano ? 2 : 1;
+            }
+        }else {
+            return 1; // Avanzó sin ganar porque seguro es un repetir
+        }
+        return 0;
+    }
+
+    /**
+     * Legacy avanzar method without UI controller (CLI).
+     * @param questions Banco de preguntas.
+     * @return true if player won (code 2), false otherwise.
      */
     public boolean avanzar(Questions questions) {
-        boolean continuar = false;
-        do {
-            int dado = tirarDado();
-            if (!salido && posicion instanceof brazo saliendo) {
-                if (posicion instanceof SquareCenter)
-                    posicion = saliendo.salir(dado, this.posicion.action(this), this);
-                else
-                    posicion = saliendo.salir(dado, 1, this);
-                posicion.cantidadFichas++;
-                this.positionTable = posicion.position;
-                if (posicion instanceof CategoryQuestion cQ) {
-                    continuar = cQ.reaction(this, questions);
-                }
-            } else if (entrado) {
-                if (posicion instanceof brazo saliendo) {
-                    posicion = saliendo.entrar(dado, 1, this);
-                    posicion.cantidadFichas++;
-                    this.positionTable = posicion.position;
-                    if (posicion instanceof SquareCenter sC) {
-                        continuar = sC.reaction(this, questions);
-                        if (this.gano) return true;
-                    }
-                }
-            } else {
-                if (posicion instanceof movimientoBidireccional casilla) {
-                    posicion = casilla.movimiento(dado, this.posicion.action(this), this);
-                    posicion.cantidadFichas++;
-                    this.positionTable = posicion.position;
-                    if (posicion instanceof SquareSpecial) {
-                        continuar = true;
-                    }
-                    if (posicion instanceof CategoryQuestion cQ) {
-                        continuar = cQ.reaction(this, questions);
-                    }
-                }
-            }
-        } while (continuar);
-        return false;
+        return avanzar(questions, null) == 2;
     }
 
     /**
