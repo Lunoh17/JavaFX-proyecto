@@ -214,6 +214,11 @@ public class JuegoController {
                 Node fichaNode = loader.load();
                 FichaController fichaController = loader.getController();
                 fichaController.setJugador(ficha);
+                for (int sector = 0; sector < ficha.triangulos.length; sector++) {
+                    if (ficha.triangulos[sector] > 0) {
+                        fichaController.resaltarSector(sector + 1);
+                    }
+                }
                 fichaControllers[i] = fichaController;
                 fichaNodes.add(fichaNode);
                 if (grid00 != null) {

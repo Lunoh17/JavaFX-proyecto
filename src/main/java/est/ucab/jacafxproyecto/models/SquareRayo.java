@@ -57,8 +57,7 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
      */
     @Override
     public int action(Ficha jugador) {
-        if (jugador.triangulo()) {
-            jugador.entrado = true;
+        if (jugador.entrado) {
             return 2;
         } else {
             List<String> choices = new ArrayList<>();
@@ -199,7 +198,16 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
             return false;
         }
 
-        boolean respuestaCorrecta = revisarRespuesta(question);
+        // Prompt with customized title including category and player name
+        javafx.scene.control.TextInputDialog dialog = new javafx.scene.control.TextInputDialog();
+        dialog.setTitle("Categoría: " + categoria.name() + " - Jugador: " + jugador.getNickName());
+        dialog.setHeaderText(question.getQuestion());
+        dialog.setContentText("Ingrese su respuesta:");
+        java.util.Optional<String> result = dialog.showAndWait();
+        String respuesta = result.orElse("");
+        boolean respuestaCorrecta = respuesta.equalsIgnoreCase(question.getAnswer())
+                || question.getAnswer().toLowerCase().contains(respuesta.toLowerCase())
+                || (respuesta.toLowerCase().contains(question.getAnswer().toLowerCase()) && !respuesta.isEmpty());
 
         javafx.scene.control.Alert alert;
         if (respuestaCorrecta) {
@@ -207,12 +215,15 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
             alert.setHeaderText(null);
             alert.showAndWait();
             jugador.incrementarPuntos(categoria);
-            return true;
         } else {
             alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR, "Respuesta incorrecta.");
             alert.setHeaderText(null);
             alert.showAndWait();
-            return false;
         }
+        return respuestaCorrecta;
+    }
+
+    public SquareCategory entrar(int i, int salir, Ficha jugador) {
+        return this.toCenter;
     }
 }
