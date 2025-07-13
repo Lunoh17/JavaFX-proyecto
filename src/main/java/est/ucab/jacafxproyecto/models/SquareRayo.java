@@ -167,9 +167,11 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
      * Evalúa si la respuesta del jugador a la pregunta es correcta.
      *
      * @param question Pregunta a responder.
+     * @param fichaController Controlador de la ficha actual.
      * @return true si la respuesta es correcta; false en caso contrario.
      */
-    public boolean revisarRespuesta(Question question) {
+    @Override
+    public boolean revisarRespuesta(Question question, est.ucab.jacafxproyecto.controllers.FichaController fichaController) {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Respuesta");
         dialog.setHeaderText(question.getQuestion()); // Show the actual question
@@ -186,10 +188,11 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
      *
      * @param jugador   Ficha del jugador.
      * @param questions Banco de preguntas.
-     * @return Casilla resultante luego de responder la pregunta.
+     * @param fichaController Controlador de la ficha actual.
+     * @return true si la respuesta fue correcta, false en caso contrario.
      */
     @Override
-    public boolean reaction(Ficha jugador, Questions questions) {
+    public boolean reaction(Ficha jugador, Questions questions, est.ucab.jacafxproyecto.controllers.FichaController fichaController) {
         Question question = questions.getRandomQuestion(categoria);
 
         if (question == null) {
@@ -199,7 +202,7 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
             return false;
         }
 
-        boolean respuestaCorrecta = revisarRespuesta(question);
+        boolean respuestaCorrecta = revisarRespuesta(question, fichaController);
 
         javafx.scene.control.Alert alert;
         if (respuestaCorrecta) {
@@ -207,6 +210,10 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
             alert.setHeaderText(null);
             alert.showAndWait();
             jugador.incrementarPuntos(categoria);
+            // Resaltar el sector correspondiente a la categoría
+            if (fichaController != null && categoria != null) {
+                fichaController.resaltarSector(categoria.ordinal() + 1);
+            }
             return true;
         } else {
             alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR, "Respuesta incorrecta.");

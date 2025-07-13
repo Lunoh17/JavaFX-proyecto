@@ -85,6 +85,11 @@ public class SquareCategory extends Square implements brazo, movimientoBidirecci
         return 1; // Default or cancel option
     }
 
+    @Override
+    public Square reaction(Ficha jugador) {
+        return null;
+    }
+
     /**
      * Lógica de salida desde esta casilla hacia otro recorrido.
      *
@@ -138,10 +143,11 @@ public class SquareCategory extends Square implements brazo, movimientoBidirecci
      *
      * @param jugador   ficha del jugador.
      * @param questions banco de preguntas.
-     * @return casilla siguiente si la respuesta fue correcta, o la misma si fue incorrecta.
+     * @param fichaController controlador de la ficha actual.
+     * @return true si la respuesta fue correcta, false en caso contrario.
      */
     @Override
-    public boolean reaction(Ficha jugador, Questions questions) {
+    public boolean reaction(Ficha jugador, Questions questions, est.ucab.jacafxproyecto.controllers.FichaController fichaController) {
         Question question = questions.getRandomQuestion(categoria);
 
         if (question == null) {
@@ -151,7 +157,7 @@ public class SquareCategory extends Square implements brazo, movimientoBidirecci
             return false;
         }
 
-        boolean respuestaCorrecta = revisarRespuesta(question);
+        boolean respuestaCorrecta = revisarRespuesta(question, fichaController);
 
         javafx.scene.control.Alert alert;
         if (respuestaCorrecta) {
@@ -159,6 +165,10 @@ public class SquareCategory extends Square implements brazo, movimientoBidirecci
             alert.setHeaderText(null);
             alert.showAndWait();
             jugador.incrementarPuntos(categoria);
+            // Resaltar el sector correspondiente a la categoría
+            if (fichaController != null && categoria != null) {
+                fichaController.resaltarSector(categoria.ordinal() + 1);
+            }
             return true;
         } else {
             alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR, "Respuesta incorrecta.");
@@ -169,24 +179,14 @@ public class SquareCategory extends Square implements brazo, movimientoBidirecci
     }
 
     /**
-     * Reacción neutra al llegar a la casilla (sin pregunta).
-     *
-     * @param jugador ficha del jugador.
-     * @return esta misma casilla.
-     */
-    @Override
-    public Square reaction(Ficha jugador) {
-        return this;
-    }
-
-    /**
      * Revisa la respuesta ingresada por el jugador contra la respuesta correcta.
      *
      * @param question pregunta a responder.
+     * @param fichaController controlador de la ficha actual.
      * @return true si la respuesta es correcta, false en caso contrario.
      */
     @Override
-    public boolean revisarRespuesta(Question question) {
+    public boolean revisarRespuesta(Question question, est.ucab.jacafxproyecto.controllers.FichaController fichaController) {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Respuesta");
         dialog.setHeaderText(question.getQuestion());

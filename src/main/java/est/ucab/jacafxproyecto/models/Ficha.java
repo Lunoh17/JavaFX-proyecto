@@ -47,7 +47,7 @@ public class Ficha {
     /**
      * Indica si el jugador ha ganado.
      */
-    boolean gano = false;
+    public boolean gano = false;
 
     /**
      * Posición numérica de la ficha en el tablero.
