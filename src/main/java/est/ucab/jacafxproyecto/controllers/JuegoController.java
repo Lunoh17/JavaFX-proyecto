@@ -9,83 +9,69 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.control.ChoiceDialog;
-import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 import java.io.*;
 import java.lang.reflect.Type;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
 import java.util.Random;
-import java.util.Scanner;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 
 public class JuegoController {
-
+    /**
+     * Definimos el tamaño de cada celda en el tablero.
+     */
+    private static final int CELL_WIDTH = 6;
+    private static final int CELL_HEIGHT = 4;
+    /**
+     * Número de columnas y filas en el tablero.
+     */
+    private static final int GRID_COLS = 11;
+    private static final int GRID_ROWS = 8;
     @FXML
-    private Group board;
+    public VBox vBoxJugadores;
     @FXML
     public GridPane grid00;
-    @FXML
-    private AnchorPane paneWilcommen;
-
-    @FXML
-    private AnchorPane container1;
-
-    @FXML
-    private StackPane g00;
-    @FXML
-    private StackPane g01;
-    @FXML
-    private StackPane g02;
-    @FXML
-    private StackPane g03;
-    @FXML
-    private StackPane g04;
-
     /**
      * Lista de jugadores que participan en el juego.
      */
     public ArrayList<Ficha> jugadores = new ArrayList<Ficha>();
-
+    /**
+     * Número máximo de jugadores en el juego.
+     */
+    int MAX_PLAYERS = 6;
+    /**
+     * Indicador de si el juego ha terminado o no.
+     */
+    boolean ganador = false;
+    /**
+     * Carpeta de inicio del sistema donde se guardarán los datos de los jugadores.
+     */
+    String homeFolder = System.getProperty("user.dir");
+    @FXML
+    private Group board;
+    @FXML
+    private AnchorPane paneWilcommen;
+    @FXML
+    private AnchorPane container1;
     private FichaController[] fichaControllers;
     private ArrayList<Node> fichaNodes = new ArrayList<>(); // Store ficha nodes
     /**
      * El centro del tablero.
      */
     private SquareCenter centro;
-
     /**
-     * Número máximo de jugadores en el juego.
+     * Índice del jugador actual en turno.
      */
-    int MAX_PLAYERS = 6;
-
-    /**
-     * Indicador de si el juego ha terminado o no.
-     */
-    boolean ganador = false;
-    /** Índice del jugador actual en turno. */
     private int jugadorActual = 0;
-
-    /**
-     * Carpeta de inicio del sistema donde se guardarán los datos de los jugadores.
-     */
-    String homeFolder = System.getProperty("user.home");
-
     // game state and utilities
     private Questions questionsGame = Validator.loadJson();
     private Random rng = new Random();
@@ -119,13 +105,14 @@ public class JuegoController {
                 fichaController.setJugador(ficha);
                 fichaControllers[idx] = fichaController;
                 fichaNodes.add(fichaNode); // Store the node
-                if (grid00 != null)
-                    grid00.add(fichaNode, idx % 2, idx / 2);
+                if (grid00 != null) grid00.add(fichaNode, idx % 2, idx / 2);
             } catch (IOException e) {
                 e.printStackTrace();
             }
             idx++;
         }
+        // update accordion of players and their triangle scores
+        updatePlayerAccordion();
     }
 
     @FXML
@@ -138,7 +125,8 @@ public class JuegoController {
                     -fx-border-style: solid;
                     -fx-background-color: #ebdcff;
                     -fx-background-radius: 20;""");
-
+        // Load and display players with their triangle scores on startup
+        cargarPositions();
     }
 
     /**
@@ -147,26 +135,25 @@ public class JuegoController {
      * @throws IOException Si ocurre un error de entrada/salida.
      */
     private void saveFichaJson() throws IOException {
-        String destinyFolder = homeFolder + File.separator + ".config";
+        String destinyFolder = homeFolder + File.separator + "src";
         File destinyFolderFile = new File(destinyFolder);
         if (!destinyFolderFile.exists()) {
             boolean created = destinyFolderFile.mkdir();
-            if (!created)
-                throw new IOException();
+            if (!created) throw new IOException();
         }
         Gson gson = new Gson();
 
-        Square listaSquare[]= new Square[MAX_PLAYERS];
+        Square[] listaSquare = new Square[MAX_PLAYERS];
         int contador = 0;
-        for (Ficha fa:jugadores){
-            listaSquare[contador++]=fa.posicion;
-            fa.posicion=null;
+        for (Ficha fa : jugadores) {
+            listaSquare[contador++] = fa.posicion;
+            fa.posicion = null;
         }
         String json = gson.toJson(this.jugadores);
         File data = new File(destinyFolder + File.separator + "fichas.json");
-        contador=0;
-        for (Ficha fa:jugadores){
-            fa.posicion=listaSquare[contador++];
+        contador = 0;
+        for (Ficha fa : jugadores) {
+            fa.posicion = listaSquare[contador++];
         }
         try (FileWriter writer = new FileWriter(data)) {
             writer.write(json);
@@ -177,7 +164,7 @@ public class JuegoController {
 
     public void loadFichaJson() {
         Gson gson = new Gson();
-        String destinyFolder = homeFolder + File.separator + ".config";
+        String destinyFolder = homeFolder + File.separator + "src";
         File destinyFolderFile = new File(destinyFolder);
         if (!destinyFolderFile.exists()) {
             boolean created = destinyFolderFile.mkdir();
@@ -189,8 +176,7 @@ public class JuegoController {
         if (!(a.exists())) {
             try {
                 boolean created = a.createNewFile();
-                if (!created)
-                    throw new IOException();
+                if (!created) throw new IOException();
                 this.jugadores = new ArrayList<Ficha>();
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -208,7 +194,7 @@ public class JuegoController {
 
     }
 
-    public void cargarPositions(){
+    public void cargarPositions() {
         loadFichaJson();
         if (jugadores == null) {
             jugadores = new ArrayList<>();
@@ -221,7 +207,7 @@ public class JuegoController {
             grid00.getChildren().clear();
         }
 
-        for(int i=0; i<jugadores.size(); i++){
+        for (int i = 0; i < jugadores.size(); i++) {
             Ficha ficha = jugadores.get(i);
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/est/ucab/jacafxproyecto/ficha.fxml"));
@@ -237,38 +223,41 @@ public class JuegoController {
                 e.printStackTrace();
             }
 
-            for(Square squareActual: centro.rayos){
-                for (int j = 0; j<13 ; j++) {
-                    if (squareActual instanceof  SquareRayo sr){
-                        if (ficha.getPosition()== sr.getPosition()) {
+            for (Square squareActual : centro.rayos) {
+                for (int j = 0; j < 13; j++) {
+                    if (squareActual instanceof SquareRayo sr) {
+                        if (ficha.getPosition() == sr.getPosition()) {
+
                             ficha.posicion = sr;
                             ficha.positionTable = sr.getPosition();
                             ficha.posicion.cantidadFichas++;
                             break;
                         }
-                        squareActual=(Square) sr.getNext();
-                    }else if (squareActual instanceof SquareCategory sC)
-                    {
-                        if (ficha.getPosition()== sC.getPosition()) {
+                        squareActual = (Square) sr.getNext();
+                    } else if (squareActual instanceof SquareCategory sC) {
+                        if (ficha.getPosition() == sC.getPosition()) {
                             ficha.posicion = sC;
                             ficha.positionTable = sC.getPosition();
                             ficha.posicion.cantidadFichas++;
                             break;
                         }
-                        squareActual=((Square) sC.getNext());
+                        squareActual = ((Square) sC.getNext());
                     } else if (squareActual instanceof SquareSpecial sS) {
-                        if (ficha.getPosition()== sS.getPosition()) {
+                        if (ficha.getPosition() == sS.getPosition()) {
                             ficha.posicion = sS;
                             ficha.positionTable = sS.getPosition();
                             ficha.posicion.cantidadFichas++;
                             break;
                         }
-                        squareActual=((Square) sS.getNext());
+                        squareActual = ((Square) sS.getNext());
                     }
 
                 }
             }
         }
+        // update accordion after loading positions
+        updatePlayerAccordion();
+        printBoard();
     }
 
     /**
@@ -284,19 +273,28 @@ public class JuegoController {
         System.out.flush();
         this.printBoard();
         System.out.println("Turno del jugador: " + jugadores.get(jugadorActual).getNickName());
-        System.out.println("estadisticas: ");
-        System.out.println("victorias: "+ jugadores.get(jugadorActual).getUsuario().getVictory());
-        for(int j=0; j<categories.length; j++) {
-            System.out.println("categoria: "+categories[j]+" hay un total de respondidas: "+ jugadores.get(jugadorActual).triangulos[j]);
+        // compute stats
+        System.out.println("estadísticas: ");
+        System.out.println("victorias: " + jugadores.get(jugadorActual).getUsuario().getVictory());
+        for (int j = 0; j < categories.length; j++) {
+            int count = jugadores.get(jugadorActual).triangulos[j];
+            System.out.println("categoria: " + categories[j] + " hay un total de respondidas: " + count);
         }
-        boolean correctAnswer = false;
-        ganador = jugadores.get(jugadorActual).avanzar(questionsGame, fichaControllers[jugadorActual]);
+        // advance and determine next player or win
+        int avance = jugadores.get(jugadorActual).avanzar(questionsGame, fichaControllers[jugadorActual]);
+
         this.printBoard();
-        if (ganador) {
+        if (avance == 2) {
+            ganador = true;
+            // record victory and show alert
             jugadores.get(jugadorActual).getUsuario().setVictory(jugadores.get(jugadorActual).getUsuario().getVictory() + 1);
+            new Alert(Alert.AlertType.INFORMATION, "Game over. Winner: " + jugadores.get(jugadorActual).getNickName()).showAndWait();
+            return;
         }
-        this.printBoard();
-        jugadorActual = (jugadorActual + 1) % jugadores.size();
+        // update current player index: 0-> next, 1-> same
+        if (avance == 0) {
+            jugadorActual = (jugadorActual + 1) % jugadores.size();
+        }
         try {
             saveFichaJson();
         } catch (IOException e) {
@@ -311,99 +309,8 @@ public class JuegoController {
         }
     }
 
-    /**
-     * Guarda el estado de la partida (posiciones) en fichas.json dentro de resources.
-     */
-    public void guardarEstadoPartida() {
-        try {
-            List<Square> stash = new ArrayList<>();
-            for (Ficha f : jugadores) {
-                stash.add(f.posicion);
-                if (f.posicion != null) {
-                    f.positionTable = f.posicion.getPosition();
-                    f.posicion = null;
-                }
-            }
-            Gson gson = new Gson();
-            String json = gson.toJson(jugadores);
-            URL resUrl = getClass().getResource("/est/ucab/jacafxproyecto/fichas.json");
-            Path fichasPath = Paths.get(resUrl.toURI());
-            Files.write(fichasPath, json.getBytes(StandardCharsets.UTF_8));
-            for (int i = 0; i < jugadores.size(); i++) {
-                jugadores.get(i).posicion = stash.get(i);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            new Alert(AlertType.ERROR, "Error al guardar la partida: " + e.getMessage()).showAndWait();
-        }
-    }
-
-    /**
-     * Carga la partida guardada desde fichas.json dentro de resources.
-     */
-    public void cargarEstadoGuardado() {
-        try {
-            // Leer JSON de posiciones guardadas
-            URL resUrl = getClass().getResource("/est/ucab/jacafxproyecto/fichas.json");
-            Path fichasPath = Paths.get(resUrl.toURI());
-            Type listType = new TypeToken<ArrayList<Ficha>>(){}.getType();
-            ArrayList<Ficha> saved = new Gson().fromJson(Files.newBufferedReader(fichasPath, StandardCharsets.UTF_8), listType);
-            // Reset jugadores y nodes
-            jugadores.clear();
-            fichaNodes.clear();
-            if (grid00 != null) grid00.getChildren().clear();
-            fichaControllers = new FichaController[saved.size()];
-            // Reconstruir centro
-            this.centro = new SquareCenter(saved.size());
-            // Assign positions and UI nodes
-            for (int i = 0; i < saved.size(); i++) {
-                Ficha ficha = saved.get(i);
-                // localizar Square segun posición
-                Square found = centro;
-                outer:
-                for (Square s : centro.rayos) {
-                    Square curr = s;
-                    do {
-                        if (curr.getPosition() == ficha.getPosition()) { found = curr; break outer; }
-                        if (curr instanceof SquareRayo sr) curr = sr.getNext();
-                        else if (curr instanceof SquareCategory sc) curr = sc.getNext();
-                        else if (curr instanceof SquareSpecial ss) curr = ss.getNext();
-                        else break; // no next
-                    } while (curr != s);
-                    inner: ;
-                }
-                ficha.posicion = found;
-                ficha.positionTable = found.getPosition();
-                found.sumarCantidadFichas();
-                jugadores.add(ficha);
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/est/ucab/jacafxproyecto/ficha.fxml"));
-                Node node = loader.load();
-                FichaController ctrl = loader.getController();
-                ctrl.setJugador(ficha);
-                fichaControllers[i] = ctrl;
-                fichaNodes.add(node);
-                if (grid00 != null) grid00.add(node, i % GRID_COLS, i / GRID_COLS);
-            }
-            printBoard();
-        } catch (Exception e) {
-            e.printStackTrace();
-            new Alert(AlertType.ERROR, "Error al cargar la partida: " + e.getMessage()).showAndWait();
-        }
-    }
-
-    /**
-     * Definimos el tamaño de cada celda en el tablero.
-     */
-    private static final int CELL_WIDTH = 6;
-    private static final int CELL_HEIGHT = 4;
-
-    /**
-     * Número de columnas y filas en el tablero.
-     */
-    private static final int GRID_COLS = 11;
-    private static final int GRID_ROWS = 8;
-
     public void printBoard() {
+        updatePlayerAccordion();
         Platform.runLater(() -> {
             // clear existing tokens
             for (Node n : board.getChildren()) {
@@ -422,10 +329,7 @@ public class JuegoController {
                 String hexId = "#hex" + String.format("%02d", pos);
                 Node h = board.lookup(hexId);
                 if (h instanceof StackPane sp) {
-                    GridPane gp = sp.getChildren().stream()
-                        .filter(c -> c instanceof GridPane)
-                        .map(c -> (GridPane)c)
-                        .findFirst().orElse(null);
+                    GridPane gp = sp.getChildren().stream().filter(c -> c instanceof GridPane).map(c -> (GridPane) c).findFirst().orElse(null);
                     if (gp != null) {
                         int cols = gp.getColumnConstraints().size();
                         int col = i % cols;
@@ -448,5 +352,25 @@ public class JuegoController {
     @FXML
     public void startGame(ActionEvent event) {
         handleTurn();
+    }
+
+    /**
+     * Populates the vBoxJugadores with an Accordion listing each player's triangle scores.
+     */
+    private void updatePlayerAccordion() {
+        if (vBoxJugadores == null) return;
+        vBoxJugadores.getChildren().clear();
+        Accordion accordion = new Accordion();
+        for (Ficha jugador : jugadores) {
+            VBox content = new VBox(5);
+            for (Category cat : Category.values()) {
+                int count = jugador.triangulos[cat.ordinal()];
+                Label label = new Label(cat.name() + ": " + count);
+                content.getChildren().add(label);
+            }
+            TitledPane pane = new TitledPane(jugador.getNickName(), content);
+            accordion.getPanes().add(pane);
+        }
+        vBoxJugadores.getChildren().add(accordion);
     }
 } // end of class JuegoController

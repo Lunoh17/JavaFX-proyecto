@@ -23,10 +23,10 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
      * Constructor de la clase SquareRayo.
      *
      * @param categoria Categoría asignada a esta casilla.
-     * @param next Casilla siguiente.
-     * @param previous Casilla anterior.
-     * @param toCenter Casilla que conecta con el centro del tablero.
-     * @param position Posición de esta casilla en el tablero.
+     * @param next      Casilla siguiente.
+     * @param previous  Casilla anterior.
+     * @param toCenter  Casilla que conecta con el centro del tablero.
+     * @param position  Posición de esta casilla en el tablero.
      */
     public SquareRayo(Category categoria, SquareCategory next, SquareCategory previous, SquareCategory toCenter, int position) {
         this.categoria = categoria;
@@ -44,13 +44,9 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
     @Override
     public String paint() {
         if (cantidadFichas > 0) {
-            return "┌────┐\n" +
-                    "│R " + cantidadFichas + " │\n" +
-                    "└────┘";
+            return "┌────┐\n" + "│R " + cantidadFichas + " │\n" + "└────┘";
         }
-        return "┌────┐\n" +
-                "│ R  │\n" +
-                "└────┘";
+        return "┌────┐\n" + "│ R  │\n" + "└────┘";
     }
 
     /**
@@ -86,20 +82,17 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
     /**
      * Realiza el movimiento de salida desde esta casilla.
      *
-     * @param move Número de pasos a mover.
-     * @param exit Dirección del movimiento (0: atrás, 1: adelante, 2: centro).
+     * @param move    Número de pasos a mover.
+     * @param exit    Dirección del movimiento (0: atrás, 1: adelante, 2: centro).
      * @param jugador Ficha del jugador.
      * @return Casilla destino tras el movimiento.
      */
     public Square salir(int move, int exit, Ficha jugador) {
         Square iter = this;
         for (int i = 0; i < move; i++) {
-            if (exit == 1 && iter instanceof movimientoBidireccional next)
-                iter = next.getNext();
-            else if (exit == 0 && iter instanceof movimientoBidireccional prev)
-                iter = prev.getPrevious();
-            else if (exit == 2)
-                iter = this.toCenter;
+            if (exit == 1 && iter instanceof movimientoBidireccional next) iter = next.getNext();
+            else if (exit == 0 && iter instanceof movimientoBidireccional prev) iter = prev.getPrevious();
+            else if (exit == 2) iter = this.toCenter;
         }
         return iter;
     }
@@ -107,8 +100,8 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
     /**
      * Mueve al jugador a lo largo del rayo en la dirección indicada.
      *
-     * @param move Número de pasos.
-     * @param exit Dirección (0: atrás, 1: adelante, 2: centro).
+     * @param move    Número de pasos.
+     * @param exit    Dirección (0: atrás, 1: adelante, 2: centro).
      * @param jugador Ficha del jugador.
      * @return Casilla resultante después del movimiento.
      */
@@ -116,12 +109,9 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
         Square iter = this;
         this.cantidadFichas--;
         for (int i = 0; i < move; i++) {
-            if (exit == 1 && iter instanceof movimientoBidireccional next)
-                iter = next.getNext();
-            else if (exit == 0 && iter instanceof movimientoBidireccional prev)
-                iter = prev.getPrevious();
-            else if (exit == 2)
-                iter = this.toCenter;
+            if (exit == 1 && iter instanceof movimientoBidireccional next) iter = next.getNext();
+            else if (exit == 0 && iter instanceof movimientoBidireccional prev) iter = prev.getPrevious();
+            else if (exit == 2) iter = this.toCenter;
         }
         return iter;
     }
@@ -188,15 +178,15 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
         dialog.setContentText("Ingrese su respuesta:");
         Optional<String> result = dialog.showAndWait();
         String respuesta = result.orElse("");
-        return respuesta.equalsIgnoreCase(question.getAnswer())
-                || question.getAnswer().toLowerCase().contains(respuesta.toLowerCase())
-                || respuesta.toLowerCase().contains(question.getAnswer().toLowerCase());
+        return respuesta.equalsIgnoreCase(question.getAnswer()) ||
+                question.getAnswer().toLowerCase().contains(respuesta.toLowerCase()) ||
+                respuesta.toLowerCase().contains(question.getAnswer().toLowerCase()) && !respuesta.isEmpty();
     }
 
     /**
      * Lógica de reacción cuando el jugador cae en esta casilla: se presenta una pregunta.
      *
-     * @param jugador Ficha del jugador.
+     * @param jugador   Ficha del jugador.
      * @param questions Banco de preguntas.
      * @param fichaController Controlador de la ficha actual.
      * @return true si la respuesta fue correcta, false en caso contrario.

@@ -16,7 +16,8 @@ public interface CategoryQuestion {
      * @param fichaController El controlador de la ficha actual.
      * @return true si la respuesta es correcta, false en caso contrario.
      */
-    public boolean reaction(Ficha jugador, Questions questions, est.ucab.jacafxproyecto.controllers.FichaController fichaController);
+    boolean reaction(Ficha jugador, Questions questions);
+
 
     /**
      * Verifica si la respuesta del jugador a una pregunta es correcta.
@@ -25,5 +26,5 @@ public interface CategoryQuestion {
      * @param fichaController El controlador de la ficha actual.
      * @return {@code true} si la respuesta es correcta, de lo contrario {@code false}.
      */
-    public boolean revisarRespuesta(Question question, est.ucab.jacafxproyecto.controllers.FichaController fichaController);
+    boolean revisarRespuesta(Question question);
 }
