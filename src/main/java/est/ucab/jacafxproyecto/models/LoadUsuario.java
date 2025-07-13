@@ -1,67 +1,54 @@
 package est.ucab.jacafxproyecto.models;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+import com.google.gson.Gson;
+import java.io.FileReader;
+import java.io.IOException;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.*;
+import java.lang.reflect.Type;
+import java.util.Comparator;
+import java.util.List;
+
 public class LoadUsuario {
-    private ArrayList<Usuario> usuarios;
-    private final Gson gson = new Gson();
+        public List<Usuario> usuarios;
 
-    public void loadUsuarioJson() {
-        String destinyFolder = System.getProperty("user.dir") + File.separator + "src";
-        File destinyFolderFile = new File(destinyFolder);
-        if (!destinyFolderFile.exists()) {
-            boolean created = destinyFolderFile.mkdir();
-            if (!created) {
-                throw new RuntimeException();
+        public void loadUsuarioJson() {
+            Gson gson = new Gson();
+            String rutaRelativa = "src";
+            File carpetaConfig = new File(rutaRelativa);
+
+            if (!carpetaConfig.exists()) {
+                boolean creada = carpetaConfig.mkdir();
+                if (!creada) throw new RuntimeException("No se pudo crear la carpeta .config");
             }
-        }
-        var a = new File(destinyFolderFile + File.separator + "users.json");
-        if (!(a.exists())) {
-            try {
-                boolean created = a.createNewFile();
-                if (!created)
-                    throw new IOException();
-                this.usuarios = new ArrayList<Usuario>();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        } else {
-            try (FileReader r = new FileReader(destinyFolderFile + File.separator + "users.json")) {
-                BufferedReader bufferedReader = new BufferedReader(r);
-                Type listType = new TypeToken<ArrayList<Usuario>>() {
-                }.getType();
-                this.usuarios = gson.fromJson(bufferedReader, listType);
-                if (this.usuarios == null) {
-                    this.usuarios = new ArrayList<>();
+
+            File archivoJson = new File(carpetaConfig, "users.json");
+
+            if (!archivoJson.exists()) {
+                try {
+                    boolean creado = archivoJson.createNewFile();
+                    if (!creado) throw new IOException("No se pudo crear el archivo users.json");
+                    this.usuarios = new ArrayList<>();  // se inicializa lista vacía
+                } catch (IOException e) {
+                    throw new RuntimeException("Error al crear el archivo JSON", e);
                 }
-            } catch (IOException e) {
-                throw new RuntimeException("Error al leer el archivo JSON", e);
+            } else {
+                try (BufferedReader reader = new BufferedReader(new FileReader(archivoJson))) {
+                    Type tipoLista = new TypeToken<List<Usuario>>() {}.getType();
+                    System.out.println("se lleno la lita");
+                    this.usuarios = gson.fromJson(reader, tipoLista);  // se llena la lista desde JSON
+                } catch (IOException e) {
+                    throw new RuntimeException("Error al leer el archivo JSON", e);
+                }
             }
         }
 
-    }
 
-    public ArrayList<Usuario> topTier(){
+    public void topTier(){
         loadUsuarioJson();
-        ArrayList<Usuario> tops= new ArrayList<>();
-        Usuario jugador=new Usuario("","");
-        for(int i=0;i<usuarios.size();i++){
-            for(int j=0;j<usuarios.size();j++){
-                if(usuarios.get(i).getVictory()<usuarios.get(j).getVictory()){
-                    jugador=usuarios.get(j);
-                }
-            }
-            tops.add(jugador);
-        }
-        return tops;
+        usuarios.sort(Comparator.comparingInt(Usuario::getVictory).reversed());
     }
-
 }

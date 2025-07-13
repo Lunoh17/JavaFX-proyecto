@@ -132,15 +132,6 @@ public class Ficha {
     }
 
     /**
-     * Legacy avanzar method without UI controller (CLI).
-     * @param questions Banco de preguntas.
-     * @return true if player won (code 2), false otherwise.
-     */
-    public boolean avanzar(Questions questions) {
-        return avanzar(questions, null) == 2;
-    }
-
-    /**
      * Obtiene las preguntas aprobadas de una categoría específica.
      *
      * @param questions Banco de preguntas.
