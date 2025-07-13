@@ -1,6 +1,11 @@
 package est.ucab.jacafxproyecto.models;
 
-import java.util.Scanner;
+import javafx.scene.control.ChoiceDialog;
+import javafx.scene.control.TextInputDialog;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * Clase que representa la casilla central del tablero en el juego.
@@ -14,7 +19,7 @@ public class SquareCenter extends Square implements brazo, CategoryQuestion {
     /**
      * Arreglo que contiene los 6 brazos del tablero, cada uno compuesto por varias casillas de categoría.
      */
-    protected SquareCategory rayos[] = new SquareCategory[6];
+    public SquareCategory[] rayos = new SquareCategory[6];
 
     /**
      * Dibuja la casilla central en la consola.
@@ -36,28 +41,35 @@ public class SquareCenter extends Square implements brazo, CategoryQuestion {
     /**
      * Permite al jugador seleccionar una de las seis rutas posibles para salir del centro.
      *
-     * @param scanner Scanner para entrada del usuario.
      * @param jugador Ficha del jugador.
      * @return Índice del rayo seleccionado (0 a 5).
      */
     @Override
-    public int action(Scanner scanner, Ficha jugador) {
-        int a;
-        do {
-            a = Validator.validarInt(
-                    "Tienes 6 posibles rutas, ¿a dónde te quieres mover?\n" +
-                            "0. Derecha\n" +
-                            "1. Abajo a la Derecha\n" +
-                            "2. Abajo a la Izquierda\n" +
-                            "3. Izquierda\n" +
-                            "4. Arriba a la Izquierda\n" +
-                            "5. Arriba a la Derecha",
-                    scanner);
-            if (a < 0 || a > 5) {
-                System.out.println("ERROR, vuelva a intentarlo.");
-            }
-        } while (a < 0 || a > 5);
-        return a;
+    public int action(Ficha jugador) {
+        List<String> choices = new ArrayList<>();
+        choices.add("0. Derecha");
+        choices.add("1. Abajo a la Derecha");
+        choices.add("2. Abajo a la Izquierda");
+        choices.add("3. Izquierda");
+        choices.add("4. Arriba a la Izquierda");
+        choices.add("5. Arriba a la Derecha");
+
+        ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
+        dialog.setTitle("Selección de Ruta");
+        dialog.setHeaderText("Tienes 6 posibles rutas, ¿a dónde te quieres mover?");
+        dialog.setContentText("Elige tu ruta:");
+
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()) {
+            String selected = result.get();
+            return Integer.parseInt(selected.substring(0, 1));
+        }
+        return 0; // Default or cancel option
+    }
+
+    @Override
+    public Square reaction(Ficha jugador) {
+        return this;
     }
 
     /**
@@ -66,10 +78,9 @@ public class SquareCenter extends Square implements brazo, CategoryQuestion {
      * @param move    Número de pasos a mover.
      * @param exit    Índice del brazo por el cual salir (0 a 5).
      * @param jugador Ficha del jugador.
-     * @param scanner Scanner para entrada del usuario.
      * @return Casilla destino después del movimiento.
      */
-    public Square salir(int move, int exit, Ficha jugador, Scanner scanner) {
+    public Square salir(int move, int exit, Ficha jugador) {
         if (move < 1 || move > 6) {
             throw new IllegalArgumentException("El movimiento debe estar entre 1 y 6");
         }
@@ -157,67 +168,74 @@ public class SquareCenter extends Square implements brazo, CategoryQuestion {
      * Reacción al caer en la casilla central: permite seleccionar una categoría
      * y responder una pregunta para intentar ganar.
      *
-     * @param scanner  Scanner para entrada del usuario.
      * @param jugador  Ficha del jugador.
      * @param questions Banco de preguntas.
-     * @return Casilla resultante después de la interacción (esta misma).
+     * @param fichaController Controlador de la ficha actual.
+     * @return true si la respuesta fue correcta, false en caso contrario.
      */
     @Override
-    public Square reaction(Scanner scanner, Ficha jugador, Questions questions) {
+    public boolean reaction(Ficha jugador, Questions questions, est.ucab.jacafxproyecto.controllers.FichaController fichaController) {
         Category[] categorias = Category.values();
-        int seleccion;
-        do {
-            System.out.println("Seleccione una categoría:");
-            for (int i = 0; i < categorias.length; i++) {
-                System.out.println(i + ": " + categorias[i]);
+        List<String> choices = new ArrayList<>();
+        for (Category c : categorias) {
+            choices.add(c.name());
+        }
+
+        ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
+        dialog.setTitle("Selección de Categoría");
+        dialog.setHeaderText("Seleccione una categoría:");
+        dialog.setContentText("Categoría:");
+
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()) {
+            Category categoria = Category.valueOf(result.get());
+            Question question = questions.getRandomQuestion(categoria);
+
+            if (question == null) {
+                javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "No hay preguntas disponibles para esta categoría.");
+                alert.setHeaderText(null);
+                alert.showAndWait();
+                return false;
             }
-            seleccion = Validator.validarInt("", scanner);
-        } while (seleccion < 0 || seleccion > categorias.length - 1);
 
-        Category categoria = categorias[seleccion];
-        Question question = questions.getRandomQuestion(categoria);
+            boolean respuestaCorrecta = revisarRespuesta(question, fichaController);
 
-        if (question == null) {
-            System.out.println("No hay preguntas disponibles para esta categoría.");
-            return this;
+            javafx.scene.control.Alert alert;
+            if (respuestaCorrecta) {
+                alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "¡Respuesta correcta!");
+                alert.setHeaderText(null);
+                alert.showAndWait();
+                jugador.gano = true;
+                // Resaltar el sector correspondiente a la categoría
+                if (fichaController != null && categoria != null) {
+                    fichaController.resaltarSector(categoria.ordinal() + 1);
+                }
+                return true;
+            } else {
+                alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR, "Respuesta incorrecta.");
+                alert.setHeaderText(null);
+                alert.showAndWait();
+                return false;
+            }
         }
-
-        System.out.println("Pregunta: " + question.getQuestion());
-        boolean respuestaCorrecta = revisarRespuesta(scanner, question);
-
-        if (respuestaCorrecta) {
-            System.out.println("¡Respuesta correcta!");
-            jugador.gano = true;
-            return this;
-        } else {
-            System.out.println("Respuesta incorrecta.");
-            return this;
-        }
-    }
-
-    /**
-     * Reacción alternativa sin preguntas (por compatibilidad con la interfaz).
-     *
-     * @param scanner Scanner para entrada del usuario.
-     * @param jugador Ficha del jugador.
-     * @return Esta misma casilla.
-     */
-    @Override
-    public Square reaction(Scanner scanner, Ficha jugador) {
-        return this;
+        return false;
     }
 
     /**
      * Revisa si la respuesta ingresada por el jugador es correcta.
      *
-     * @param scanner  Scanner para entrada del usuario.
      * @param question Pregunta a evaluar.
+     * @param fichaController Controlador de la ficha actual.
      * @return true si la respuesta es válida; false si es incorrecta.
      */
     @Override
-    public boolean revisarRespuesta(Scanner scanner, Question question) {
-        System.out.print("Ingrese su respuesta: ");
-        String respuesta = scanner.nextLine();
+    public boolean revisarRespuesta(Question question, est.ucab.jacafxproyecto.controllers.FichaController fichaController) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Respuesta");
+        dialog.setHeaderText(question.getQuestion()); // Show the actual question
+        dialog.setContentText("Ingrese su respuesta:");
+        Optional<String> result = dialog.showAndWait();
+        String respuesta = result.orElse("");
         return respuesta.equalsIgnoreCase(question.getAnswer())
                 || question.getAnswer().toLowerCase().contains(respuesta.toLowerCase())
                 || respuesta.toLowerCase().contains(question.getAnswer().toLowerCase());
@@ -229,11 +247,10 @@ public class SquareCenter extends Square implements brazo, CategoryQuestion {
      * @param move    Número de pasos a mover.
      * @param exit    Dirección de entrada.
      * @param jugador Ficha del jugador.
-     * @param scanner Scanner para entrada del usuario.
      * @return Esta misma casilla.
      */
     @Override
-    public Square entrar(int move, int exit, Ficha jugador, Scanner scanner) {
+    public Square entrar(int move, int exit, Ficha jugador) {
         return this;
     }
 }

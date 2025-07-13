@@ -1,6 +1,11 @@
 package est.ucab.jacafxproyecto.models;
 
-import java.util.Scanner;
+import javafx.scene.control.ChoiceDialog;
+import javafx.scene.control.TextInputDialog;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * Clase que representa una casilla especial del tablero llamada "SquareRayo".
@@ -18,10 +23,10 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
      * Constructor de la clase SquareRayo.
      *
      * @param categoria Categoría asignada a esta casilla.
-     * @param next Casilla siguiente.
-     * @param previous Casilla anterior.
-     * @param toCenter Casilla que conecta con el centro del tablero.
-     * @param position Posición de esta casilla en el tablero.
+     * @param next      Casilla siguiente.
+     * @param previous  Casilla anterior.
+     * @param toCenter  Casilla que conecta con el centro del tablero.
+     * @param position  Posición de esta casilla en el tablero.
      */
     public SquareRayo(Category categoria, SquareCategory next, SquareCategory previous, SquareCategory toCenter, int position) {
         this.categoria = categoria;
@@ -39,58 +44,55 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
     @Override
     public String paint() {
         if (cantidadFichas > 0) {
-            return "┌────┐\n" +
-                    "│R " + cantidadFichas + " │\n" +
-                    "└────┘";
+            return "┌────┐\n" + "│R " + cantidadFichas + " │\n" + "└────┘";
         }
-        return "┌────┐\n" +
-                "│ R  │\n" +
-                "└────┘";
+        return "┌────┐\n" + "│ R  │\n" + "└────┘";
     }
 
     /**
      * Define la acción del jugador al llegar a esta casilla.
      *
-     * @param scanner Scanner para entrada de usuario.
      * @param jugador Ficha del jugador.
      * @return Entero que indica la dirección del movimiento: 1 (adelante), 0 (atrás), 2 (al centro).
      */
     @Override
-    public int action(Scanner scanner, Ficha jugador) {
+    public int action(Ficha jugador) {
         if (jugador.triangulo()) {
             jugador.entrado = true;
             return 2;
         } else {
-            System.out.println("¿Quieres ir hacia adelante o hacia atrás?");
-            int exit = Validator.validarInt("1. Adelante\n0. Atrás", scanner);
-            if (exit == 1) {
-                return 1;
-            } else if (exit == 0) {
-                return 0;
-            } else {
-                System.out.println("Ingrese una opción válida");
+            List<String> choices = new ArrayList<>();
+            choices.add("0. Atrás");
+            choices.add("1. Adelante");
+
+            ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(1), choices);
+            dialog.setTitle("Selección de Ruta");
+            dialog.setHeaderText("¿Quieres ir hacia adelante o hacia atrás?");
+            dialog.setContentText("Elige tu ruta:");
+
+            Optional<String> result = dialog.showAndWait();
+            if (result.isPresent()) {
+                String selected = result.get();
+                return Integer.parseInt(selected.substring(0, 1));
             }
+            return 1; // Default or cancel option
         }
-        return 0;
     }
 
     /**
      * Realiza el movimiento de salida desde esta casilla.
      *
-     * @param move Número de pasos a mover.
-     * @param exit Dirección del movimiento (0: atrás, 1: adelante, 2: centro).
+     * @param move    Número de pasos a mover.
+     * @param exit    Dirección del movimiento (0: atrás, 1: adelante, 2: centro).
      * @param jugador Ficha del jugador.
      * @return Casilla destino tras el movimiento.
      */
     public Square salir(int move, int exit, Ficha jugador) {
         Square iter = this;
         for (int i = 0; i < move; i++) {
-            if (exit == 1 && iter instanceof movimientoBidireccional next)
-                iter = next.getNext();
-            else if (exit == 0 && iter instanceof movimientoBidireccional prev)
-                iter = prev.getPrevious();
-            else if (exit == 2)
-                iter = this.toCenter;
+            if (exit == 1 && iter instanceof movimientoBidireccional next) iter = next.getNext();
+            else if (exit == 0 && iter instanceof movimientoBidireccional prev) iter = prev.getPrevious();
+            else if (exit == 2) iter = this.toCenter;
         }
         return iter;
     }
@@ -98,8 +100,8 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
     /**
      * Mueve al jugador a lo largo del rayo en la dirección indicada.
      *
-     * @param move Número de pasos.
-     * @param exit Dirección (0: atrás, 1: adelante, 2: centro).
+     * @param move    Número de pasos.
+     * @param exit    Dirección (0: atrás, 1: adelante, 2: centro).
      * @param jugador Ficha del jugador.
      * @return Casilla resultante después del movimiento.
      */
@@ -107,12 +109,9 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
         Square iter = this;
         this.cantidadFichas--;
         for (int i = 0; i < move; i++) {
-            if (exit == 1 && iter instanceof movimientoBidireccional next)
-                iter = next.getNext();
-            else if (exit == 0 && iter instanceof movimientoBidireccional prev)
-                iter = prev.getPrevious();
-            else if (exit == 2)
-                iter = this.toCenter;
+            if (exit == 1 && iter instanceof movimientoBidireccional next) iter = next.getNext();
+            else if (exit == 0 && iter instanceof movimientoBidireccional prev) iter = prev.getPrevious();
+            else if (exit == 2) iter = this.toCenter;
         }
         return iter;
     }
@@ -156,56 +155,71 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
     /**
      * Reacción al caer en esta casilla (sin preguntas). Retorna null por compatibilidad.
      *
-     * @param scanner Scanner para entrada del usuario.
      * @param jugador Ficha del jugador.
      * @return null (sin acción).
      */
     @Override
-    public Square reaction(Scanner scanner, Ficha jugador) {
+    public Square reaction(Ficha jugador) {
         return null;
     }
 
     /**
      * Evalúa si la respuesta del jugador a la pregunta es correcta.
      *
-     * @param scanner Scanner para entrada del usuario.
      * @param question Pregunta a responder.
+     * @param fichaController Controlador de la ficha actual.
      * @return true si la respuesta es correcta; false en caso contrario.
      */
-    public boolean revisarRespuesta(Scanner scanner, Question question) {
-        System.out.print("Ingrese su respuesta: ");
-        String respuesta = scanner.nextLine();
-        return respuesta.equalsIgnoreCase(question.getAnswer())
-                || question.getAnswer().toLowerCase().contains(respuesta.toLowerCase())
-                || respuesta.toLowerCase().contains(question.getAnswer().toLowerCase());
+    @Override
+    public boolean revisarRespuesta(Question question, est.ucab.jacafxproyecto.controllers.FichaController fichaController) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Respuesta");
+        dialog.setHeaderText(question.getQuestion()); // Show the actual question
+        dialog.setContentText("Ingrese su respuesta:");
+        Optional<String> result = dialog.showAndWait();
+        String respuesta = result.orElse("");
+        return respuesta.equalsIgnoreCase(question.getAnswer()) ||
+                question.getAnswer().toLowerCase().contains(respuesta.toLowerCase()) ||
+                respuesta.toLowerCase().contains(question.getAnswer().toLowerCase()) && !respuesta.isEmpty();
     }
 
     /**
      * Lógica de reacción cuando el jugador cae en esta casilla: se presenta una pregunta.
      *
-     * @param scanner Scanner para entrada del usuario.
-     * @param jugador Ficha del jugador.
+     * @param jugador   Ficha del jugador.
      * @param questions Banco de preguntas.
-     * @return Casilla resultante luego de responder la pregunta.
+     * @param fichaController Controlador de la ficha actual.
+     * @return true si la respuesta fue correcta, false en caso contrario.
      */
-    public Square reaction(Scanner scanner, Ficha jugador, Questions questions) {
+    @Override
+    public boolean reaction(Ficha jugador, Questions questions, est.ucab.jacafxproyecto.controllers.FichaController fichaController) {
         Question question = questions.getRandomQuestion(categoria);
 
         if (question == null) {
-            System.out.println("No hay preguntas disponibles para esta categoría.");
-            return this;
+            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "No hay preguntas disponibles para esta categoría.");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+            return false;
         }
 
-        System.out.println("Pregunta: " + question.getQuestion());
-        boolean respuestaCorrecta = revisarRespuesta(scanner, question);
+        boolean respuestaCorrecta = revisarRespuesta(question, fichaController);
 
+        javafx.scene.control.Alert alert;
         if (respuestaCorrecta) {
-            System.out.println("¡Respuesta correcta!");
+            alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "¡Respuesta correcta!");
+            alert.setHeaderText(null);
+            alert.showAndWait();
             jugador.incrementarPuntos(categoria);
-            return getNext();
+            // Resaltar el sector correspondiente a la categoría
+            if (fichaController != null && categoria != null) {
+                fichaController.resaltarSector(categoria.ordinal() + 1);
+            }
+            return true;
         } else {
-            System.out.println("Respuesta incorrecta.");
-            return this;
+            alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR, "Respuesta incorrecta.");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+            return false;
         }
     }
 }

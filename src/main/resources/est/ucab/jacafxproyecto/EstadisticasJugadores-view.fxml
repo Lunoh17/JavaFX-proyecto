@@ -12,14 +12,15 @@
          </children>
       </AnchorPane>
       <TableView prefHeight="327.0" prefWidth="600.0">
-        <columns>
-          <TableColumn prefWidth="128.40000307559967" text="nombre" />
-          <TableColumn prefWidth="56.400001525878906" text="partidas" />
-           <TableColumn prefWidth="66.39999389648438" text="victorias" />
-           <TableColumn prefWidth="52.20001220703125" text="derrotas" />
-           <TableColumn prefWidth="126.19998168945312" text="tiempoRespondidas" />
-           <TableColumn prefWidth="173.00006103515625" text="categorias" />
-        </columns>
+         <columns>
+            <TableColumn prefWidth="128.40000307559967" text="nombre" />
+            <TableColumn prefWidth="56.400001525878906" text="partidas" />
+            <TableColumn prefWidth="66.39999389648438" text="victorias" />
+            <TableColumn prefWidth="52.20001220703125" text="derrotas" />
+            <TableColumn prefWidth="126.19998168945312" text="tiempoRespondidas" />
+            <TableColumn prefWidth="173.00006103515625" text="categorias" />
+         </columns>
+
       </TableView>
    </children>
 </AnchorPane>

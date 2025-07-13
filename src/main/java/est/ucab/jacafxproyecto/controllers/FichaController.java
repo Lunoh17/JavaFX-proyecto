@@ -1,5 +1,6 @@
 package est.ucab.jacafxproyecto.controllers;
 
+import est.ucab.jacafxproyecto.models.Ficha;
 import javafx.fxml.FXML;
 import javafx.scene.shape.Arc;
 import javafx.scene.paint.Color;
@@ -9,6 +10,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.Group;
 
 public class FichaController {
+    private Ficha jugador;
+
     @FXML
     private Arc arc1;
     @FXML
@@ -86,5 +89,13 @@ public class FichaController {
     private void onResaltarAleatorio(ActionEvent event) {
         int sector = 1 + random.nextInt(6);
         resaltarSector(sector);
+    }
+
+    public void setJugador(Ficha jugador) {
+        this.jugador = jugador;
+    }
+
+    public Ficha getJugador() {
+        return jugador;
     }
 }

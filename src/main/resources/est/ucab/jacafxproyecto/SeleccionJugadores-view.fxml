@@ -1,15 +1,139 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="est.ucab.jacafxproyecto.controllers.SeleccionJugadoresController" prefHeight="400.0" prefWidth="600.0">
+<AnchorPane fx:id="paneWilcommen" prefHeight="800.0" prefWidth="1300.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="est.ucab.jacafxproyecto.controllers.SeleccionJugadoresController">
 <children>
-        <Button layoutX="457.0" layoutY="360.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="Salir" onAction="#onClickSalir"/>
-        <Button layoutX="282.0" layoutY="360.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="Regresar" onAction="#switchToMenu"/>
-        <Button layoutX="90.0" layoutY="360.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="Comenzar" onAction="#switchToJuego"/>
+      <AnchorPane fx:id="container1" layoutX="41.0" layoutY="40.0" prefHeight="688.0" prefWidth="1219.0">
+         <children>
+              <Button layoutX="748.0" layoutY="599.0" mnemonicParsing="false" onAction="#onClickSalir" prefHeight="54.0" prefWidth="106.0" text="Salir">
+               <font>
+                  <Font name="Comic Sans MS Italic" size="18.0" />
+               </font></Button>
+              <Button layoutX="557.0" layoutY="599.0" mnemonicParsing="false" onAction="#switchToMenu" prefHeight="54.0" prefWidth="106.0" text="Regresar">
+               <font>
+                  <Font name="Comic Sans MS Italic" size="18.0" />
+               </font></Button>
+              <Button layoutX="365.0" layoutY="599.0" mnemonicParsing="false" onAction="#switchToJuego" prefHeight="54.0" prefWidth="106.0" text="Comenzar">
+               <font>
+                  <Font name="Comic Sans MS Italic" size="18.0" />
+               </font></Button>
+            <AnchorPane fx:id="avatars" layoutX="126.0" layoutY="75.0" prefHeight="467.0" prefWidth="585.0" scaleX="1.3" scaleY="1.2">
+               <children>
+                  <Button alignment="CENTER" contentDisplay="TOP" layoutX="35.0" layoutY="41.0" mnemonicParsing="false" onAction="#añadirJugador" text="prueba" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="77.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/chistosin.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button alignment="CENTER" contentDisplay="TOP" layoutX="171.0" layoutY="42.0" mnemonicParsing="false" text="prueba">
+                     <graphic>
+                        <ImageView fitHeight="77.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/chistosin.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="TOP" layoutX="303.0" layoutY="42.0" mnemonicParsing="false" text="prueba">
+                     <graphic>
+                        <ImageView fitHeight="77.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/chistosin.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="TOP" layoutX="444.0" layoutY="42.0" mnemonicParsing="false" text="prueba">
+                     <graphic>
+                        <ImageView fitHeight="77.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/chistosin.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="TOP" layoutX="35.0" layoutY="183.0" mnemonicParsing="false" text="prueba">
+                     <graphic>
+                        <ImageView fitHeight="77.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/chistosin.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="TOP" layoutX="172.0" layoutY="182.0" mnemonicParsing="false" text="prueba">
+                     <graphic>
+                        <ImageView fitHeight="77.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/chistosin.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="TOP" layoutX="304.0" layoutY="183.0" mnemonicParsing="false" text="prueba">
+                     <graphic>
+                        <ImageView fitHeight="77.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/chistosin.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="TOP" layoutX="443.0" layoutY="183.0" mnemonicParsing="false" text="prueba">
+                     <graphic>
+                        <ImageView fitHeight="77.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/chistosin.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="TOP" layoutX="34.0" layoutY="318.0" mnemonicParsing="false" text="prueba">
+                     <graphic>
+                        <ImageView fitHeight="77.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/chistosin.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="TOP" layoutX="175.0" layoutY="317.0" mnemonicParsing="false" text="prueba">
+                     <graphic>
+                        <ImageView fitHeight="77.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/chistosin.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="TOP" layoutX="305.0" layoutY="318.0" mnemonicParsing="false" text="prueba">
+                     <graphic>
+                        <ImageView fitHeight="77.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/chistosin.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="TOP" layoutX="446.0" layoutY="316.0" mnemonicParsing="false" text="prueba">
+                     <graphic>
+                        <ImageView fitHeight="77.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/chistosin.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <VBox fx:id="players" layoutX="799.0" layoutY="110.0" prefHeight="332.0" prefWidth="399.0" />
+         </children>
+      </AnchorPane>
 </children>
 </AnchorPane>

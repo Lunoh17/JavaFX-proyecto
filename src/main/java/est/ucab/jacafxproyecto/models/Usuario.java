@@ -1,6 +1,5 @@
 package est.ucab.jacafxproyecto.models;
 
-import java.util.ArrayList;
 
 /**
  * Clase que representa un usuario del sistema de trivia.
@@ -18,7 +17,8 @@ public class Usuario {
 
     private int loses=0;
 
-    private int totalTimeQuestions=0;
+    private double totalTimeQuestions=0;
+
 
     private int victory=0;
 
@@ -61,8 +61,9 @@ public class Usuario {
     public int getVictory() {
         return this.victory;
     }
-    public void setVictory() {
-        this.victory++;
+    public void setVictory(int numero) {
+        this.victory = numero;
+
     }
 
     public int getPartidas() {
@@ -89,20 +90,25 @@ public class Usuario {
         this.nickName = nickName;
     }
 
-    public int getTotalTimeQuestions() {
-        return totalTimeQuestions;
-    }
 
-    public void setTotalTimeQuestions(int totalTimeQuestions) {
+    public void setTotalTimeQuestions(double totalTimeQuestions) {
         this.totalTimeQuestions = this.totalTimeQuestions+ totalTimeQuestions;
     }
 
     public int getAnsweredDeporte() {
         return answeredDeporte;
     }
+    public int getAnsweredGeografia(){return answeredGeografia;}
+    public int getAnsweredHistoria(){return answeredHistoria;}
+    public int getAnsweredCiencia(){return answeredCiencia;}
+    public int getAnsweredArte(){return answeredArte;}
+    public int getAnsweredEntretenimiento(){return answeredEntretenimiento;}
+
+
+    public double getTotalTimeQuestions(){return totalTimeQuestions;}
 
     public void setCategoriesDeporte(){
-       answeredDeporte++;
+        answeredDeporte++;
     }
     public void setCategoriesGeografia(){
         answeredGeografia++;
@@ -120,4 +126,3 @@ public class Usuario {
         answeredEntretenimiento++;
     }
 }
-

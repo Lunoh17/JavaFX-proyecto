@@ -8,14 +8,23 @@
  * @author Jose alejandro Padron
  */
 package est.ucab.jacafxproyecto.models;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import com.google.gson.Gson;
-
+import com.google.gson.reflect.TypeToken;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TextInputDialog;
 
 
 public class Validator {
@@ -23,26 +32,94 @@ public class Validator {
      * Solicita al usuario que introduzca un número entero y valida que la entrada sea correcta.
      *
      * @param pregunta pregunta El texto que se muestra al usuario solicitando la entrada.
-     * @param entrada entrada El objeto Scanner utilizado para leer la entrada del usuario
      * @return El número entero validado introducido por el usuario.
      */
 
-    static public int validarInt(String pregunta, Scanner entrada) {
-        boolean entradaValida;
+    static public int validarInt(String pregunta) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Entrada requerida");
+        dialog.setHeaderText(pregunta);
+        dialog.setContentText("Ingrese un número entero:");
         int opcion = -1;
+        boolean valid = false;
+        Optional<String> result;
         do {
-            System.out.println(pregunta);
-            if (entrada.hasNextInt()) {
-                opcion = entrada.nextInt();
-                entrada.nextLine(); // Limpiar buffer
-                entradaValida = true;
-            } else {
-                System.out.println("Entrada no válida. Por favor, introduce un número entero.");
-                entrada.nextLine(); // Descartar la entrada incorrecta
-                entradaValida = false;
+            result = dialog.showAndWait();
+            if (result.isPresent()) {
+                try {
+                    opcion = Integer.parseInt(result.get());
+                    valid = true;
+                } catch (NumberFormatException e) {
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Error de entrada");
+                    alert.setHeaderText("Entrada no válida");
+                    alert.setContentText("Por favor, introduce un número entero válido.");
+                    alert.showAndWait();
+                }
             }
-        } while (!entradaValida);
+        } while (!valid);
         return opcion;
+    }
+
+    /**
+     * Carga las preguntas desde el archivo JSON. Si no existe, se crea uno nuevo.
+     *
+     * @return Questions Un objeto Questions que contiene las preguntas cargadas desde el archivo JSON.
+     */
+    static public Questions loadJson() {
+        Gson gson = new Gson();
+        String destinyFolderFile = System.getProperty("user.dir") + File.separator + "src";
+        Questions questions;
+        var a = new File(destinyFolderFile + File.separator + "data.json");
+        if (!(a.exists())) {
+            try {
+                boolean created = a.createNewFile();
+                if (!created)
+                    throw new IOException();
+                questions = new Questions();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            try (FileReader reader = new FileReader(destinyFolderFile + File.separator + "data.json")) {
+                BufferedReader bufferedReader = new BufferedReader(reader);
+                questions = gson.fromJson(bufferedReader, Questions.class);
+            } catch (IOException e) {
+                throw new RuntimeException("Error al leer el archivo JSON", e);
+            }
+        }
+        return questions;
+    }
+
+    /**
+     * Carga los usuarios desde el archivo JSON. Si no existe, se crea uno nuevo.
+     */
+    static public ArrayList<Usuario> loadUsuariosJson() {
+        ArrayList <Usuario> listaUsuarios;
+        Gson gson = new Gson();
+        String destinyFolderFile = System.getProperty("user.dir") + File.separator + "src";
+        System.out.println("Ruta del archivo: " + destinyFolderFile);
+        var a = new File(destinyFolderFile + File.separator + "users.json");
+        if (!(a.exists())) {
+            try {
+                boolean created = a.createNewFile();
+                if (!created)
+                    throw new IOException();
+                listaUsuarios = new ArrayList<Usuario>();
+            } catch (IOException e) {
+                throw new RuntimeException("hola",e);
+            }
+        } else {
+            try (FileReader r = new FileReader(destinyFolderFile + File.separator + "users.json")) {
+                BufferedReader bufferedReader = new BufferedReader(r);
+                Type listType = new TypeToken<ArrayList<Usuario>>() {
+                }.getType();
+                listaUsuarios = gson.fromJson(bufferedReader, listType);
+            } catch (IOException e) {
+                throw new RuntimeException("Error al leer el archivo JSON", e);
+            }
+        }
+        return listaUsuarios;
     }
 
     /**
@@ -110,4 +187,3 @@ public class Validator {
 
 
 }
-

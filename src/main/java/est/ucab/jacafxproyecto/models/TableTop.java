@@ -197,7 +197,7 @@ public class TableTop {
                 System.out.println("categoria: "+categories[j]+" hay un total de respondidas: "+enums);
                 enums=0;
             }
-            ganador=jugadores.get(jugadorActual).avanzar(scanner, questions);
+//            ganador=jugadores.get(jugadorActual).avanzar(questions);
             if (ganador) {
                 jugadores.get(jugadorActual).usuario.setVictory(jugadores.get(jugadorActual).usuario.getVictory()+1);
             }jugadorActual++;

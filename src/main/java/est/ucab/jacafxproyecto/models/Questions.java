@@ -40,7 +40,7 @@ public class Questions {
      */
     public void setTime(Scanner scanner) {
         while (time < 0 || time > 180) {
-            this.time = Validator.validarInt("Ingrese el tiempo límite de las preguntas que no exceda de dos minutos 180 segundos",scanner);
+            this.time = Validator.validarInt("Ingrese el tiempo límite de las preguntas que no exceda de dos minutos 180 segundos");
             if (time < 0 || time > 180) {
                 System.out.print("El tiempo que introdujo se excede del límite: ");
             }

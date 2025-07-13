@@ -20,7 +20,7 @@ ext {
 sourceCompatibility = '22'
 targetCompatibility = '22'
 
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
 

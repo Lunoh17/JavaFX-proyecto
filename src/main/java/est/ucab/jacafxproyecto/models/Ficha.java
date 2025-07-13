@@ -1,7 +1,9 @@
 package est.ucab.jacafxproyecto.models;
 
 import java.util.ArrayList;
-import java.util.Scanner;
+import est.ucab.jacafxproyecto.controllers.FichaController;
+import est.ucab.jacafxproyecto.models.SquareCategory;
+import est.ucab.jacafxproyecto.models.SquareRayo;
 
 
 /**
@@ -19,13 +21,13 @@ public class Ficha {
     /**
      * Array que representa los triángulos (categorías ganadas).
      */
-    int[] triangulos = new int[Category.values().length];
+    public int[] triangulos = new int[Category.values().length];
 
 
     /**
      * Casilla actual en la que se encuentra esta ficha.
      */
-    Square posicion;
+    public Square posicion;
 
     /**
      * Indica si el jugador ya salió del centro.
@@ -40,12 +42,12 @@ public class Ficha {
     /**
      * Indica si el jugador ha ganado.
      */
-    boolean gano = false;
+    public boolean gano = false;
 
     /**
      * Posición numérica de la ficha en el tablero.
      */
-    int positionTable;
+    public int positionTable;
 
     /**
      * Constructor de la ficha.
@@ -57,6 +59,11 @@ public class Ficha {
         this.usuario = usuario;
         this.posicion = posicion;
         this.salido = false;
+        this.positionTable = 0;
+    }
+
+    public String getNickName() {
+        return nickName;
     }
 
     /**
@@ -82,47 +89,39 @@ public class Ficha {
     /**
      * Lógica para avanzar en el tablero dependiendo del estado de la ficha.
      *
-     * @param scanner   Entrada del usuario.
      * @param questions Banco de preguntas del juego.
-     * @return {@code true} si el jugador ha ganado, {@code false} en otro caso.
+     * @param controller
+     * @return 0 si no se pudo avanzar, 1 si se avanzó y no se ganó, 2 si se ganó.
      */
-    public boolean avanzar(Scanner scanner, Questions questions) {
+    public int avanzar(Questions questions, FichaController controller) {
+        // Roll and move one time
+        int dado = tirarDado();
         if (!salido && posicion instanceof brazo saliendo) {
-            if (posicion instanceof SquareCenter)
-                posicion = saliendo.salir(tirarDado(), this.posicion.action(scanner, this), this, null);
-            else
-                posicion = saliendo.salir(tirarDado(), 1, this, scanner);
-            posicion.cantidadFichas++;
-            this.positionTable = posicion.position;
-            if (posicion instanceof CategoryQuestion cQ) {
-                cQ.reaction(scanner, this, questions);
-            }
-        } else if (entrado) {
-            if (posicion instanceof brazo saliendo) {
-                posicion = saliendo.entrar(tirarDado(), 1, this, scanner);
-                posicion.cantidadFichas++;
-                this.positionTable = posicion.position;
-                if (posicion instanceof SquareCenter sC) {
-                    sC.reaction(scanner, this, questions);
-                    if (this.gano) return true;
-                }
-            }
-        } else {
-            if (posicion instanceof movimientoBidireccional casilla) {
-                posicion = casilla.movimiento(tirarDado(), this.posicion.action(scanner, this), this);
-                posicion.cantidadFichas++;
-                this.positionTable = posicion.position;
-                if (posicion instanceof SquareSpecial sS) {
-                    posicion = sS.reaction(scanner, this);
-                    posicion.cantidadFichas++;
-                    this.positionTable = posicion.position;
-                }
-                if (posicion instanceof CategoryQuestion cQ) {
-                    cQ.reaction(scanner, this, questions);
-                }
-            }
+            posicion = (posicion instanceof SquareCenter)
+                ? saliendo.salir(dado, this.posicion.action(this), this)
+                : saliendo.salir(dado, 1, this);
+        } else if (entrado && posicion instanceof brazo saliendo) {
+            posicion = saliendo.entrar(dado, 1, this);
+        } else if (posicion instanceof movimientoBidireccional casilla) {
+            posicion = casilla.movimiento(dado, this.posicion.action(this), this);
         }
-        return false;
+        // Update count and position table
+        posicion.cantidadFichas++;
+        this.positionTable = posicion.position;
+        // Handle question reaction if applicable
+        if (posicion instanceof CategoryQuestion cQ) {
+            boolean correct = cQ.reaction(this, questions);
+            if (correct) {
+                int sector = -1;
+                if (posicion instanceof SquareCategory sc) sector = sc.categoria.ordinal() + 1;
+                else if (posicion instanceof SquareRayo sr) sector = sr.getCategoria().ordinal() + 1;
+                if (controller != null) controller.resaltarSector(sector);
+                return this.gano ? 2 : 1;
+            }
+        }else {
+            return 1; // Avanzó sin ganar porque seguro es un repetir
+        }
+        return 0;
     }
 
     /**
