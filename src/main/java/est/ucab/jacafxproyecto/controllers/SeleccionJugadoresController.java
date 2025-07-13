@@ -2,6 +2,7 @@ package est.ucab.jacafxproyecto.controllers;
 
 import est.ucab.jacafxproyecto.models.Usuario;
 import est.ucab.jacafxproyecto.models.Validator;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,6 +22,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+
 
 public class SeleccionJugadoresController {
     public Button aceptar;
@@ -33,6 +36,25 @@ public class SeleccionJugadoresController {
 
     private final Set<Usuario> jugadores = new LinkedHashSet<Usuario>();
     private final List<Usuario> listaUsuarios = new ArrayList<Usuario>();
+    public Button selector;
+    protected ArrayList<selectedPlayers> selected = new ArrayList<>();
+    public LoadUsuario usuarioJson = new LoadUsuario();
+
+    public void crearSelected(){
+        usuarioJson.loadUsuarioJson();
+        for(int i =0; i<usuarioJson.jugadores.size(); i++){
+            this.selected.add(new selectedPlayers(usuarioJson.jugadores.get(i)));
+        }
+    }
+
+    @FXML
+    public void meterJugadores(){
+        crearSelected();
+        for(int i=0; i<this.selected.size(); i++){
+
+        }
+    }
+
 
     public void switchToMenu(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/est/ucab/jacafxproyecto/menu-view.fxml"));

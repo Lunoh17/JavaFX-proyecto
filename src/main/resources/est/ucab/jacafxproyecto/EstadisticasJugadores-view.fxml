@@ -20,6 +20,7 @@
             <TableColumn prefWidth="126.19998168945312" text="tiempoRespondidas" />
             <TableColumn prefWidth="173.00006103515625" text="categorias" />
          </columns>
+
       </TableView>
    </children>
 </AnchorPane>

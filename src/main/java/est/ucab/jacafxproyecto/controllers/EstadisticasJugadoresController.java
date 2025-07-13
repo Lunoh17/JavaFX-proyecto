@@ -2,6 +2,7 @@ package est.ucab.jacafxproyecto.controllers;
 import java.io.IOException;
 import java.util.List;
 
+
 import est.ucab.jacafxproyecto.models.LoadUsuario;
 import est.ucab.jacafxproyecto.models.Usuario;
 import javafx.application.Platform;
@@ -17,6 +18,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class EstadisticasJugadoresController {
@@ -33,11 +35,13 @@ public class EstadisticasJugadoresController {
         tops.topTier();
         System.out.println("esta creando el tablero");
         List<Usuario> estadisticsUsers= tops.usuarios;
+
         TableColumn<Usuario, String> colNombre = new TableColumn<>("nombre");
         TableColumn<Usuario, Integer> colPartidas = new TableColumn<>("partidas");
         TableColumn<Usuario, Integer> colVictorias = new TableColumn<>("victorias");
         TableColumn<Usuario, Integer> colDerrotas = new TableColumn<>("derrotas");
         TableColumn<Usuario, Double> colTiempo = new TableColumn<>("tiempo respuestas");
+
         TableColumn<Usuario, Integer> colCategoryDeporte = new TableColumn<>("deporte ");
         TableColumn<Usuario, Integer> colCategoryGeografia = new TableColumn<>("Geografia ");
         TableColumn<Usuario, Integer> colCategoryHistoria = new TableColumn<>("Historia ");
