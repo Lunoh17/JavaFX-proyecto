@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -40,6 +41,8 @@ public class JuegoController {
     public VBox vBoxJugadores;
     @FXML
     public GridPane grid00;
+    public AnchorPane dado;
+    private DadoController dadoController;
 
     private Stage stage;
     private Scene scene;
@@ -130,6 +133,27 @@ public class JuegoController {
                     -fx-background-radius: 20;""");
         // Load and display players with their triangle scores on startup
         cargarPositions();
+        if (jugadores.isEmpty()) {
+            new Alert(Alert.AlertType.INFORMATION, "No hay jugadores cargados. Por favor, añade jugadores.").showAndWait();
+        } else {
+            jugadorActual = 0; // Reset to first player
+            printBoard(); // Initial board print
+        }
+        try{
+            var loader = new  FXMLLoader(getClass().getResource("/est/ucab/jacafxproyecto/Dado-view.fxml"));
+            Parent f = loader.load();
+            dado.getChildren().clear(); // Clear previous content
+            dadoController = loader.getController();
+            dadoController.root = dado; // Set the root for the DadoController
+            dadoController.root.setOnMouseClicked(event -> {
+                dadoController.rollDice(event);
+                handleTurn(dadoController.getRandomNumber()); // Handle turn after rolling the dice
+            });
+            dado.getChildren().add(f); // Add the new Dado view
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void cargarPositions() {
@@ -215,7 +239,7 @@ public class JuegoController {
     /**
      * Handle a single player's turn, invoked by UI button.
      */
-    private void handleTurn() {
+    private void handleTurn(int dadoValue) {
         if (ganador) {
             new Alert(Alert.AlertType.INFORMATION, "Game over. Winner: " + jugadores.get(jugadorActual).getNickName()).showAndWait();
             return;
@@ -233,7 +257,7 @@ public class JuegoController {
             System.out.println("categoria: " + categories[j] + " hay un total de respondidas: " + count);
         }
         // advance and determine next player or win
-        int avance = jugadores.get(jugadorActual).avanzar(questionsGame, fichaControllers[jugadorActual]);
+        int avance = jugadores.get(jugadorActual).avanzar(questionsGame, fichaControllers[jugadorActual], dadoValue);
 
         this.printBoard();
         if (avance == 2) {
@@ -338,7 +362,8 @@ public class JuegoController {
 
     @FXML
     public void startGame(ActionEvent event) {
-        handleTurn();
+        dadoController.rollDice(null);
+        handleTurn(dadoController.getRandomNumber());
     }
 
     /**

@@ -1195,6 +1195,7 @@
             <Button layoutX="722.0" layoutY="573.0" mnemonicParsing="false" onAction="#startGame" prefHeight="58.0" prefWidth="100.0" text="Dado" />
             <Button fx:id="regresar" layoutX="880.0" layoutY="573.0" mnemonicParsing="false" onAction="#switchToMenu" prefHeight="58.0" prefWidth="100.0" text="Regresar" />
             <Button layoutX="1035.0" layoutY="573.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="100.0" text="Rendirse" />
+            <AnchorPane fx:id="dado" layoutX="722.0" layoutY="531.0" prefHeight="100.0" prefWidth="100.0" />
          </children>
       </AnchorPane>
     </children>
