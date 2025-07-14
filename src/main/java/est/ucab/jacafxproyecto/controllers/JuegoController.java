@@ -232,6 +232,7 @@ public class JuegoController {
                 for (int j = 0; j < 13; j++) {
                     if (squareActual instanceof SquareRayo sr) {
                         if (ficha.getPosition() == sr.getPosition()) {
+
                             ficha.posicion = sr;
                             ficha.positionTable = sr.getPosition();
                             ficha.posicion.cantidadFichas++;
@@ -286,6 +287,7 @@ public class JuegoController {
         }
         // advance and determine next player or win
         int avance = jugadores.get(jugadorActual).avanzar(questionsGame, fichaControllers[jugadorActual]);
+
         this.printBoard();
         if (avance == 2) {
             ganador = true;
