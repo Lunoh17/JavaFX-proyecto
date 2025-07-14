@@ -125,8 +125,13 @@ public class SquareCategory extends Square implements brazo, movimientoBidirecci
         Square iter = this;
         this.cantidadFichas--;
         for (int i = 0; i < move; i++) {
-            if (exit == 1 && iter instanceof movimientoBidireccional next)
-                iter = next.getNext();
+            if (jugador.triangulo() && iter instanceof SquareRayo ray) {
+                jugador.entrado = true;
+                iter = ray.entrar(move - i, jugador);
+                i = move;
+            }else
+            if (exit == 1 && iter instanceof movimientoBidireccional prox)
+                iter = prox.getNext();
             else if (exit == 0 && iter instanceof movimientoBidireccional prev)
                 iter = prev.getPrevious();
         }
@@ -222,9 +227,6 @@ public class SquareCategory extends Square implements brazo, movimientoBidirecci
             if (iter.previous instanceof SquareCenter sC) {
                 if (i == move) return sC;
                 else return this;
-            } else if (iter.previous instanceof SquareRayo sR) {
-                jugador.entrado = true;
-                iter = sR.entrar(move - i, 2, jugador);
             }else iter= (SquareCategory) iter.previous;
         }
         return iter;

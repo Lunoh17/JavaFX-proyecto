@@ -9,14 +9,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.control.Accordion;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TitledPane;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -40,6 +40,9 @@ public class JuegoController {
     public VBox vBoxJugadores;
     @FXML
     public GridPane grid00;
+
+    private Stage stage;
+    private Scene scene;
     /**
      * Lista de jugadores que participan en el juego.
      */
@@ -264,6 +267,13 @@ public class JuegoController {
         updatePlayerAccordion();
         printBoard();
     }
+    public void switchToMenu(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/est/ucab/jacafxproyecto/menu-view.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     /**
      * Handle a single player's turn, invoked by UI button.
@@ -377,5 +387,20 @@ public class JuegoController {
             accordion.getPanes().add(pane);
         }
         vBoxJugadores.getChildren().add(accordion);
+    }
+
+    public void handleRegresar(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/est/ucab/jacafxproyecto/bienvenida.fxml"));
+            Parent root = loader.load();
+            // Get the current stage
+            javafx.stage.Stage stage = (javafx.stage.Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            javafx.scene.Scene scene = new javafx.scene.Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR, "Error al regresar a la bienvenida.").showAndWait();
+            e.printStackTrace();
+        }
     }
 } // end of class JuegoController

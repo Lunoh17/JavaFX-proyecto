@@ -108,7 +108,12 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
         Square iter = this;
         this.cantidadFichas--;
         for (int i = 0; i < move; i++) {
-            if (exit == 1 && iter instanceof movimientoBidireccional next) iter = next.getNext();
+            if (jugador.triangulo() && iter instanceof SquareRayo ray) {
+                jugador.entrado = true;
+                iter = ray.entrar(move - i, jugador);
+                i = move;
+            }else
+            if (exit == 1 && iter instanceof movimientoBidireccional prox) iter = prox.getNext();
             else if (exit == 0 && iter instanceof movimientoBidireccional prev) iter = prev.getPrevious();
             else if (exit == 2) iter = this.toCenter;
         }
@@ -223,7 +228,13 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
         return respuestaCorrecta;
     }
 
-    public SquareCategory entrar(int i, int salir, Ficha jugador) {
-        return this.toCenter;
+    public Square entrar(int i, Ficha jugador) {
+        Square iter = this.toCenter;
+        for (int j = 0; j < i; j++) {
+            if (iter instanceof movimientoBidireccional prev) {
+                iter = prev.getPrevious();
+            }
+        }
+        return iter;
     }
 }

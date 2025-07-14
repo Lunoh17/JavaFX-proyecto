@@ -170,7 +170,6 @@ public class Ficha {
     public void incrementarPuntos(Category categoria) {
         int n = categoria.ordinal();
         triangulos[n]++;
-        this.entrado = this.triangulo();
     }
 
     public int getPosition() {
