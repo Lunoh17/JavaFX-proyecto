@@ -1,5 +1,6 @@
 package est.ucab.jacafxproyecto.controllers;
 
+import est.ucab.jacafxproyecto.models.DBController;
 import est.ucab.jacafxproyecto.models.Usuario;
 import est.ucab.jacafxproyecto.models.Validator;
 import javafx.application.Platform;
@@ -61,7 +62,7 @@ public class SeleccionJugadoresController {
     @FXML
     public void initialize() {
         listaUsuarios.clear();
-        listaUsuarios.addAll(Validator.loadUsuariosJson());
+        listaUsuarios.addAll(DBController.loadUsuariosJson());
         jugadores.clear();
         // Optionally, update the UI here to show the loaded users
 

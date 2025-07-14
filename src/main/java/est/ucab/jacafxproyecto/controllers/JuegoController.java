@@ -132,73 +132,8 @@ public class JuegoController {
         cargarPositions();
     }
 
-    /**
-     * Guarda el estado actual de las fichas de los jugadores en un archivo JSON.
-     *
-     * @throws IOException Si ocurre un error de entrada/salida.
-     */
-    private void saveFichaJson() throws IOException {
-        String destinyFolder = homeFolder + File.separator + "src";
-        File destinyFolderFile = new File(destinyFolder);
-        if (!destinyFolderFile.exists()) {
-            boolean created = destinyFolderFile.mkdir();
-            if (!created) throw new IOException();
-        }
-        Gson gson = new Gson();
-
-        Square[] listaSquare = new Square[MAX_PLAYERS];
-        int contador = 0;
-        for (Ficha fa : jugadores) {
-            listaSquare[contador++] = fa.posicion;
-            fa.posicion = null;
-        }
-        String json = gson.toJson(this.jugadores);
-        File data = new File(destinyFolder + File.separator + "fichas.json");
-        contador = 0;
-        for (Ficha fa : jugadores) {
-            fa.posicion = listaSquare[contador++];
-        }
-        try (FileWriter writer = new FileWriter(data)) {
-            writer.write(json);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void loadFichaJson() {
-        Gson gson = new Gson();
-        String destinyFolder = homeFolder + File.separator + "src";
-        File destinyFolderFile = new File(destinyFolder);
-        if (!destinyFolderFile.exists()) {
-            boolean created = destinyFolderFile.mkdir();
-            if (!created) {
-                throw new RuntimeException();
-            }
-        }
-        var a = new File(destinyFolderFile + File.separator + "fichas.json");
-        if (!(a.exists())) {
-            try {
-                boolean created = a.createNewFile();
-                if (!created) throw new IOException();
-                this.jugadores = new ArrayList<Ficha>();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        } else {
-            try (FileReader r = new FileReader(destinyFolderFile + File.separator + "fichas.json")) {
-                BufferedReader bufferedReader = new BufferedReader(r);
-                Type listType = new TypeToken<ArrayList<Ficha>>() {
-                }.getType();
-                jugadores = gson.fromJson(bufferedReader, listType);
-            } catch (IOException e) {
-                throw new RuntimeException("Error al leer el archivo JSON", e);
-            }
-        }
-
-    }
-
     public void cargarPositions() {
-        loadFichaJson();
+        jugadores = DBController.loadFichaJson();
         if (jugadores == null) {
             jugadores = new ArrayList<>();
             return; // No hay jugadores que cargar
@@ -209,7 +144,6 @@ public class JuegoController {
         if (grid00 != null) {
             grid00.getChildren().clear();
         }
-
         for (int i = 0; i < jugadores.size(); i++) {
             Ficha ficha = jugadores.get(i);
             try {
@@ -230,12 +164,10 @@ public class JuegoController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
             for (Square squareActual : centro.rayos) {
                 for (int j = 0; j < 13; j++) {
                     if (squareActual instanceof SquareRayo sr) {
                         if (ficha.getPosition() == sr.getPosition()) {
-
                             ficha.posicion = sr;
                             ficha.positionTable = sr.getPosition();
                             ficha.posicion.cantidadFichas++;
@@ -267,6 +199,11 @@ public class JuegoController {
         updatePlayerAccordion();
         printBoard();
     }
+
+    private void saveFichaJson() throws IOException {
+        DBController.saveFichaJson(jugadores, MAX_PLAYERS);
+    }
+
     public void switchToMenu(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/est/ucab/jacafxproyecto/menu-view.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -404,3 +341,5 @@ public class JuegoController {
         }
     }
 } // end of class JuegoController
+
+
