@@ -1,5 +1,7 @@
 package est.ucab.jacafxproyecto.models;
 
+import est.ucab.jacafxproyecto.controllers.FichaController;
+
 /**
  * La interfaz {@code CategoryQuestion} define el comportamiento esperado para las casillas
  * de categoría que contienen preguntas dentro del tablero del juego.

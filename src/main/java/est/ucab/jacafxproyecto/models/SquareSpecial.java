@@ -69,8 +69,13 @@ public class SquareSpecial extends Square implements movimientoBidireccional {
         this.cantidadFichas--;
         Square iter = this;
         for (int i = 0; i < move; i++) {
-            if (exit == 1 && iter instanceof movimientoBidireccional next)
-                iter = next.getNext();
+            if (jugador.triangulo() && iter instanceof SquareRayo ray) {
+                jugador.salido = true;
+                iter = ray.entrar(move - i,  jugador);
+                i= move; // Salir del bucle si se entra en un rayo
+            } else
+            if (exit == 1 && iter instanceof movimientoBidireccional prox)
+                iter = prox.getNext();
             else if (exit == 0 && iter instanceof movimientoBidireccional prev)
                 iter = prev.getPrevious();
         }
@@ -111,6 +116,7 @@ public class SquareSpecial extends Square implements movimientoBidireccional {
      */
     @Override
     public int action(Ficha jugador) {
+
         List<String> choices = new ArrayList<>();
         choices.add("0. Atrás");
         choices.add("1. Adelante");

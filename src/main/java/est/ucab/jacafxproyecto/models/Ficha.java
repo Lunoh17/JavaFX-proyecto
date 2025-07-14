@@ -2,8 +2,6 @@ package est.ucab.jacafxproyecto.models;
 
 import java.util.ArrayList;
 import est.ucab.jacafxproyecto.controllers.FichaController;
-import est.ucab.jacafxproyecto.models.SquareCategory;
-import est.ucab.jacafxproyecto.models.SquareRayo;
 
 
 /**
@@ -89,19 +87,20 @@ public class Ficha {
     /**
      * Lógica para avanzar en el tablero dependiendo del estado de la ficha.
      *
-     * @param questions Banco de preguntas del juego.
+     * @param questions  Banco de preguntas del juego.
      * @param controller
+     * @param dadoValue
      * @return 0 si no se pudo avanzar, 1 si se avanzó y no se ganó, 2 si se ganó.
      */
-    public int avanzar(Questions questions, FichaController controller) {
+    public int avanzar(Questions questions, FichaController controller, int dadoValue) {
         // Roll and move one time
-        int dado = tirarDado();
+        int dado = dadoValue;
         if (!salido && posicion instanceof brazo saliendo) {
             posicion = (posicion instanceof SquareCenter)
                 ? saliendo.salir(dado, this.posicion.action(this), this)
                 : saliendo.salir(dado, 1, this);
         } else if (entrado && posicion instanceof brazo saliendo) {
-            posicion = saliendo.entrar(dado, 1, this);
+            posicion = saliendo.entrar(dado, 0, this);
         } else if (posicion instanceof movimientoBidireccional casilla) {
             posicion = casilla.movimiento(dado, this.posicion.action(this), this);
         }

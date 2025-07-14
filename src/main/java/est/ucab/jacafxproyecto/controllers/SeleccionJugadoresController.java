@@ -1,5 +1,6 @@
 package est.ucab.jacafxproyecto.controllers;
 
+import est.ucab.jacafxproyecto.models.DBController;
 import est.ucab.jacafxproyecto.models.Usuario;
 import est.ucab.jacafxproyecto.models.Validator;
 
@@ -83,7 +84,7 @@ public class SeleccionJugadoresController {
     @FXML
     public void initialize() {
         listaUsuarios.clear();
-        listaUsuarios.addAll(Validator.loadUsuariosJson());
+        listaUsuarios.addAll(DBController.loadUsuariosJson());
         jugadores.clear();
         // Optionally, update the UI here to show the loaded users
 
@@ -98,11 +99,17 @@ public class SeleccionJugadoresController {
             }
         }
     }
-
+    @FXML
     private void actualizarVBoxJugadores() {
         players.getChildren().clear();
         for (Usuario u : jugadores) {
             players.getChildren().add(new Label(u.userName));
+            players.setStyle("""
+                -fx-font-size: 23px;
+                -fx-font-weight: bold;
+                -fx-font-style: italic;
+                -fx-font-family: 'Comic Sans MS';
+                """);
         }
     }
 
@@ -122,4 +129,5 @@ public class SeleccionJugadoresController {
         }
 
     }
+    
 }

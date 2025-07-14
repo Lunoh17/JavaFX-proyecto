@@ -92,37 +92,6 @@ public class Validator {
     }
 
     /**
-     * Carga los usuarios desde el archivo JSON. Si no existe, se crea uno nuevo.
-     */
-    static public ArrayList<Usuario> loadUsuariosJson() {
-        ArrayList <Usuario> listaUsuarios;
-        Gson gson = new Gson();
-        String destinyFolderFile = System.getProperty("user.dir") + File.separator + "src";
-        System.out.println("Ruta del archivo: " + destinyFolderFile);
-        var a = new File(destinyFolderFile + File.separator + "users.json");
-        if (!(a.exists())) {
-            try {
-                boolean created = a.createNewFile();
-                if (!created)
-                    throw new IOException();
-                listaUsuarios = new ArrayList<Usuario>();
-            } catch (IOException e) {
-                throw new RuntimeException("hola",e);
-            }
-        } else {
-            try (FileReader r = new FileReader(destinyFolderFile + File.separator + "users.json")) {
-                BufferedReader bufferedReader = new BufferedReader(r);
-                Type listType = new TypeToken<ArrayList<Usuario>>() {
-                }.getType();
-                listaUsuarios = gson.fromJson(bufferedReader, listType);
-            } catch (IOException e) {
-                throw new RuntimeException("Error al leer el archivo JSON", e);
-            }
-        }
-        return listaUsuarios;
-    }
-
-    /**
      *Convierte un objeto Java a su representación en formato JSON.
      *
      * @param objeto El objeto que se desea convertir a JSON.

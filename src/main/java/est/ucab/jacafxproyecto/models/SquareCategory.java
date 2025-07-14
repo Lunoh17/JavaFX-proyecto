@@ -85,17 +85,12 @@ public class SquareCategory extends Square implements brazo, movimientoBidirecci
         return 1; // Default or cancel option
     }
 
-    @Override
-    public Square reaction(Ficha jugador) {
-        return null;
-    }
-
     /**
      * Lógica de salida desde esta casilla hacia otro recorrido.
      *
-     * @param move     cantidad de movimientos.
-     * @param exit     dirección de salida.
-     * @param jugador  ficha del jugador.
+     * @param move    cantidad de movimientos.
+     * @param exit    dirección de salida.
+     * @param jugador ficha del jugador.
      * @return casilla destino luego del movimiento.
      */
     @Override
@@ -120,9 +115,9 @@ public class SquareCategory extends Square implements brazo, movimientoBidirecci
     /**
      * Movimiento dentro del recorrido en ambas direcciones.
      *
-     * @param move     número de pasos a mover.
-     * @param exit     dirección de movimiento (0: previo, 1: siguiente).
-     * @param jugador  ficha del jugador.
+     * @param move    número de pasos a mover.
+     * @param exit    dirección de movimiento (0: previo, 1: siguiente).
+     * @param jugador ficha del jugador.
      * @return casilla destino.
      */
     @Override
@@ -130,8 +125,13 @@ public class SquareCategory extends Square implements brazo, movimientoBidirecci
         Square iter = this;
         this.cantidadFichas--;
         for (int i = 0; i < move; i++) {
-            if (exit == 1 && iter instanceof movimientoBidireccional next)
-                iter = next.getNext();
+            if (jugador.triangulo() && iter instanceof SquareRayo ray) {
+                jugador.entrado = true;
+                iter = ray.entrar(move - i, jugador);
+                i = move;
+            }else
+            if (exit == 1 && iter instanceof movimientoBidireccional prox)
+                iter = prox.getNext();
             else if (exit == 0 && iter instanceof movimientoBidireccional prev)
                 iter = prev.getPrevious();
         }
@@ -143,11 +143,10 @@ public class SquareCategory extends Square implements brazo, movimientoBidirecci
      *
      * @param jugador   ficha del jugador.
      * @param questions banco de preguntas.
-     * @param fichaController controlador de la ficha actual.
-     * @return true si la respuesta fue correcta, false en caso contrario.
+     * @return casilla siguiente si la respuesta fue correcta, o la misma si fue incorrecta.
      */
     @Override
-    public boolean reaction(Ficha jugador, Questions questions, est.ucab.jacafxproyecto.controllers.FichaController fichaController) {
+    public boolean reaction(Ficha jugador, Questions questions) {
         Question question = questions.getRandomQuestion(categoria);
 
         if (question == null) {
@@ -157,7 +156,22 @@ public class SquareCategory extends Square implements brazo, movimientoBidirecci
             return false;
         }
 
-        boolean respuestaCorrecta = revisarRespuesta(question, fichaController);
+        // Prompt with customized title including category and player name
+        javafx.scene.control.TextInputDialog dialog = new javafx.scene.control.TextInputDialog();
+        dialog.setTitle("Categoría: " + categoria.name() + " - Jugador: " + jugador.getNickName());
+        dialog.setHeaderText(question.getQuestion());
+        dialog.setContentText("Ingrese su respuesta:");
+        java.util.Optional<String> result = dialog.showAndWait();
+        if (!result.isPresent()) {
+            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR, "Respuesta incorrecta.");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+            return false;
+        }
+        String respuesta = result.get();
+        boolean respuestaCorrecta = respuesta.equalsIgnoreCase(question.getAnswer())
+                || question.getAnswer().toLowerCase().contains(respuesta.toLowerCase())
+                || (respuesta.toLowerCase().contains(question.getAnswer().toLowerCase()) && !respuesta.isEmpty());
 
         javafx.scene.control.Alert alert;
         if (respuestaCorrecta) {
@@ -165,34 +179,42 @@ public class SquareCategory extends Square implements brazo, movimientoBidirecci
             alert.setHeaderText(null);
             alert.showAndWait();
             jugador.incrementarPuntos(categoria);
-            // Resaltar el sector correspondiente a la categoría
-            if (fichaController != null && categoria != null) {
-                fichaController.resaltarSector(categoria.ordinal() + 1);
-            }
-            return true;
         } else {
             alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR, "Respuesta incorrecta.");
             alert.setHeaderText(null);
             alert.showAndWait();
-            return false;
         }
+        return respuestaCorrecta;
+    }
+
+    /**
+     * Reacción neutra al llegar a la casilla (sin pregunta).
+     *
+     * @param jugador ficha del jugador.
+     * @return esta misma casilla.
+     */
+    @Override
+    public Square reaction(Ficha jugador) {
+        return this;
     }
 
     /**
      * Revisa la respuesta ingresada por el jugador contra la respuesta correcta.
      *
      * @param question pregunta a responder.
-     * @param fichaController controlador de la ficha actual.
      * @return true si la respuesta es correcta, false en caso contrario.
      */
     @Override
-    public boolean revisarRespuesta(Question question, est.ucab.jacafxproyecto.controllers.FichaController fichaController) {
+    public boolean revisarRespuesta(Question question) {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Respuesta");
         dialog.setHeaderText(question.getQuestion());
         dialog.setContentText("Ingrese su respuesta:");
         Optional<String> result = dialog.showAndWait();
-        String respuesta = result.orElse("");
+        if (!result.isPresent()) {
+            return false;
+        }
+        String respuesta = result.get();
         return respuesta.equalsIgnoreCase(question.getAnswer()) ||
                 question.getAnswer().toLowerCase().contains(respuesta.toLowerCase()) ||
                 respuesta.toLowerCase().contains(question.getAnswer().toLowerCase()) && !respuesta.isEmpty();
@@ -201,9 +223,9 @@ public class SquareCategory extends Square implements brazo, movimientoBidirecci
     /**
      * Método para entrar desde esta casilla hacia el centro.
      *
-     * @param move     número de pasos.
-     * @param exit     dirección (no utilizada aquí).
-     * @param jugador  ficha del jugador.
+     * @param move    número de pasos.
+     * @param exit    dirección (no utilizada aquí).
+     * @param jugador ficha del jugador.
      * @return casilla destino (centro) si llega, si no esta misma.
      */
     @Override
@@ -211,11 +233,12 @@ public class SquareCategory extends Square implements brazo, movimientoBidirecci
         SquareCategory iter = this;
         this.cantidadFichas--;
         for (int i = 1; i <= move; i++) {
-            if (iter.next instanceof SquareCenter sC) {
+            if (iter.previous instanceof SquareCenter sC) {
                 if (i == move) return sC;
-            }
+                else return this;
+            }else iter= (SquareCategory) iter.previous;
         }
-        return this;
+        return iter;
     }
 
     /**

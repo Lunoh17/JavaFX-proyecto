@@ -2,6 +2,8 @@ package est.ucab.jacafxproyecto.models;
 
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,8 +59,7 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
      */
     @Override
     public int action(Ficha jugador) {
-        if (jugador.triangulo()) {
-            jugador.entrado = true;
+        if (jugador.entrado) {
             return 2;
         } else {
             List<String> choices = new ArrayList<>();
@@ -109,7 +110,12 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
         Square iter = this;
         this.cantidadFichas--;
         for (int i = 0; i < move; i++) {
-            if (exit == 1 && iter instanceof movimientoBidireccional next) iter = next.getNext();
+            if (jugador.triangulo() && iter instanceof SquareRayo ray) {
+                jugador.entrado = true;
+                iter = ray.entrar(move - i, jugador);
+                i = move;
+            }else
+            if (exit == 1 && iter instanceof movimientoBidireccional prox) iter = prox.getNext();
             else if (exit == 0 && iter instanceof movimientoBidireccional prev) iter = prev.getPrevious();
             else if (exit == 2) iter = this.toCenter;
         }
@@ -167,17 +173,18 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
      * Evalúa si la respuesta del jugador a la pregunta es correcta.
      *
      * @param question Pregunta a responder.
-     * @param fichaController Controlador de la ficha actual.
      * @return true si la respuesta es correcta; false en caso contrario.
      */
-    @Override
-    public boolean revisarRespuesta(Question question, est.ucab.jacafxproyecto.controllers.FichaController fichaController) {
+    public boolean revisarRespuesta(Question question) {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Respuesta");
         dialog.setHeaderText(question.getQuestion()); // Show the actual question
         dialog.setContentText("Ingrese su respuesta:");
         Optional<String> result = dialog.showAndWait();
-        String respuesta = result.orElse("");
+        if (!result.isPresent()) {
+            return false;
+        }
+        String respuesta = result.get();
         return respuesta.equalsIgnoreCase(question.getAnswer()) ||
                 question.getAnswer().toLowerCase().contains(respuesta.toLowerCase()) ||
                 respuesta.toLowerCase().contains(question.getAnswer().toLowerCase()) && !respuesta.isEmpty();
@@ -188,11 +195,10 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
      *
      * @param jugador   Ficha del jugador.
      * @param questions Banco de preguntas.
-     * @param fichaController Controlador de la ficha actual.
-     * @return true si la respuesta fue correcta, false en caso contrario.
+     * @return Casilla resultante luego de responder la pregunta.
      */
     @Override
-    public boolean reaction(Ficha jugador, Questions questions, est.ucab.jacafxproyecto.controllers.FichaController fichaController) {
+    public boolean reaction(Ficha jugador, Questions questions) {
         Question question = questions.getRandomQuestion(categoria);
 
         if (question == null) {
@@ -202,7 +208,22 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
             return false;
         }
 
-        boolean respuestaCorrecta = revisarRespuesta(question, fichaController);
+        // Prompt with customized title including category and player name
+        javafx.scene.control.TextInputDialog dialog = new javafx.scene.control.TextInputDialog();
+        dialog.setTitle("Categoría: " + categoria.name() + " - Jugador: " + jugador.getNickName());
+        dialog.setHeaderText(question.getQuestion());
+        dialog.setContentText("Ingrese su respuesta:");
+        java.util.Optional<String> result = dialog.showAndWait();
+        if (!result.isPresent()) {
+            Alert alert = new Alert(AlertType.ERROR, "Respuesta incorrecta.");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+            return false;
+        }
+        String respuesta = result.get();
+        boolean respuestaCorrecta = respuesta.equalsIgnoreCase(question.getAnswer())
+                || question.getAnswer().toLowerCase().contains(respuesta.toLowerCase())
+                || (respuesta.toLowerCase().contains(question.getAnswer().toLowerCase()) && !respuesta.isEmpty());
 
         javafx.scene.control.Alert alert;
         if (respuestaCorrecta) {
@@ -210,16 +231,21 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
             alert.setHeaderText(null);
             alert.showAndWait();
             jugador.incrementarPuntos(categoria);
-            // Resaltar el sector correspondiente a la categoría
-            if (fichaController != null && categoria != null) {
-                fichaController.resaltarSector(categoria.ordinal() + 1);
-            }
-            return true;
         } else {
             alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR, "Respuesta incorrecta.");
             alert.setHeaderText(null);
             alert.showAndWait();
-            return false;
         }
+        return respuestaCorrecta;
+    }
+
+    public Square entrar(int i, Ficha jugador) {
+        Square iter = this.toCenter;
+        for (int j = 0; j < i; j++) {
+            if (iter instanceof movimientoBidireccional prev) {
+                iter = prev.getPrevious();
+            }
+        }
+        return iter;
     }
 }
