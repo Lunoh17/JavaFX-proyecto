@@ -239,8 +239,43 @@ public class JuegoController {
         if (avance == 2) {
             ganador = true;
             // record victory and show alert
-            jugadores.get(jugadorActual).getUsuario().setVictory(jugadores.get(jugadorActual).getUsuario().getVictory() + 1);
-            new Alert(Alert.AlertType.INFORMATION, "Game over. Winner: " + jugadores.get(jugadorActual).getNickName()).showAndWait();
+            Ficha winnerFicha = jugadores.get(jugadorActual);
+            Usuario winnerUser = winnerFicha.getUsuario();
+            winnerUser.setVictory(winnerUser.getVictory() + 1);
+            new Alert(Alert.AlertType.INFORMATION, "Game over. Winner: " + winnerFicha.getNickName()).showAndWait();
+            // save updated users to JSON
+            try {
+                ArrayList<Usuario> usuariosToSave = new ArrayList<>();
+                // update each user's stats from their ficha
+                for (Ficha f : jugadores) {
+                    Usuario u = f.getUsuario();
+                    // increment total games played
+                    u.setPartidas();
+                    // increment losses for non-winners
+                    if (!u.getUserName().equals(winnerUser.getUserName())) {
+                        u.setLoses();
+                    }
+                    // add triangles per category to user stats
+                    int[] tri = f.triangulos;
+                    Category[] cats = Category.values();
+                    for (int i = 0; i < tri.length; i++) {
+                        for (int j = 0; j < tri[i]; j++) {
+                            switch (cats[i]) {
+                                case GEOGRAFIA -> u.setCategoriesGeografia();
+                                case HISTORIA -> u.setCategoriesHistoria();
+                                case DEPORTESPASATIEMPO -> u.setCategoriesDeporte();
+                                case CIENCIASNATURALEZA -> u.setCategoriesCiencia();
+                                case ARTELITERATURA -> u.setCategoriesArte();
+                                case ENTRETENIMIENTO -> u.setCategoriesEntretenimiento();
+                            }
+                        }
+                    }
+                    usuariosToSave.add(u);
+                }
+                DBController.saveUsuariosJson(usuariosToSave);
+            } catch (IOException e) {
+                System.err.println("Error al guardar usuarios: " + e.getMessage());
+            }
             return;
         }
         // update current player index: 0-> next, 1-> same
@@ -341,5 +376,3 @@ public class JuegoController {
         }
     }
 } // end of class JuegoController
-
-

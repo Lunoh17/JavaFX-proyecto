@@ -22,53 +22,20 @@ import javafx.stage.Stage;
 public class EstadisticasJugadoresController {
     public AnchorPane paneWilcommen;
     public AnchorPane container1;
+    public TableColumn columna1;
+    public TableColumn columna2;
+    public TableColumn columna3;
+    public TableColumn columna4;
+    public TableColumn columna5;
+    public TableColumn columna6;
     private Stage stage;
     private Scene scene;
     private Parent root;
 
-    TableView<Usuario> toptiers = new TableView<>();
+    @FXML
+    private TableView<Usuario> toptiers;
 
-    public EstadisticasJugadoresController(){
-        LoadUsuario tops = new LoadUsuario();
-        tops.topTier();
-        System.out.println("esta creando el tablero");
-        List<Usuario> estadisticsUsers= tops.usuarios;
-        TableColumn<Usuario, String> colNombre = new TableColumn<>("nombre");
-        TableColumn<Usuario, Integer> colPartidas = new TableColumn<>("partidas");
-        TableColumn<Usuario, Integer> colVictorias = new TableColumn<>("victorias");
-        TableColumn<Usuario, Integer> colDerrotas = new TableColumn<>("derrotas");
-        TableColumn<Usuario, Double> colTiempo = new TableColumn<>("tiempo respuestas");
-        TableColumn<Usuario, Integer> colCategoryDeporte = new TableColumn<>("deporte ");
-        TableColumn<Usuario, Integer> colCategoryGeografia = new TableColumn<>("Geografia ");
-        TableColumn<Usuario, Integer> colCategoryHistoria = new TableColumn<>("Historia ");
-        TableColumn<Usuario, Integer> colCategoryCiencias = new TableColumn<>("ciencias Naturaleza ");
-        TableColumn<Usuario, Integer> colCategoryArte = new TableColumn<>("Arte ");
-        TableColumn<Usuario, Integer> colCategoryEntretenimiento = new TableColumn<>("Entretenimiento ");
-        toptiers.getColumns().addAll(colNombre, colPartidas, colVictorias, colDerrotas, colTiempo, colCategoryDeporte, colCategoryArte, colCategoryEntretenimiento, colCategoryCiencias, colCategoryGeografia,colCategoryHistoria);
-
-        colNombre.setCellValueFactory(new PropertyValueFactory<>("nickName"));
-        colPartidas.setCellValueFactory(new PropertyValueFactory<>("partidas"));
-        colVictorias.setCellValueFactory(new PropertyValueFactory<>("victory"));
-        colDerrotas.setCellValueFactory(new PropertyValueFactory<>("loses"));
-        colTiempo.setCellValueFactory(new PropertyValueFactory<>("totalTimeQuestions"));
-        colCategoryDeporte.setCellValueFactory(new PropertyValueFactory<>("answeredDeporte"));
-        colCategoryGeografia.setCellValueFactory(new PropertyValueFactory<>("answeredGeografia"));
-        colCategoryHistoria.setCellValueFactory(new PropertyValueFactory<>("answeredHistoria"));
-        colCategoryCiencias.setCellValueFactory(new PropertyValueFactory<>("answeredCiencia"));
-        colCategoryArte.setCellValueFactory(new PropertyValueFactory<>("answeredArte"));
-        colCategoryEntretenimiento.setCellValueFactory(new PropertyValueFactory<>("answeredEntretenimiento"));
-
-        ObservableList<Usuario> estadisticsObservable = FXCollections.observableArrayList(estadisticsUsers);
-        for(int i=0;i<estadisticsUsers.size(); i++){
-            System.out.println("posicion"+i);
-            estadisticsObservable.add(estadisticsUsers.get(i));
-        }
-
-        toptiers.setItems(estadisticsObservable);
-
-    }
-
-
+    @FXML
     public void switchToMenu(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/est/ucab/jacafxproyecto/menu-view.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -92,5 +59,44 @@ public class EstadisticasJugadoresController {
                     -fx-border-style: solid;
                     -fx-background-color: #ebdcff;
                     -fx-background-radius: 20;""");
+        toptiers.setStyle("""
+                -fx-background-color: #ffd2e3;
+                """);
+        columna1.setStyle("""
+                -fx-background-color: #cfb0e3;
+                """);
+
+        // setup statistics table
+        toptiers.getColumns().clear();
+        LoadUsuario tops = new LoadUsuario();
+        tops.topTier();
+        List<Usuario> estadisticsUsers = tops.usuarios;
+        // define columns
+        TableColumn<Usuario, String> colNombre = new TableColumn<>("userName");
+        TableColumn<Usuario, Integer> colPartidas = new TableColumn<>("partidas");
+        TableColumn<Usuario, Integer> colVictorias = new TableColumn<>("victory");
+        TableColumn<Usuario, Integer> colDerrotas = new TableColumn<>("loses");
+        TableColumn<Usuario, Double> colTiempo = new TableColumn<>("totalTimeQuestions");
+        TableColumn<Usuario, Integer> colCategoryDeporte = new TableColumn<>("answeredDeporte");
+        TableColumn<Usuario, Integer> colCategoryGeografia = new TableColumn<>("answeredGeografia");
+        TableColumn<Usuario, Integer> colCategoryHistoria = new TableColumn<>("answeredHistoria");
+        TableColumn<Usuario, Integer> colCategoryCiencias = new TableColumn<>("answeredCiencia");
+        TableColumn<Usuario, Integer> colCategoryArte = new TableColumn<>("answeredArte");
+        TableColumn<Usuario, Integer> colCategoryEntretenimiento = new TableColumn<>("answeredEntretenimiento");
+        toptiers.getColumns().addAll(colNombre, colPartidas, colVictorias, colDerrotas, colTiempo, colCategoryDeporte, colCategoryGeografia, colCategoryHistoria, colCategoryCiencias, colCategoryArte, colCategoryEntretenimiento);
+        // cell value factories
+        colNombre.setCellValueFactory(new PropertyValueFactory<>("userName"));
+        colPartidas.setCellValueFactory(new PropertyValueFactory<>("partidas"));
+        colVictorias.setCellValueFactory(new PropertyValueFactory<>("victory"));
+        colDerrotas.setCellValueFactory(new PropertyValueFactory<>("loses"));
+        colTiempo.setCellValueFactory(new PropertyValueFactory<>("totalTimeQuestions"));
+        colCategoryDeporte.setCellValueFactory(new PropertyValueFactory<>("answeredDeporte"));
+        colCategoryGeografia.setCellValueFactory(new PropertyValueFactory<>("answeredGeografia"));
+        colCategoryHistoria.setCellValueFactory(new PropertyValueFactory<>("answeredHistoria"));
+        colCategoryCiencias.setCellValueFactory(new PropertyValueFactory<>("answeredCiencia"));
+        colCategoryArte.setCellValueFactory(new PropertyValueFactory<>("answeredArte"));
+        colCategoryEntretenimiento.setCellValueFactory(new PropertyValueFactory<>("answeredEntretenimiento"));
+        // load data
+        toptiers.setItems(FXCollections.observableArrayList(estadisticsUsers));
     }
 }

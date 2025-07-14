@@ -77,11 +77,17 @@ public class SeleccionJugadoresController {
             }
         }
     }
-
+    @FXML
     private void actualizarVBoxJugadores() {
         players.getChildren().clear();
         for (Usuario u : jugadores) {
             players.getChildren().add(new Label(u.userName));
+            players.setStyle("""
+                -fx-font-size: 23px;
+                -fx-font-weight: bold;
+                -fx-font-style: italic;
+                -fx-font-family: 'Comic Sans MS';
+                """);
         }
     }
 
@@ -101,4 +107,5 @@ public class SeleccionJugadoresController {
         }
 
     }
+    
 }

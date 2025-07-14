@@ -91,6 +91,36 @@ public class DBController {
         }
     }
 
+    public static void saveUsuariosJson(List<Usuario> usuarios) throws IOException {
+        Gson gson = new Gson();
+        String destinyFolder = SRC_FOLDER;
+        File destinyFolderFile = new File(destinyFolder);
+        if (!destinyFolderFile.exists()) {
+            boolean created = destinyFolderFile.mkdir();
+            if (!created) throw new IOException("Unable to create directory: " + destinyFolder);
+        }
+        File data = new File(destinyFolder + File.separator + "users.json");
+        // Load existing users from JSON
+        ArrayList<Usuario> existing = loadUsuariosJson();
+        // Update or add users
+        for (Usuario u : usuarios) {
+            boolean found = false;
+            for (int i = 0; i < existing.size(); i++) {
+                if (existing.get(i).getUserName().equals(u.getUserName())) {
+                    existing.set(i, u);
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                existing.add(u);
+            }
+        }
+        // Write updated list back to JSON file
+        try (FileWriter writer = new FileWriter(data)) {
+            writer.write(gson.toJson(existing));
+        }
+    }
+
     // Add more static methods as needed for other JSON operations
 }
-

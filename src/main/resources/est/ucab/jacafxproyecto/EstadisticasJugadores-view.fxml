@@ -3,23 +3,23 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="paneWilcommen" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="est.ucab.jacafxproyecto.controllers.EstadisticasJugadoresController">
+<AnchorPane fx:id="paneWilcommen" prefHeight="768.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="est.ucab.jacafxproyecto.controllers.EstadisticasJugadoresController">
    <children>
-      <AnchorPane fx:id="container1" layoutX="32.0" layoutY="35.0" prefHeight="336.0" prefWidth="534.0">
+      <AnchorPane fx:id="container1" layoutX="32.0" layoutY="35.0" prefHeight="688.0" prefWidth="1219.0">
          <children>
-            <Button layoutX="89.0" layoutY="291.0" mnemonicParsing="false" onAction="#switchToMenu" prefHeight="28.0" prefWidth="87.0" text="Regresar" />
-            <Button layoutX="361.0" layoutY="291.0" mnemonicParsing="false" onAction="#onClickSalir" prefHeight="28.0" prefWidth="87.0" text="Salir" />
+            <Button layoutX="350.0" layoutY="587.0" mnemonicParsing="false" onAction="#switchToMenu" prefHeight="68.0" prefWidth="143.0" text="Regresar" />
+            <Button layoutX="667.0" layoutY="587.0" mnemonicParsing="false" onAction="#onClickSalir" prefHeight="68.0" prefWidth="143.0" text="Salir" />
+            <TableView fx:id="toptiers" prefHeight="527.0" prefWidth="1199.0" style="-fx-background-color: cfb0e3;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+               <columns>
+                  <TableColumn fx:id="columna1" prefWidth="128.40000307559967" text="nombre" />
+                  <TableColumn fx:id="columna2" prefWidth="56.400001525878906" text="partidas" />
+                  <TableColumn fx:id="columna3" prefWidth="66.39999389648438" text="victorias" />
+                  <TableColumn fx:id="columna4" prefWidth="52.20001220703125" text="derrotas" />
+                  <TableColumn fx:id="columna5" prefWidth="126.19998168945312" text="tiempoRespondidas" />
+                  <TableColumn fx:id="columna6" prefWidth="173.00006103515625" text="categorias" />
+               </columns>
+            </TableView>
          </children>
       </AnchorPane>
-      <TableView prefHeight="327.0" prefWidth="600.0">
-         <columns>
-            <TableColumn prefWidth="128.40000307559967" text="nombre" />
-            <TableColumn prefWidth="56.400001525878906" text="partidas" />
-            <TableColumn prefWidth="66.39999389648438" text="victorias" />
-            <TableColumn prefWidth="52.20001220703125" text="derrotas" />
-            <TableColumn prefWidth="126.19998168945312" text="tiempoRespondidas" />
-            <TableColumn prefWidth="173.00006103515625" text="categorias" />
-         </columns>
-      </TableView>
    </children>
 </AnchorPane>
