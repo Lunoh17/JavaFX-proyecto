@@ -162,7 +162,13 @@ public class SquareCategory extends Square implements brazo, movimientoBidirecci
         dialog.setHeaderText(question.getQuestion());
         dialog.setContentText("Ingrese su respuesta:");
         java.util.Optional<String> result = dialog.showAndWait();
-        String respuesta = result.orElse("");
+        if (!result.isPresent()) {
+            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR, "Respuesta incorrecta.");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+            return false;
+        }
+        String respuesta = result.get();
         boolean respuestaCorrecta = respuesta.equalsIgnoreCase(question.getAnswer())
                 || question.getAnswer().toLowerCase().contains(respuesta.toLowerCase())
                 || (respuesta.toLowerCase().contains(question.getAnswer().toLowerCase()) && !respuesta.isEmpty());
@@ -205,7 +211,10 @@ public class SquareCategory extends Square implements brazo, movimientoBidirecci
         dialog.setHeaderText(question.getQuestion());
         dialog.setContentText("Ingrese su respuesta:");
         Optional<String> result = dialog.showAndWait();
-        String respuesta = result.orElse("");
+        if (!result.isPresent()) {
+            return false;
+        }
+        String respuesta = result.get();
         return respuesta.equalsIgnoreCase(question.getAnswer()) ||
                 question.getAnswer().toLowerCase().contains(respuesta.toLowerCase()) ||
                 respuesta.toLowerCase().contains(question.getAnswer().toLowerCase()) && !respuesta.isEmpty();

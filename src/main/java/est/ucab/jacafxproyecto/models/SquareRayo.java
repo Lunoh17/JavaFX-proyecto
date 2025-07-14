@@ -2,6 +2,8 @@ package est.ucab.jacafxproyecto.models;
 
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -179,7 +181,10 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
         dialog.setHeaderText(question.getQuestion()); // Show the actual question
         dialog.setContentText("Ingrese su respuesta:");
         Optional<String> result = dialog.showAndWait();
-        String respuesta = result.orElse("");
+        if (!result.isPresent()) {
+            return false;
+        }
+        String respuesta = result.get();
         return respuesta.equalsIgnoreCase(question.getAnswer()) ||
                 question.getAnswer().toLowerCase().contains(respuesta.toLowerCase()) ||
                 respuesta.toLowerCase().contains(question.getAnswer().toLowerCase()) && !respuesta.isEmpty();
@@ -209,7 +214,13 @@ public class SquareRayo extends Square implements movimientoBidireccional, Categ
         dialog.setHeaderText(question.getQuestion());
         dialog.setContentText("Ingrese su respuesta:");
         java.util.Optional<String> result = dialog.showAndWait();
-        String respuesta = result.orElse("");
+        if (!result.isPresent()) {
+            Alert alert = new Alert(AlertType.ERROR, "Respuesta incorrecta.");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+            return false;
+        }
+        String respuesta = result.get();
         boolean respuestaCorrecta = respuesta.equalsIgnoreCase(question.getAnswer())
                 || question.getAnswer().toLowerCase().contains(respuesta.toLowerCase())
                 || (respuesta.toLowerCase().contains(question.getAnswer().toLowerCase()) && !respuesta.isEmpty());

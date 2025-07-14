@@ -3,6 +3,8 @@ package est.ucab.jacafxproyecto.models;
 import est.ucab.jacafxproyecto.controllers.FichaController;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -171,7 +173,6 @@ public class SquareCenter extends Square implements brazo, CategoryQuestion {
      *
      * @param jugador  Ficha del jugador.
      * @param questions Banco de preguntas.
-     * @param fichaController Controlador de la ficha actual.
      * @return true si la respuesta fue correcta, false en caso contrario.
      */
     public boolean reaction(Ficha jugador, Questions questions) {
@@ -187,34 +188,38 @@ public class SquareCenter extends Square implements brazo, CategoryQuestion {
         dialog.setContentText("Categoría:");
 
         Optional<String> result = dialog.showAndWait();
-        if (result.isPresent()) {
-            Category categoria = Category.valueOf(result.get());
-            Question question = questions.getRandomQuestion(categoria);
-
-            if (question == null) {
-                javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "No hay preguntas disponibles para esta categoría.");
-                alert.setHeaderText(null);
-                alert.showAndWait();
-                return false;
-            }
-
-            boolean respuestaCorrecta = revisarRespuesta(question);
-
-            javafx.scene.control.Alert alert;
-            if (respuestaCorrecta) {
-                alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "¡Respuesta correcta!");
-                alert.setHeaderText(null);
-                alert.showAndWait();
-                jugador.gano = true;
-                return true;
-            } else {
-                alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR, "Respuesta incorrecta.");
-                alert.setHeaderText(null);
-                alert.showAndWait();
-                return false;
-            }
+        if (!result.isPresent()) {
+            Alert alert = new Alert(AlertType.ERROR, "Respuesta incorrecta.");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+            return false;
         }
-        return false;
+        String selectedCategory = result.get();
+        Category categoria = Category.valueOf(selectedCategory);
+        Question question = questions.getRandomQuestion(categoria);
+
+        if (question == null) {
+            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "No hay preguntas disponibles para esta categoría.");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+            return false;
+        }
+
+        boolean respuestaCorrecta = revisarRespuesta(question);
+
+        javafx.scene.control.Alert alert;
+        if (respuestaCorrecta) {
+            alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION, "¡Respuesta correcta!");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+            jugador.gano = true;
+            return true;
+        } else {
+            alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR, "Respuesta incorrecta.");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+            return false;
+        }
     }
 
     /**
