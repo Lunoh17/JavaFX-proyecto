@@ -19,4 +19,5 @@ public class LoadUsuario {
         loadUsuarioJson();
         usuarios.sort(Comparator.comparingInt(Usuario::getVictory).reversed());
     }
+
 }

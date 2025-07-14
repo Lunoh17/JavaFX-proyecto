@@ -1,5 +1,6 @@
 package est.ucab.jacafxproyecto.models;
 
+
 /**
  * Clase que representa un usuario del sistema de trivia.
  * Contiene el nombre de usuario y la contraseña (almacenada como hash SHA-256).
@@ -17,6 +18,7 @@ public class Usuario {
     private int loses=0;
 
     private double totalTimeQuestions=0;
+
 
     private int victory=0;
 
@@ -61,6 +63,7 @@ public class Usuario {
     }
     public void setVictory(int numero) {
         this.victory = numero;
+
     }
 
     public int getPartidas() {

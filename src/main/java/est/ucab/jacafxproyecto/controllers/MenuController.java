@@ -18,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class MenuController {
@@ -37,9 +38,9 @@ public class MenuController {
     private Parent root;
 
     public void switchToEstadisticasJuegadores(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/est/ucab/jacafxproyecto/EstadisticasJugadores-view.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+        EstadisticasJugadoresController tops = new EstadisticasJugadoresController();
+        VBox table= new VBox(tops.toptiers);
+        scene = new Scene(table, 600, 800);
         stage.setScene(scene);
         stage.show();
     }

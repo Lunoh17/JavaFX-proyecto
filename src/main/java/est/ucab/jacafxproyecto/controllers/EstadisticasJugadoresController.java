@@ -2,6 +2,7 @@ package est.ucab.jacafxproyecto.controllers;
 import java.io.IOException;
 import java.util.List;
 
+
 import est.ucab.jacafxproyecto.models.LoadUsuario;
 import est.ucab.jacafxproyecto.models.Usuario;
 import javafx.application.Platform;
@@ -17,6 +18,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class EstadisticasJugadoresController {
