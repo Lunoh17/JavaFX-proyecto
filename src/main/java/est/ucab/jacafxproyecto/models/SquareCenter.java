@@ -1,5 +1,6 @@
 package est.ucab.jacafxproyecto.models;
 
+import est.ucab.jacafxproyecto.controllers.FichaController;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.TextInputDialog;
 
@@ -173,8 +174,7 @@ public class SquareCenter extends Square implements brazo, CategoryQuestion {
      * @param fichaController Controlador de la ficha actual.
      * @return true si la respuesta fue correcta, false en caso contrario.
      */
-    @Override
-    public boolean reaction(Ficha jugador, Questions questions, est.ucab.jacafxproyecto.controllers.FichaController fichaController) {
+    public boolean reaction(Ficha jugador, Questions questions) {
         Category[] categorias = Category.values();
         List<String> choices = new ArrayList<>();
         for (Category c : categorias) {
@@ -198,7 +198,7 @@ public class SquareCenter extends Square implements brazo, CategoryQuestion {
                 return false;
             }
 
-            boolean respuestaCorrecta = revisarRespuesta(question, fichaController);
+            boolean respuestaCorrecta = revisarRespuesta(question);
 
             javafx.scene.control.Alert alert;
             if (respuestaCorrecta) {
@@ -206,10 +206,6 @@ public class SquareCenter extends Square implements brazo, CategoryQuestion {
                 alert.setHeaderText(null);
                 alert.showAndWait();
                 jugador.gano = true;
-                // Resaltar el sector correspondiente a la categoría
-                if (fichaController != null && categoria != null) {
-                    fichaController.resaltarSector(categoria.ordinal() + 1);
-                }
                 return true;
             } else {
                 alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR, "Respuesta incorrecta.");
@@ -225,11 +221,9 @@ public class SquareCenter extends Square implements brazo, CategoryQuestion {
      * Revisa si la respuesta ingresada por el jugador es correcta.
      *
      * @param question Pregunta a evaluar.
-     * @param fichaController Controlador de la ficha actual.
      * @return true si la respuesta es válida; false si es incorrecta.
      */
-    @Override
-    public boolean revisarRespuesta(Question question, est.ucab.jacafxproyecto.controllers.FichaController fichaController) {
+    public boolean revisarRespuesta(Question question) {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Respuesta");
         dialog.setHeaderText(question.getQuestion()); // Show the actual question
@@ -253,4 +247,5 @@ public class SquareCenter extends Square implements brazo, CategoryQuestion {
     public Square entrar(int move, int exit, Ficha jugador) {
         return this;
     }
+
 }

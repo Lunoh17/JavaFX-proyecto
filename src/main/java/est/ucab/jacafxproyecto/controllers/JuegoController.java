@@ -9,14 +9,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.control.Accordion;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TitledPane;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -40,6 +40,9 @@ public class JuegoController {
     public VBox vBoxJugadores;
     @FXML
     public GridPane grid00;
+
+    private Stage stage;
+    private Scene scene;
     /**
      * Lista de jugadores que participan en el juego.
      */
@@ -129,73 +132,8 @@ public class JuegoController {
         cargarPositions();
     }
 
-    /**
-     * Guarda el estado actual de las fichas de los jugadores en un archivo JSON.
-     *
-     * @throws IOException Si ocurre un error de entrada/salida.
-     */
-    private void saveFichaJson() throws IOException {
-        String destinyFolder = homeFolder + File.separator + "src";
-        File destinyFolderFile = new File(destinyFolder);
-        if (!destinyFolderFile.exists()) {
-            boolean created = destinyFolderFile.mkdir();
-            if (!created) throw new IOException();
-        }
-        Gson gson = new Gson();
-
-        Square[] listaSquare = new Square[MAX_PLAYERS];
-        int contador = 0;
-        for (Ficha fa : jugadores) {
-            listaSquare[contador++] = fa.posicion;
-            fa.posicion = null;
-        }
-        String json = gson.toJson(this.jugadores);
-        File data = new File(destinyFolder + File.separator + "fichas.json");
-        contador = 0;
-        for (Ficha fa : jugadores) {
-            fa.posicion = listaSquare[contador++];
-        }
-        try (FileWriter writer = new FileWriter(data)) {
-            writer.write(json);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void loadFichaJson() {
-        Gson gson = new Gson();
-        String destinyFolder = homeFolder + File.separator + "src";
-        File destinyFolderFile = new File(destinyFolder);
-        if (!destinyFolderFile.exists()) {
-            boolean created = destinyFolderFile.mkdir();
-            if (!created) {
-                throw new RuntimeException();
-            }
-        }
-        var a = new File(destinyFolderFile + File.separator + "fichas.json");
-        if (!(a.exists())) {
-            try {
-                boolean created = a.createNewFile();
-                if (!created) throw new IOException();
-                this.jugadores = new ArrayList<Ficha>();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        } else {
-            try (FileReader r = new FileReader(destinyFolderFile + File.separator + "fichas.json")) {
-                BufferedReader bufferedReader = new BufferedReader(r);
-                Type listType = new TypeToken<ArrayList<Ficha>>() {
-                }.getType();
-                jugadores = gson.fromJson(bufferedReader, listType);
-            } catch (IOException e) {
-                throw new RuntimeException("Error al leer el archivo JSON", e);
-            }
-        }
-
-    }
-
     public void cargarPositions() {
-        loadFichaJson();
+        jugadores = DBController.loadFichaJson();
         if (jugadores == null) {
             jugadores = new ArrayList<>();
             return; // No hay jugadores que cargar
@@ -206,7 +144,6 @@ public class JuegoController {
         if (grid00 != null) {
             grid00.getChildren().clear();
         }
-
         for (int i = 0; i < jugadores.size(); i++) {
             Ficha ficha = jugadores.get(i);
             try {
@@ -214,6 +151,11 @@ public class JuegoController {
                 Node fichaNode = loader.load();
                 FichaController fichaController = loader.getController();
                 fichaController.setJugador(ficha);
+                for (int sector = 0; sector < ficha.triangulos.length; sector++) {
+                    if (ficha.triangulos[sector] > 0) {
+                        fichaController.resaltarSector(sector + 1);
+                    }
+                }
                 fichaControllers[i] = fichaController;
                 fichaNodes.add(fichaNode);
                 if (grid00 != null) {
@@ -222,12 +164,10 @@ public class JuegoController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
             for (Square squareActual : centro.rayos) {
                 for (int j = 0; j < 13; j++) {
                     if (squareActual instanceof SquareRayo sr) {
                         if (ficha.getPosition() == sr.getPosition()) {
-
                             ficha.posicion = sr;
                             ficha.positionTable = sr.getPosition();
                             ficha.posicion.cantidadFichas++;
@@ -260,6 +200,18 @@ public class JuegoController {
         printBoard();
     }
 
+    private void saveFichaJson() throws IOException {
+        DBController.saveFichaJson(jugadores, MAX_PLAYERS);
+    }
+
+    public void switchToMenu(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/est/ucab/jacafxproyecto/menu-view.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     /**
      * Handle a single player's turn, invoked by UI button.
      */
@@ -287,8 +239,43 @@ public class JuegoController {
         if (avance == 2) {
             ganador = true;
             // record victory and show alert
-            jugadores.get(jugadorActual).getUsuario().setVictory(jugadores.get(jugadorActual).getUsuario().getVictory() + 1);
-            new Alert(Alert.AlertType.INFORMATION, "Game over. Winner: " + jugadores.get(jugadorActual).getNickName()).showAndWait();
+            Ficha winnerFicha = jugadores.get(jugadorActual);
+            Usuario winnerUser = winnerFicha.getUsuario();
+            winnerUser.setVictory(winnerUser.getVictory() + 1);
+            new Alert(Alert.AlertType.INFORMATION, "Game over. Winner: " + winnerFicha.getNickName()).showAndWait();
+            // save updated users to JSON
+            try {
+                ArrayList<Usuario> usuariosToSave = new ArrayList<>();
+                // update each user's stats from their ficha
+                for (Ficha f : jugadores) {
+                    Usuario u = f.getUsuario();
+                    // increment total games played
+                    u.setPartidas();
+                    // increment losses for non-winners
+                    if (!u.getUserName().equals(winnerUser.getUserName())) {
+                        u.setLoses();
+                    }
+                    // add triangles per category to user stats
+                    int[] tri = f.triangulos;
+                    Category[] cats = Category.values();
+                    for (int i = 0; i < tri.length; i++) {
+                        for (int j = 0; j < tri[i]; j++) {
+                            switch (cats[i]) {
+                                case GEOGRAFIA -> u.setCategoriesGeografia();
+                                case HISTORIA -> u.setCategoriesHistoria();
+                                case DEPORTESPASATIEMPO -> u.setCategoriesDeporte();
+                                case CIENCIASNATURALEZA -> u.setCategoriesCiencia();
+                                case ARTELITERATURA -> u.setCategoriesArte();
+                                case ENTRETENIMIENTO -> u.setCategoriesEntretenimiento();
+                            }
+                        }
+                    }
+                    usuariosToSave.add(u);
+                }
+                DBController.saveUsuariosJson(usuariosToSave);
+            } catch (IOException e) {
+                System.err.println("Error al guardar usuarios: " + e.getMessage());
+            }
             return;
         }
         // update current player index: 0-> next, 1-> same
@@ -372,5 +359,20 @@ public class JuegoController {
             accordion.getPanes().add(pane);
         }
         vBoxJugadores.getChildren().add(accordion);
+    }
+
+    public void handleRegresar(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/est/ucab/jacafxproyecto/bienvenida.fxml"));
+            Parent root = loader.load();
+            // Get the current stage
+            javafx.stage.Stage stage = (javafx.stage.Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            javafx.scene.Scene scene = new javafx.scene.Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR, "Error al regresar a la bienvenida.").showAndWait();
+            e.printStackTrace();
+        }
     }
 } // end of class JuegoController

@@ -239,16 +239,16 @@
                   <StackPane fx:id="hex66" layoutX="411.6170959472656" layoutY="-8.567285537719727">
                      <children>
                               <Polygon fill="BLUE" points="43.0, -29.0, 52.0, -14.0, 71.0, -14.0, 80.0, -29.0, 71.0, -44.0, 52.0, -44.0" rotate="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <GridPane prefHeight="21.0" prefWidth="3.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="10.0" minHeight="0.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
+                        <GridPane prefHeight="21.0" prefWidth="15.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
                         </GridPane>
                      </children>
                   </StackPane>
@@ -1192,7 +1192,9 @@
                         </HBox>
                     </children>
                 </VBox>
-            <Button layoutX="733.0" layoutY="590.0" mnemonicParsing="false" onAction="#startGame" text="Button" />
+            <Button layoutX="722.0" layoutY="573.0" mnemonicParsing="false" onAction="#startGame" prefHeight="58.0" prefWidth="100.0" text="Dado" />
+            <Button fx:id="regresar" layoutX="880.0" layoutY="573.0" mnemonicParsing="false" onAction="#switchToMenu" prefHeight="58.0" prefWidth="100.0" text="Regresar" />
+            <Button layoutX="1035.0" layoutY="573.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="100.0" text="Rendirse" />
          </children>
       </AnchorPane>
     </children>

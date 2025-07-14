@@ -108,7 +108,7 @@ public class Ficha {
                 ? saliendo.salir(dado, this.posicion.action(this), this)
                 : saliendo.salir(dado, 1, this);
         } else if (entrado && posicion instanceof brazo saliendo) {
-            posicion = saliendo.entrar(dado, 1, this);
+            posicion = saliendo.entrar(dado, 0, this);
         } else if (posicion instanceof movimientoBidireccional casilla) {
             posicion = casilla.movimiento(dado, this.posicion.action(this), this);
         }
